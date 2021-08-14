@@ -25,15 +25,6 @@ use PKP\security\Role;
 class AboutContextHandler extends Handler
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        AppLocale::requireComponents([LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER]);
-    }
-
-    /**
      * @see PKPHandler::authorize()
      */
     public function authorize($request, &$args, $roleAssignments)
@@ -104,13 +95,7 @@ class AboutContextHandler extends Handler
         $sectionDao = Application::getSectionDAO();
         $sections = $sectionDao->getByContextId($context->getId(), null, !$canSubmitAll)->toArray();
 
-        // for author.submit.notAccepting
-        if (count($sections) == 0 || $context->getData('disableSubmissions')) {
-            AppLocale::requireComponents(LOCALE_COMPONENT_APP_AUTHOR);
-        }
-
         $templateMgr->assign('sections', $sections);
-
         $templateMgr->display('frontend/pages/submissions.tpl');
     }
 

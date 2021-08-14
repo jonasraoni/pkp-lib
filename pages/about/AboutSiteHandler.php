@@ -26,15 +26,6 @@ use PKP\db\DAORegistry;
 class AboutSiteHandler extends Handler
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_MANAGER);
-    }
-
-    /**
      * Display aboutThisPublishingSystem page.
      *
      * @param array $args

@@ -41,9 +41,6 @@ class ManagementHandler extends Handler
     {
         parent::initialize($request);
 
-        // Load manager locale components.
-        AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER, LOCALE_COMPONENT_PKP_GRID);
-
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign('pageComponent', 'SettingsPage');
     }
@@ -152,7 +149,6 @@ class ManagementHandler extends Handler
             $templateMgr->assign('siteAdmin', $siteAdmin);
         }
 
-        AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
         $templateMgr->assign('pageTitle', __('manager.setup'));
         $templateMgr->display('management/context.tpl');
     }
@@ -236,15 +232,6 @@ class ManagementHandler extends Handler
         $contextApiUrl = $dispatcher->url($request, PKPApplication::ROUTE_API, $context->getPath(), 'contexts/' . $context->getId());
         $emailTemplatesApiUrl = $dispatcher->url($request, PKPApplication::ROUTE_API, $context->getPath(), 'emailTemplates');
 
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_PKP_SUBMISSION,
-            LOCALE_COMPONENT_APP_SUBMISSION,
-            LOCALE_COMPONENT_PKP_EDITOR,
-            LOCALE_COMPONENT_APP_EDITOR,
-            LOCALE_COMPONENT_PKP_MANAGER,
-            LOCALE_COMPONENT_APP_MANAGER
-        );
-
         $supportedFormLocales = $context->getSupportedFormLocales();
         $localeNames = Locale::getAllLocales();
         $locales = array_map(function ($localeKey) use ($localeNames) {
@@ -295,7 +282,6 @@ class ManagementHandler extends Handler
      */
     public function distribution($args, $request)
     {
-        AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION);
         $templateMgr = TemplateManager::getManager($request);
         $this->setupTemplate($request);
         $context = $request->getContext();

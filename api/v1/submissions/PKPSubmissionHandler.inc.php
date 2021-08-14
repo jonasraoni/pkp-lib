@@ -376,11 +376,6 @@ class PKPSubmissionHandler extends APIHandler
      */
     public function get($slimRequest, $response, $args)
     {
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_PKP_READER,
-            LOCALE_COMPONENT_PKP_SUBMISSION
-        );
-
         $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
 
         $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
@@ -400,8 +395,6 @@ class PKPSubmissionHandler extends APIHandler
      */
     public function add($slimRequest, $response, $args)
     {
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_AUTHOR);
-
         $request = $this->getRequest();
 
         // Don't allow submissions to be added via the site-wide API
@@ -690,7 +683,6 @@ class PKPSubmissionHandler extends APIHandler
     public function versionPublication($slimRequest, $response, $args)
     {
         $request = $this->getRequest();
-        AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION); // notification.type.submissionNewVersion
         $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
         $publication = Repo::publication()->get((int) $args['publicationId']);
 
@@ -833,8 +825,6 @@ class PKPSubmissionHandler extends APIHandler
         if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
             return $response->withStatus(403)->withJsonError('api.publication.403.alreadyPublished');
         }
-
-        AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION);
 
         $submissionContext = $request->getContext();
         if (!$submissionContext || $submissionContext->getId() !== $submission->getData('contextId')) {

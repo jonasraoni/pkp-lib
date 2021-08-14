@@ -42,16 +42,6 @@ class PKPToolsHandler extends ManagementHandler
         );
     }
 
-
-    //
-    // Public handler methods.
-    //
-    public function setupTemplate($request)
-    {
-        parent::setupTemplate($request);
-        AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_SUBMISSION);
-    }
-
     /**
      * Route to other Tools operations
      *
