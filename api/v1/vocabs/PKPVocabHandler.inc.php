@@ -18,6 +18,7 @@ use PKP\handler\APIHandler;
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\Role;
 use Sokil\IsoCodes\IsoCodesFactory;
+use PKP\facades\Locale;
 
 class PKPVocabHandler extends APIHandler
 {
@@ -70,7 +71,7 @@ class PKPVocabHandler extends APIHandler
         $requestParams = $slimRequest->getQueryParams();
 
         $vocab = !empty($requestParams['vocab']) ? $requestParams['vocab'] : '';
-        $locale = !empty($requestParams['locale']) ? $requestParams['locale'] : AppLocale::getLocale();
+        $locale = !empty($requestParams['locale']) ? $requestParams['locale'] : Locale::getLocale();
 
         if (!in_array($locale, $context->getData('supportedSubmissionLocales'))) {
             return $response->withStatus(400)->withJsonError('api.vocabs.400.localeNotSupported', ['locale' => $locale]);

@@ -27,7 +27,7 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\file\PublicFileManager;
 
-use APP\i18n\AppLocale;
+use PKP\facades\Locale;
 use APP\notification\Notification;
 use APP\template\TemplateManager;
 use Exception;
@@ -136,7 +136,7 @@ class PKPTemplateManager extends Smarty
         assert($request instanceof \PKP\core\PKPRequest);
         $this->_request = $request;
 
-        $locale = AppLocale::getLocale();
+        $locale = Locale::getLocale();
         $application = Application::get();
         $router = $request->getRouter();
         assert($router instanceof \PKP\core\PKPRouter);
@@ -145,11 +145,11 @@ class PKPTemplateManager extends Smarty
         $currentContext = $request->getContext();
 
         $this->assign([
-            'defaultCharset' => Config::getVar('i18n', 'client_charset'),
+            'defaultCharset' => Locale::getDefaultEncoding(),
             'baseUrl' => $request->getBaseUrl(),
             'currentContext' => $currentContext,
             'currentLocale' => $locale,
-            'currentLocaleLangDir' => AppLocale::getLocaleDirection($locale),
+            'currentLocaleLangDir' => (Locale::getLocaleMetadata($locale)->isRtlDirection ?? false) ? 'rtl' : 'ltr',
             'applicationName' => __($application->getNameKey()),
         ]);
 
@@ -237,7 +237,7 @@ class PKPTemplateManager extends Smarty
                 if (count($contexts)) {
                     $this->addJavaScript(
                         'recaptcha',
-                        'https://www.google.com/recaptcha/api.js?hl=' . substr(AppLocale::getLocale(), 0, 2),
+                        'https://www.google.com/recaptcha/api.js?hl=' . substr(Locale::getLocale(), 0, 2),
                         [
                             'contexts' => $contexts,
                         ]
@@ -286,7 +286,7 @@ class PKPTemplateManager extends Smarty
         }
 
         // Register custom functions
-        $this->registerPlugin('modifier', 'translate', '\APP\i18n\AppLocale::translate');
+        $this->registerPlugin('modifier', 'translate', '\__');
         $this->registerPlugin('modifier', 'strip_unsafe_html', '\PKP\core\PKPString::stripUnsafeHtml');
         $this->registerPlugin('modifier', 'String_substr', '\PKP\core\PKPString::substr');
         $this->registerPlugin('modifier', 'dateformatPHP2JQueryDatepicker', '\PKP\core\PKPString::dateformatPHP2JQueryDatepicker');
@@ -630,7 +630,7 @@ class PKPTemplateManager extends Smarty
     public function registerJSLibrary()
     {
         $baseUrl = $this->_request->getBaseUrl();
-        $localeChecks = [AppLocale::getLocale(), strtolower(substr(AppLocale::getLocale(), 0, 2))];
+        $localeChecks = [Locale::getLocale(), strtolower(substr(Locale::getLocale(), 0, 2))];
 
         // Common $args array used for all our core JS files
         $args = [
@@ -719,8 +719,8 @@ class PKPTemplateManager extends Smarty
         $output = '$.pkp = $.pkp || {};';
 
         $app_data = [
-            'currentLocale' => AppLocale::getLocale(),
-            'primaryLocale' => AppLocale::getPrimaryLocale(),
+            'currentLocale' => Locale::getLocale(),
+            'primaryLocale' => Locale::getPrimaryLocale(),
             'baseUrl' => $this->_request->getBaseUrl(),
             'contextPath' => isset($context) ? $context->getPath() : '',
             'apiBasePath' => '/api/v1',
@@ -743,7 +743,7 @@ class PKPTemplateManager extends Smarty
             }
             $allLocales = array_unique($allLocales);
             $rtlLocales = array_filter($allLocales, function ($locale) {
-                return AppLocale::getLocaleDirection($locale) === 'rtl';
+                return Locale::getLocaleMetadata($locale)->isRtlDirection ?? false;
             });
             $app_data['rtlLocales'] = array_values($rtlLocales);
         }
@@ -1234,7 +1234,7 @@ class PKPTemplateManager extends Smarty
         // case server is using Apache's AddDefaultCharset
         // directive (which can prevent browser auto-detection
         // of the proper character set).
-        header('Content-Type: text/html; charset=' . Config::getVar('i18n', 'client_charset'));
+        header('Content-Type: text/html; charset=' . Locale::getDefaultEncoding());
         header('Cache-Control: ' . $this->_cacheability);
 
         // If no compile ID was assigned, get one.
@@ -1494,16 +1494,16 @@ class PKPTemplateManager extends Smarty
                 $params['options'] = $newOptions;
             } else {
                 // Just translate output
-                $params['options'] = array_map('AppLocale::translate', $params['options']);
+                $params['options'] = array_map('__', $params['options']);
             }
         }
 
         if (isset($params['output'])) {
-            $params['output'] = array_map('AppLocale::translate', $params['output']);
+            $params['output'] = array_map('__', $params['output']);
         }
 
         if (isset($params['values']) && isset($params['translateValues'])) {
-            $params['values'] = array_map('AppLocale::translate', $params['values']);
+            $params['values'] = array_map('__', $params['values']);
         }
 
         require_once('lib/pkp/lib/vendor/smarty/smarty/libs/plugins/function.html_options.php');
@@ -2337,10 +2337,8 @@ class PKPTemplateManager extends Smarty
      */
     public function smartyLocaleDirection($params, $smarty)
     {
-        $locale = !empty($params['locale'])
-            ? $params['locale']
-            : AppLocale::getLocale();
-        return AppLocale::getLocaleDirection($locale);
+        $locale = empty($params['locale']) ? Locale::getLocale() : $params['locale'];
+        return (Locale::getLocaleMetadata($locale)->isRtlDirection ?? false) ? 'rtl' : 'ltr';
     }
 
     /**

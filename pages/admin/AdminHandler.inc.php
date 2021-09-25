@@ -19,7 +19,7 @@ use APP\file\PublicFileManager;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
 use Illuminate\Support\Facades\DB;
-
+use PKP\facades\Locale;
 use PKP\scheduledTask\ScheduledTaskHelper;
 use PKP\security\authorization\PKPSiteAccessPolicy;
 use PKP\security\Role;
@@ -177,7 +177,7 @@ class AdminHandler extends Handler
         $baseUrl = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
 
         $supportedLocales = $site->getSupportedLocales();
-        $localeNames = AppLocale::getAllLocales();
+        $localeNames = Locale::getAllLocales();
         $locales = array_map(function ($localeKey) use ($localeNames) {
             return ['key' => $localeKey, 'label' => $localeNames[$localeKey]];
         }, $supportedLocales);
@@ -286,7 +286,7 @@ class AdminHandler extends Handler
         $sitemapUrl = $router->url($request, $context->getPath(), 'sitemap');
 
         $supportedFormLocales = $context->getSupportedFormLocales();
-        $localeNames = AppLocale::getAllLocales();
+        $localeNames = Locale::getAllLocales();
         $locales = array_map(function ($localeKey) use ($localeNames) {
             return ['key' => $localeKey, 'label' => $localeNames[$localeKey]];
         }, $supportedFormLocales);
