@@ -27,7 +27,7 @@ use PKP\security\authorization\AuthorizationDecisionManager;
 use PKP\security\authorization\AuthorizationPolicy;
 use PKP\security\authorization\HttpsPolicy;
 use PKP\security\authorization\RestrictedSiteAccessPolicy;
-
+use PKP\session\SessionManager;
 use PKP\security\authorization\UserRolesRequiredPolicy;
 use PKP\security\Role;
 use PKP\security\Validation;
@@ -324,7 +324,7 @@ class PKPHandler
             $this->addPolicy(new HttpsPolicy($request), true);
         }
 
-        if (!defined('SESSION_DISABLE_INIT')) {
+        if (!SessionManager::isDisabled()) {
             // Add user roles in authorized context.
             $user = $request->getUser();
             if ($user instanceof \PKP\user\User || $request->getRouter() instanceof \PKP\core\APIRouter) {

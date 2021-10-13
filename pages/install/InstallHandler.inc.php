@@ -62,7 +62,7 @@ class InstallHandler extends Handler
      */
     public function validate($requiredContexts = null, $request = null)
     {
-        if (Config::getVar('general', 'installed')) {
+        if (Application::isInstalled()) {
             $request->redirect(null, 'index');
         }
     }

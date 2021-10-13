@@ -198,8 +198,8 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider
         }
 
         ini_set('display_errors', Config::getVar('debug', 'display_errors', ini_get('display_errors')));
-        if (!defined('SESSION_DISABLE_INIT') && !Config::getVar('general', 'installed')) {
-            define('SESSION_DISABLE_INIT', true);
+        if (!static::isInstalled()) {
+            SessionManager::disable();
         }
 
         Registry::set('application', $this);
@@ -320,7 +320,7 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider
     {
         $application = Application::get();
         $userAgent = $application->getName() . '/';
-        if (Config::getVar('general', 'installed') && !defined('RUNNING_UPGRADE')) {
+        if (static::isInstalled() && !static::isUpgrading()) {
             $versionDao = DAORegistry::getDAO('VersionDAO');
             $currentVersion = $versionDao->getCurrentVersion();
             $userAgent .= $currentVersion->getVersionString();
@@ -981,6 +981,33 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider
             'agencies',
             'citations',
         ];
+    }
+
+    /**
+     * Retrieves whether the application is installed
+     */
+    public static function isInstalled(): bool
+    {
+        return !!Config::getVar('general', 'installed');
+    }
+
+    /**
+     * Retrieves whether the application is running an upgrade
+     */
+    public static function isUpgrading(): bool
+    {
+        return defined('RUNNING_UPGRADE');
+    }
+
+    /**
+     * Signals the application is undergoing an upgrade
+     */
+    public static function upgrade(): void
+    {
+        // Constant kept for backwards compatibility
+        if (!defined('RUNNING_UPGRADE')) {
+            define('RUNNING_UPGRADE', true);
+        }
     }
 }
 
