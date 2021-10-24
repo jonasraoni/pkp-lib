@@ -1682,6 +1682,9 @@ msgstr "A reviewer has commented on \"{$title}\"."
 msgid "notification.signedFile"
 msgstr "File considered."
 
+msgid "timeZone"
+msgstr "Time zone"
+
 msgid "user.email"
 msgstr "Email address"
 
@@ -1973,8 +1976,8 @@ msgstr "This must contain {$size} items."
 msgid "validator.string"
 msgstr "This is not a valid string."
 
-msgid "validator.timezone"
-msgstr "This is not a valid timezone."
+msgid "validator.timeZone"
+msgstr "This is not a valid time zone."
 
 msgid "validator.unique"
 msgstr "The {$attribute} has already been taken."

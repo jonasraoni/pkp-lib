@@ -104,6 +104,9 @@ msgstr "The administrator username can contain only alphanumeric characters, und
 msgid "installer.form.usernameRequired"
 msgstr "A username for the administrator account is required."
 
+msgid "installer.form.timeZoneRequired"
+msgstr "A time zone must be selected."
+
 msgid "installer.installationWrongPhp"
 msgstr "<br/><strong>WARNING: Your current version of PHP does not meet the minimum requirements for installation. It is recommended to upgrade to a more recent release of PHP.</strong>"
 
