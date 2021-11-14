@@ -118,10 +118,6 @@
 					{fbvElement type="select" name="timeZone" id="timeZoneOptions" from=$timeZoneOptions selected=$timeZone translate=false size=$fbvStyles.size.SMALL subLabelTranslate=true}
 				{/fbvFormSection}
 
-				{fbvFormSection label="installer.clientCharset" description="installer.clientCharsetInstructions"}
-					{fbvElement type="select" id="clientCharset" from=$clientCharsetOptions selected=$clientCharset translate=false size=$fbvStyles.size.SMALL}
-				{/fbvFormSection}
-
 				{fbvFormSection label="installer.connectionCharset"}
 					{fbvElement type="select" id="connectionCharset" from=$connectionCharsetOptions selected=$connectionCharset translate=false size=$fbvStyles.size.SMALL}
 				{/fbvFormSection}

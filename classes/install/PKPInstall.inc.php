@@ -91,7 +91,6 @@ class PKPInstall extends Installer
 
         // Map valid config options to Illuminate database drivers
         $driver = strtolower($this->getParam('databaseDriver'));
-        $connectionCharset = $this->getParam('connectionCharset');
         if (substr($driver, 0, 8) === 'postgres') {
             $driver = 'pgsql';
         } else {
@@ -106,7 +105,7 @@ class PKPInstall extends Installer
             'database' => $this->getParam('databaseName'),
             'username' => $this->getParam('databaseUsername'),
             'password' => $this->getParam('databasePassword'),
-            'charset' => $connectionCharset == 'latin1' ? 'latin1' : 'utf8',
+            'charset' => $this->getParam('connectionCharset'),
             'collation' => 'utf8_general_ci',
         ];
         FacadesConfig::set('database', $config);
@@ -206,7 +205,6 @@ class PKPInstall extends Installer
                 ],
                 'i18n' => [
                     'locale' => $this->getParam('locale'),
-                    'client_charset' => $this->getParam('clientCharset'),
                     'connection_charset' => $this->getParam('connectionCharset') == '' ? 'Off' : $this->getParam('connectionCharset'),
                 ],
                 'files' => [

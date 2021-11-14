@@ -144,7 +144,7 @@ class PKPTemplateManager extends Smarty
         $currentContext = $request->getContext();
 
         $this->assign([
-            'defaultCharset' => Locale::getDefaultEncoding(),
+            'defaultCharset' => 'utf-8',
             'baseUrl' => $request->getBaseUrl(),
             'currentContext' => $currentContext,
             'currentLocale' => $locale,
@@ -1227,7 +1227,7 @@ class PKPTemplateManager extends Smarty
         // case server is using Apache's AddDefaultCharset
         // directive (which can prevent browser auto-detection
         // of the proper character set).
-        header('Content-Type: text/html; charset=' . Locale::getDefaultEncoding());
+        header('Content-Type: text/html; charset=utf-8');
         header('Cache-Control: ' . $this->_cacheability);
 
         // If no compile ID was assigned, get one.

@@ -86,7 +86,6 @@ class InstallTool extends \PKP\cliTool\CommandLineTool
         $this->printTitle('installer.localeSettings');
         $this->readParamOptions('locale', 'locale.primary', $installForm->supportedLocales, 'en_US');
         $this->readParamOptions('additionalLocales', 'installer.additionalLocales', $installForm->supportedLocales, '', true);
-        $this->readParamOptions('clientCharset', 'installer.clientCharset', $installForm->supportedClientCharsets, 'utf-8');
         $this->readParamOptions('connectionCharset', 'installer.connectionCharset', $installForm->supportedConnectionCharsets, '');
 
         // File Settings
@@ -108,7 +107,7 @@ class InstallTool extends \PKP\cliTool\CommandLineTool
 
         // Database Settings
         $this->printTitle('installer.databaseSettings');
-        $this->readParamOptions('databaseDriver', 'installer.databaseDriver', $installForm->checkDBDrivers());
+        $this->readParamOptions('databaseDriver', 'installer.databaseDriver', $installForm->getDatabaseDriversOptions());
         $this->readParam('databaseHost', 'installer.databaseHost', '');
         $this->readParam('databaseUsername', 'installer.databaseUsername', '');
         $this->readParam('databasePassword', 'installer.databasePassword', '');
