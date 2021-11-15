@@ -117,10 +117,6 @@
 				{fbvFormSection label="timeZone" description="installer.timeZoneInstructions" for="timeZone"}
 					{fbvElement type="select" name="timeZone" id="timeZoneOptions" from=$timeZoneOptions selected=$timeZone translate=false size=$fbvStyles.size.SMALL subLabelTranslate=true}
 				{/fbvFormSection}
-
-				{fbvFormSection label="installer.connectionCharset"}
-					{fbvElement type="select" id="connectionCharset" from=$connectionCharsetOptions selected=$connectionCharset translate=false size=$fbvStyles.size.SMALL}
-				{/fbvFormSection}
 			{/fbvFormArea}
 
 			<!-- Files directory configuration -->
@@ -139,6 +135,9 @@
 				<p>{translate key="installer.databaseSettingsInstructions"}</p>
 				{fbvFormSection label="installer.databaseDriver" description="installer.databaseDriverInstructions"}
 					{fbvElement type="select" id="databaseDriver" from=$databaseDriverOptions selected=$databaseDriver translate=false size=$fbvStyles.size.SMALL}
+				{/fbvFormSection}
+				{fbvFormSection label="installer.connectionCharset"}
+					{fbvElement type="select" id="connectionCharset" from=$connectionCharsetOptions selected=$connectionCharset translate=false size=$fbvStyles.size.SMALL}
 				{/fbvFormSection}
 				{fbvFormSection label="installer.databaseHost"}
 					{fbvElement type="text" id="databaseHost" value=$databaseHost maxlength="60" size=$fbvStyles.size.MEDIUM}

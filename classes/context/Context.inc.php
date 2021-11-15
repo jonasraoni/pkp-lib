@@ -273,15 +273,13 @@ abstract class Context extends \PKP\core\DataObject
 
         if (!isset($supportedLocales)) {
             $supportedLocales = [];
-            $localeNames = Locale::getAllLocales();
-
             $locales = $this->getSupportedFormLocales();
             if (!isset($locales) || !is_array($locales)) {
                 $locales = [];
             }
 
             foreach ($locales as $localeKey) {
-                $supportedLocales[$localeKey] = $localeNames[$localeKey];
+                $supportedLocales[$localeKey] = Locale::getLocaleMetadata($localeKey)->name;
             }
         }
 
@@ -311,15 +309,13 @@ abstract class Context extends \PKP\core\DataObject
 
         if (!isset($supportedLocales)) {
             $supportedLocales = [];
-            $localeNames = Locale::getAllLocales();
-
             $locales = $this->getSupportedSubmissionLocales();
             if (!isset($locales) || !is_array($locales)) {
                 $locales = [];
             }
 
             foreach ($locales as $localeKey) {
-                $supportedLocales[$localeKey] = $localeNames[$localeKey];
+                $supportedLocales[$localeKey] = Locale::getLocaleMetadata($localeKey)->name;
             }
         }
 
@@ -348,15 +344,13 @@ abstract class Context extends \PKP\core\DataObject
 
         if (!isset($supportedLocales)) {
             $supportedLocales = [];
-            $localeNames = Locale::getAllLocales();
-
             $locales = $this->getSupportedLocales();
             if (!isset($locales) || !is_array($locales)) {
                 $locales = [];
             }
 
             foreach ($locales as $localeKey) {
-                $supportedLocales[$localeKey] = $localeNames[$localeKey];
+                $supportedLocales[$localeKey] = Locale::getLocaleMetadata($localeKey)->name;
             }
         }
 
