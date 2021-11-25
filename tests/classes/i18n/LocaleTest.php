@@ -51,7 +51,7 @@ class LocaleTest extends PKPTestCase
             'pt_PT' => 'Portuguese (Portugal)',
             'de_DE' => 'German'
         ];
-        $locales = array_map(fn(LocaleMetadata $locale) => $locale->name, Locale::getLocales());
+        $locales = array_map(fn(LocaleMetadata $locale) => $locale->getDisplayName(), Locale::getLocales());
         self::assertEquals($expectedLocales, $locales);
     }
 

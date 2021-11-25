@@ -14,11 +14,13 @@
  *
  */
 
+use APP\core\Application;
+use PKP\db\DAORegistry;
+use PKP\facades\Locale;
 use PKP\handler\APIHandler;
+use PKP\plugins\HookRegistry;
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\Role;
-use Sokil\IsoCodes\IsoCodesFactory;
-use PKP\facades\Locale;
 
 class PKPVocabHandler extends APIHandler
 {
@@ -91,9 +93,8 @@ class PKPVocabHandler extends APIHandler
                 $entries = $submissionDisciplineEntryDao->getByContextId($vocab, $context->getId(), $locale)->toArray();
                 break;
             case \PKP\submission\SubmissionLanguageDAO::CONTROLLED_VOCAB_SUBMISSION_LANGUAGE:
-                $isoCodes = app(IsoCodesFactory::class);
                 $languageNames = [];
-                foreach ($isoCodes->getLanguages(IsoCodesFactory::OPTIMISATION_IO) as $language) {
+                foreach (Locale::getLanguages() as $language) {
                     if (!$language->getAlpha2() || $language->getType() != 'L' || $language->getScope() != 'I') {
                         continue;
                     }
@@ -107,7 +108,7 @@ class PKPVocabHandler extends APIHandler
                 break;
             default:
                 $entries = [];
-                \HookRegistry::call('API::vocabs::getMany', [$vocab, &$entries, $slimRequest, $response, $this->request]);
+                HookRegistry::call('API::vocabs::getMany', [$vocab, &$entries, $slimRequest, $response, $this->request]);
         }
 
         $data = [];
