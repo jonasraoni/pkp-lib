@@ -46,14 +46,13 @@ abstract class LocaleFile
     */
     public static function loadArray(string $path): array
     {
-        $key = self::_getCacheKey($path);
-        $cache = Cache::get($key);
-        if (!is_array($cache)) {
-            $arrayGenerator = new ArrayGenerator();
-            $cache = $arrayGenerator->generateArray(static::loadTranslations($path));
-            Cache::put($key, $cache, DateInterval::createFromDateString(static::MAX_CACHE_LIFETIME));
-        }
-        return $cache;
+        return Cache::remember(
+            static::_getCacheKey($path),
+            DateInterval::createFromDateString(static::MAX_CACHE_LIFETIME),
+            function () use ($path): array {
+                return (new ArrayGenerator())->generateArray(static::loadTranslations($path));
+            }
+        );
     }
 
     /**
@@ -61,6 +60,6 @@ abstract class LocaleFile
      */
     private static function _getCacheKey(string $path): string
     {
-        return static::class . '.' . sha1($path . filemtime($path));
+        return __METHOD__ . static::MAX_CACHE_LIFETIME . '.' . sha1($path . filemtime($path));
     }
 }

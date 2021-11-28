@@ -30,8 +30,8 @@ use Illuminate\Support\Facades\Facade;
 use PKP\config\Config;
 use PKP\facades\Locale;
 use PKP\i18n\LocaleServiceProvider;
+use PKP\i18n\translation\IsoCodesTranslationDriver;
 use Sokil\IsoCodes\IsoCodesFactory;
-use Sokil\IsoCodes\TranslationDriver\GettextExtensionDriver;
 
 use Throwable;
 
@@ -92,11 +92,7 @@ class PKPContainer extends Container
         );
 
         // This singleton is necessary to keep user selected language across the application
-        $this->singleton(IsoCodesFactory::class, function (self $container, array $params): IsoCodesFactory {
-            $driver = new GettextExtensionDriver();
-            $driver->setLocale($params['locale'] ?? Locale::getLocale());
-            return new IsoCodesFactory(null, $driver);
-        });
+        $this->singleton(IsoCodesFactory::class, fn(self $container, array $params): IsoCodesFactory => new IsoCodesFactory(null, new IsoCodesTranslationDriver($params['locale'] ?? Locale::getLocale())));
 
         $this->singleton(
             'queue.failer',
@@ -254,7 +250,7 @@ class PKPContainer extends Container
             'stores' => [
                 'opcache' => [
                     'driver' => 'opcache',
-                    'path' => Core::getBaseDir() . '/cache'
+                    'path' => Core::getBaseDir() . '/cache/opcache'
                 ]
             ]
         ];

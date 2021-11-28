@@ -279,7 +279,7 @@ abstract class Context extends \PKP\core\DataObject
             }
 
             foreach ($locales as $localeKey) {
-                $supportedLocales[$localeKey] = Locale::getLocaleMetadata($localeKey)->name;
+                $supportedLocales[$localeKey] = Locale::getMetadata($localeKey)->getDisplayName();
             }
         }
 
@@ -315,7 +315,7 @@ abstract class Context extends \PKP\core\DataObject
             }
 
             foreach ($locales as $localeKey) {
-                $supportedLocales[$localeKey] = Locale::getLocaleMetadata($localeKey)->name;
+                $supportedLocales[$localeKey] = Locale::getMetadata($localeKey)->getDisplayName();
             }
         }
 
@@ -350,7 +350,7 @@ abstract class Context extends \PKP\core\DataObject
             }
 
             foreach ($locales as $localeKey) {
-                $supportedLocales[$localeKey] = Locale::getLocaleMetadata($localeKey)->name;
+                $supportedLocales[$localeKey] = Locale::getMetadata($localeKey)->getDisplayName();
             }
         }
 

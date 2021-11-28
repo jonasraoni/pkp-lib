@@ -42,7 +42,7 @@ class Site extends \PKP\core\DataObject
             $supportedLocales = [];
             $locales = $this->getSupportedLocales();
             foreach ($locales as $localeKey) {
-                $supportedLocales[$localeKey] = Locale::getLocaleMetadata($localeKey)->name;
+                $supportedLocales[$localeKey] = Locale::getMetadata($localeKey)->getDisplayName();
             }
 
             asort($supportedLocales);

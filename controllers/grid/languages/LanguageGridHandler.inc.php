@@ -157,9 +157,7 @@ class LanguageGridHandler extends GridHandler
             ['contents' => __('notification.localeSettingsSaved')]
         );
 
-        $newFormLocales = array_map(function ($localeKey) {
-            return ['key' => $localeKey, 'label' => Locale::getLocaleMetadata($localeKey)->name];
-        }, $context->getData('supportedFormLocales'));
+        $newFormLocales = array_map(fn(string $locale) => ['key' => $locale, 'label' => Locale::getMetadata($locale)->getDisplayName()], $context->getData('supportedFormLocales'));
 
         $json = \PKP\db\DAO::getDataChangedEvent($locale);
         $json->setGlobalEvent('set-form-languages', $newFormLocales);

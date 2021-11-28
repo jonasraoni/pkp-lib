@@ -51,4 +51,13 @@ class Translator extends GetTextTranslator
 
         return $translation[$key] ?? '';
     }
+
+    /**
+     * Retrieves the raw translator data
+     */
+    public function getEntries(): array
+    {
+        $context = '';
+        return $this->dictionary[$this->domain][$context] ?? [];
+    }
 }

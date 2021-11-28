@@ -169,9 +169,7 @@ class AdminHandler extends Handler
         $baseUrl = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
 
         $supportedLocales = $site->getSupportedLocales();
-        $locales = array_map(function ($localeKey) {
-            return ['key' => $localeKey, 'label' => Locale::getLocaleMetadata($localeKey)->name];
-        }, $supportedLocales);
+        $locales = array_map(fn(string $locale) => ['key' => $locale, 'label' => Locale::getMetadata($locale)->getDisplayName()], $supportedLocales);
 
         $contexts = Services::get('context')->getManySummary();
 
@@ -277,9 +275,7 @@ class AdminHandler extends Handler
         $sitemapUrl = $router->url($request, $context->getPath(), 'sitemap');
 
         $supportedFormLocales = $context->getSupportedFormLocales();
-        $locales = array_map(function ($localeKey) {
-            return ['key' => $localeKey, 'label' => Locale::getLocaleMetadata($localeKey)->name];
-        }, $supportedFormLocales);
+        $locales = array_map(fn(string $locale) => ['key' => $locale, 'label' => Locale::getMetadata($locale)->getDisplayName()], $supportedFormLocales);
 
         $contextForm = new APP\components\forms\context\ContextForm($apiUrl, $locales, $request->getBaseUrl(), $context);
         $themeForm = new PKP\components\forms\context\PKPThemeForm($themeApiUrl, $locales, $context);

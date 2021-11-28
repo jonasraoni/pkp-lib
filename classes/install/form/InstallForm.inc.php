@@ -59,11 +59,10 @@ class InstallForm extends MaintenanceForm
     {
         parent::__construct($request, 'install/install.tpl');
 
-        // FIXME Move the below options to an external configuration file?
-        $this->supportedLocales = array_map(fn(LocaleMetadata $locale) => $locale->name, Locale::getLocales());
+        $this->supportedLocales = array_map(fn(LocaleMetadata $locale) => $locale->getDisplayName(), Locale::getLocales());
         $this->localesComplete = [];
         foreach (array_keys($this->supportedLocales) as $key) {
-            $this->localesComplete[$key] = Locale::getLocaleMetadata($key)->isComplete;
+            $this->localesComplete[$key] = Locale::getMetadata($key)->isComplete();
         }
 
         foreach ($this->supportedDatabaseDrivers as $driver => [$module]) {
@@ -75,16 +74,12 @@ class InstallForm extends MaintenanceForm
         // Validation checks for this form
         $form = $this;
         $this->addCheck(new \PKP\form\validation\FormValidatorInSet($this, 'locale', 'required', 'installer.form.localeRequired', array_keys($this->supportedLocales)));
-        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'locale', 'required', 'installer.form.localeRequired', function ($locale) {
-            return Locale::isLocaleValid($locale);
-        }));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'locale', 'required', 'installer.form.localeRequired', fn(string $locale) => Locale::isLocaleValid($locale)));
         $this->addCheck(new \PKP\form\validation\FormValidator($this, 'filesDir', 'required', 'installer.form.filesDirRequired'));
         $this->addCheck(new \PKP\form\validation\FormValidator($this, 'adminUsername', 'required', 'installer.form.usernameRequired'));
         $this->addCheck(new \PKP\form\validation\FormValidatorUsername($this, 'adminUsername', 'required', 'installer.form.usernameAlphaNumeric'));
         $this->addCheck(new \PKP\form\validation\FormValidator($this, 'adminPassword', 'required', 'installer.form.passwordRequired'));
-        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'adminPassword', 'required', 'installer.form.passwordsDoNotMatch', function ($password) use ($form) {
-            return $password == $form->getData('adminPassword2');
-        }));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'adminPassword', 'required', 'installer.form.passwordsDoNotMatch', fn(string $password) => $password == $form->getData('adminPassword2')));
         $this->addCheck(new \PKP\form\validation\FormValidatorEmail($this, 'adminEmail', 'required', 'installer.form.emailRequired'));
         $this->addCheck(new \PKP\form\validation\FormValidatorInSet($this, 'databaseDriver', 'required', 'installer.form.databaseDriverRequired', array_keys($this->supportedDatabaseDrivers)));
         $this->addCheck(new \PKP\form\validation\FormValidator($this, 'databaseName', 'required', 'installer.form.databaseNameRequired'));
@@ -113,6 +108,7 @@ class InstallForm extends MaintenanceForm
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign([
             'timeZoneOptions' => $timeZones,
+            'languageOptions' => array_map(fn(LocaleMetadata $locale) => $locale->getDisplayName($locale->locale), Locale::getLocales()),
             'localeOptions' => $this->supportedLocales,
             'localesComplete' => $this->localesComplete,
             'connectionCharsetOptions' => $this->supportedConnectionCharsets,
@@ -231,9 +227,7 @@ class InstallForm extends MaintenanceForm
      */
     public function getDatabaseDriversOptions()
     {
-        return array_map(function ($item) {
-            return $item[1];
-        }, $this->supportedDatabaseDrivers);
+        return array_map(fn($item) => $item[1], $this->supportedDatabaseDrivers);
     }
 }
 

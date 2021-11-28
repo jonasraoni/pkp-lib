@@ -23,7 +23,7 @@
 
 	<div class="app__contentPanel">
 		{fbvFormSection label="common.language" for="installLanguage" style="position: absolute;"}
-			{fbvElement type="select" name="installLanguage" id="installLanguage" from=$localeOptions selected=$locale translate=false size=$fbvStyles.size.SMALL subLabelTranslate=true}
+			{fbvElement type="select" name="installLanguage" id="installLanguage" from=$languageOptions selected=$locale translate=false size=$fbvStyles.size.SMALL subLabelTranslate=true}
 		{/fbvFormSection}
 
 		{capture assign="writable_config"}{if is_writeable('config.inc.php')}{translate key="installer.checkYes"}{else}{translate key="installer.checkNo"}{/if}{/capture}

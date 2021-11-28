@@ -148,7 +148,7 @@ class PKPTemplateManager extends Smarty
             'baseUrl' => $request->getBaseUrl(),
             'currentContext' => $currentContext,
             'currentLocale' => $locale,
-            'currentLocaleLangDir' => (Locale::getLocaleMetadata($locale)->isRtlDirection ?? false) ? 'rtl' : 'ltr',
+            'currentLocaleLangDir' => Locale::getMetadata($locale)->isRightToLeft() ? 'rtl' : 'ltr',
             'applicationName' => __($application->getNameKey()),
         ]);
 
@@ -741,9 +741,7 @@ class PKPTemplateManager extends Smarty
                 $allLocales = $this->_request->getSite()->getSupportedLocales();
             }
             $allLocales = array_unique($allLocales);
-            $rtlLocales = array_filter($allLocales, function ($locale) {
-                return Locale::getLocaleMetadata($locale)->isRtlDirection ?? false;
-            });
+            $rtlLocales = array_filter($allLocales, fn(string $locale) => Locale::getMetadata($locale)->isRightToLeft());
             $app_data['rtlLocales'] = array_values($rtlLocales);
         }
 
@@ -2366,7 +2364,7 @@ class PKPTemplateManager extends Smarty
     public function smartyLocaleDirection($params, $smarty)
     {
         $locale = empty($params['locale']) ? Locale::getLocale() : $params['locale'];
-        return (Locale::getLocaleMetadata($locale)->isRtlDirection ?? false) ? 'rtl' : 'ltr';
+        return Locale::getMetadata($locale)->isRightToLeft() ? 'rtl' : 'ltr';
     }
 
     /**
