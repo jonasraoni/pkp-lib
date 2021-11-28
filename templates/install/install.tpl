@@ -114,7 +114,7 @@
 						{fbvElement type="checkbox" name="additionalLocales[]" id="additionalLocales-$localeKeyEscaped" value=$localeKeyEscaped translate=false label="manager.people.createUserSendNotify" checked=$localeSelected label=$localeName|escape}
 					{/foreach}
 				{/fbvFormSection}
-				{fbvFormSection label="timeZone" description="installer.timeZoneInstructions" for="timeZone"}
+				{fbvFormSection label="timeZone" description="installer.timezoneInstructions" for="timeZone"}
 					{fbvElement type="select" name="timeZone" id="timeZoneOptions" from=$timeZoneOptions selected=$timeZone translate=false size=$fbvStyles.size.SMALL subLabelTranslate=true}
 				{/fbvFormSection}
 			{/fbvFormArea}

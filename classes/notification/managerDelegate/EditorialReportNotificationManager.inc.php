@@ -48,6 +48,8 @@ class EditorialReportNotificationManager extends NotificationManagerDelegate
     private $_editorialTrendsTotal;
     /** @var array Cache of user counts by role */
     private $_userRolesOverview;
+    /** Cache of formatters by locale */
+    private ?array $_formatterCache = null;
 
     /**
      * @copydoc NotificationManagerDelegate::__construct()
@@ -171,9 +173,8 @@ class EditorialReportNotificationManager extends NotificationManagerDelegate
      */
     public function _getLocalizedMonthName(\DateTimeInterface $date, ?string $locale = null): string
     {
-        static $cache = [];
-        $locale ?? $locale = Locale::getLocale();
-        $formatter = $cache[$locale] ?? $cache[$locale] = \IntlDateFormatter::create($locale, null, null, null, null, 'MMMM');
+        $locale ??= Locale::getLocale();
+        $formatter = $this->_formatterCache[$locale] ??= \IntlDateFormatter::create($locale, null, null, null, null, 'MMMM');
         return $formatter->format($date);
     }
 

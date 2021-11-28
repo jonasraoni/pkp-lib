@@ -49,12 +49,8 @@ class InterestManager
 
     /**
      * Get user reviewing interests. (Cached in memory for batch fetches.)
-     *
-     * @param User $user
-     *
-     * @return array
      */
-    public function getInterestsForUser($user)
+    public function getInterestsForUser(User $user): array
     {
         static $interestsCache = [];
         $interests = [];
@@ -63,14 +59,13 @@ class InterestManager
         $interestEntryDao = DAORegistry::getDAO('InterestEntryDAO'); /** @var InterestEntryDAO $interestEntryDao */
         $controlledVocab = $interestDao->build();
         foreach ($interestDao->getUserInterestIds($user->getId()) as $interestEntryId) {
-            if (!isset($interestsCache[$interestEntryId])) {
-                $interestsCache[$interestEntryId] = $interestEntryDao->getById(
-                    $interestEntryId,
-                    $controlledVocab->getId()
-                );
-            }
-            if (isset($interestsCache[$interestEntryId])) {
-                $interests[] = $interestsCache[$interestEntryId]->getInterest();
+            /** @var InterestEntry */
+            $interestEntry = $interestsCache[$user->getId()][$interestEntryId] ??= $interestEntryDao->getById(
+                $interestEntryId,
+                $controlledVocab->getId()
+            );
+            if ($interestEntry) {
+                $interests[] = $interestEntry->getInterest();
             }
         }
 

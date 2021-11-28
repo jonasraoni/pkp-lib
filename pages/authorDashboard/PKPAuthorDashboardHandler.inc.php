@@ -196,8 +196,8 @@ abstract class PKPAuthorDashboardHandler extends Handler
             }
         }
 
-        $supportedSubmissionLocales = $submissionContext->getSupportedSubmissionLocales();
-        $locales = array_map(fn(string $locale) => ['key' => $locale, 'label' => Locale::getMetadata($locale)->getDisplayName()], $supportedSubmissionLocales);
+        $locales = $submissionContext->getSupportedSubmissionLocaleNames();
+        $locales = array_map(fn (string $locale, string $name) => ['key' => $locale, 'label' => $name], array_keys($locales), $locales);
 
         $latestPublication = $submission->getLatestPublication();
 

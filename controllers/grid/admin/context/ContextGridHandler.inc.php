@@ -227,13 +227,13 @@ class ContextGridHandler extends GridHandler
         $dispatcher = $request->getDispatcher();
         if ($context) {
             $apiUrl = $dispatcher->url($request, PKPApplication::ROUTE_API, $context->getPath(), 'contexts/' . $context->getId());
-            $supportedLocales = $context->getSupportedFormLocales();
+            $locales = $context->getSupportedFormLocaleNames();
         } else {
             $apiUrl = $dispatcher->url($request, PKPApplication::ROUTE_API, CONTEXT_ID_ALL, 'contexts');
-            $supportedLocales = $request->getSite()->getSupportedLocales();
+            $locales = $request->getSite()->getSupportedLocaleNames();
         }
 
-        $locales = array_map(fn(string $locale) => ['key' => $locale, 'label' => Locale::getMetadata($locale)->getDisplayName()], $supportedLocales);
+        $locales = array_map(fn (string $locale, string $name) => ['key' => $locale, 'label' => $name], array_keys($locales), $locales);
 
         $contextForm = new \APP\components\forms\context\ContextForm($apiUrl, $locales, $request->getBaseUrl(), $context);
         $contextFormConfig = $contextForm->getConfig();

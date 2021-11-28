@@ -34,21 +34,15 @@ class Site extends \PKP\core\DataObject
      *
      * @return array
      */
-    public function &getSupportedLocaleNames()
+    public function getSupportedLocaleNames()
     {
-        $supportedLocales = & Registry::get('siteSupportedLocales', true, null);
-
-        if ($supportedLocales === null) {
-            $supportedLocales = [];
+        static $supportedLocales;
+        return $supportedLocales ??= (function () {
             $locales = $this->getSupportedLocales();
-            foreach ($locales as $localeKey) {
-                $supportedLocales[$localeKey] = Locale::getMetadata($localeKey)->getDisplayName();
-            }
-
+            $supportedLocales = array_map(fn (string $locale) => Locale::getMetadata($locale)->getDisplayName(), array_combine($locales, $locales));
             asort($supportedLocales);
-        }
-
-        return $supportedLocales;
+            return $supportedLocales;
+        })();
     }
 
     //

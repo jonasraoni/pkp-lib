@@ -168,8 +168,8 @@ class AdminHandler extends Handler
         $publicFileManager = new PublicFileManager();
         $baseUrl = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
 
-        $supportedLocales = $site->getSupportedLocales();
-        $locales = array_map(fn(string $locale) => ['key' => $locale, 'label' => Locale::getMetadata($locale)->getDisplayName()], $supportedLocales);
+        $locales = $site->getSupportedLocaleNames();
+        $locales = array_map(fn (string $locale, string $name) => ['key' => $locale, 'label' => $name], array_keys($locales), $locales);
 
         $contexts = Services::get('context')->getManySummary();
 
@@ -274,8 +274,8 @@ class AdminHandler extends Handler
         $themeApiUrl = $dispatcher->url($request, PKPApplication::ROUTE_API, $context->getPath(), 'contexts/' . $context->getId() . '/theme');
         $sitemapUrl = $router->url($request, $context->getPath(), 'sitemap');
 
-        $supportedFormLocales = $context->getSupportedFormLocales();
-        $locales = array_map(fn(string $locale) => ['key' => $locale, 'label' => Locale::getMetadata($locale)->getDisplayName()], $supportedFormLocales);
+        $locales = $context->getSupportedFormLocaleNames();
+        $locales = array_map(fn (string $locale, string $name) => ['key' => $locale, 'label' => $name], array_keys($locales), $locales);
 
         $contextForm = new APP\components\forms\context\ContextForm($apiUrl, $locales, $request->getBaseUrl(), $context);
         $themeForm = new PKP\components\forms\context\PKPThemeForm($themeApiUrl, $locales, $context);

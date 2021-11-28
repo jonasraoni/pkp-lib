@@ -255,10 +255,15 @@ class Locale implements LocaleInterface
      */
     public function getSupportedFormLocales(): array
     {
-        return $this->supportedFormLocales ??= (fn(): array => SessionManager::isDisabled()
-            ? array_map(fn(LocaleMetadata $locale) => $locale->locale, Locale::getLocales())
-            : (($context = $this->_getRequest()->getContext()) ? $context->getSupportedFormLocaleNames() : $this->_getRequest()->getSite()->getSupportedLocaleNames())
-        )();
+        return $this->supportedFormLocales ??= array_map(
+            fn (LocaleMetadata $locale) => $locale->getDisplayName(),
+            SessionManager::isDisabled() ? $this->getLocales() : array_combine(
+                $locales = ($context = $this->_getRequest()->getContext())
+                    ? $context->getSupportedFormLocales()
+                    : $this->_getRequest()->getSite()->getSupportedLocales(),
+                $locales
+            )
+        );
     }
 
     /**
@@ -266,10 +271,15 @@ class Locale implements LocaleInterface
      */
     public function getSupportedLocales(): array
     {
-        return $this->supportedLocales ??= (fn(): array => SessionManager::isDisabled()
-            ? array_map(fn(LocaleMetadata $locale) => $locale->locale, Locale::getLocales())
-            : ($this->_getRequest()->getContext() ?? $this->_getRequest()->getSite())->getSupportedLocaleNames()
-        )();
+        return $this->supportedLocales ??= array_map(
+            fn (LocaleMetadata $locale) => $locale->getDisplayName(),
+            SessionManager::isDisabled() ? $this->getLocales() : array_combine(
+                $locales = ($context = $this->_getRequest()->getContext())
+                    ? $context->getSupportedLocales()
+                    : $this->_getRequest()->getSite()->getSupportedLocales(),
+                $locales
+            )
+        );
     }
 
     /**
@@ -293,7 +303,7 @@ class Locale implements LocaleInterface
      */
     public function getBundle(?string $locale = null, bool $cacheInMemory = true): LocaleBundle
     {
-        $locale ??= Locale::getLocale();
+        $locale ??= $this->getLocale();
         if (!isset($this->localeBundles[$locale])) {
             $bundle = [];
             foreach ($this->paths as $folder => $priority) {

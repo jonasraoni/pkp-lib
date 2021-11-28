@@ -614,7 +614,7 @@ class PKPv3_3_0UpgradeMigration extends \PKP\migration\Migration
             error_log('A file assigned to the file stage ' . $fileStage . ' could not be migrated.');
         }
 
-        return $fileStagePathMap[$fileStage];
+        return $fileStagePathMap[$fileStage] ?? null;
     }
 
     /**

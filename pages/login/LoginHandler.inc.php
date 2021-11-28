@@ -157,7 +157,7 @@ class LoginHandler extends Handler
         } elseif ($reason !== null) {
             $error = 'user.login.accountDisabled';
         }
-        $error = $error ?? 'user.login.loginError';
+        $error ??= 'user.login.loginError';
 
 
         $templateMgr->assign([

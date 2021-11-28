@@ -60,10 +60,7 @@ class InstallForm extends MaintenanceForm
         parent::__construct($request, 'install/install.tpl');
 
         $this->supportedLocales = array_map(fn(LocaleMetadata $locale) => $locale->getDisplayName(), Locale::getLocales());
-        $this->localesComplete = [];
-        foreach (array_keys($this->supportedLocales) as $key) {
-            $this->localesComplete[$key] = Locale::getMetadata($key)->isComplete();
-        }
+        $this->localesComplete = array_map(fn (LocaleMetadata $locale) => $locale->isComplete(), Locale::getLocales());
 
         foreach ($this->supportedDatabaseDrivers as $driver => [$module]) {
             if (!extension_loaded($module)) {
@@ -106,9 +103,11 @@ class InstallForm extends MaintenanceForm
         }, ['UTC' => 'UTC']);
 
         $templateMgr = TemplateManager::getManager($request);
+        $languages = array_map(fn (LocaleMetadata $locale) => $locale->getDisplayName($locale->locale), Locale::getLocales());
+        asort($languages);
         $templateMgr->assign([
             'timeZoneOptions' => $timeZones,
-            'languageOptions' => array_map(fn(LocaleMetadata $locale) => $locale->getDisplayName($locale->locale), Locale::getLocales()),
+            'languageOptions' => $languages,
             'localeOptions' => $this->supportedLocales,
             'localesComplete' => $this->localesComplete,
             'connectionCharsetOptions' => $this->supportedConnectionCharsets,

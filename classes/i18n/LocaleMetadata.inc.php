@@ -53,7 +53,8 @@ class LocaleMetadata
     public function getDisplayName(?string $locale = null): string
     {
         $country = $this->getCountry($locale);
-        return PKPString::regexp_replace('/\s*\([^)]*\)\s*/', '', PKPString::ucfirst($this->_getLanguage($locale)->getLocalName())). ($country ? " (${country})" : '');
+        // Remove parenthesis from the language name and also convert the its character to uppercase (due to the IsoCodes texts)
+        return PKPString::regexp_replace('/\s*\([^)]*\)\s*/', '', PKPString::ucfirst($this->_getLanguage($locale)->getLocalName())) . ($country ? " (${country})" : '');
     }
 
     /**

@@ -160,7 +160,7 @@ class NativeXmlPKPAuthorFilter extends NativeImportFilter
                 $publication->getId(),
                 __('plugins.importexport.common.error.missingGivenName', [
                     'authorName' => $author->getLocalizedGivenName(),
-                    'localeName' => Locale::getMetadata($submission->getLocale())->getDisplayName()
+                    'localeName' => Locale::getMetadata($publication->getData('locale'))->getDisplayName()
                 ])
             );
         }

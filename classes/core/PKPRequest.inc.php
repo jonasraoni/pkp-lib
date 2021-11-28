@@ -18,6 +18,7 @@ namespace PKP\core;
 use APP\core\Application;
 use APP\facades\Repo;
 use PKP\config\Config;
+use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\plugins\HookRegistry;
 use PKP\security\Validation;
@@ -569,7 +570,7 @@ class PKPRequest
     public function getSite(): ?Site
     {
         $site = & Registry::get('site', true, null);
-        return $site ?? $site = DAORegistry::getDAO('SiteDAO')->getSite();
+        return $site ??= DAORegistry::getDAO('SiteDAO')->getSite();
     }
 
     /**
@@ -578,8 +579,7 @@ class PKPRequest
     public function getSession(): Session
     {
         $session = & Registry::get('session', true, null);
-        // Replace by ??= when PHP 8 is available
-        return $session ?? $session = SessionManager::getManager()->getUserSession();
+        return $session ??= SessionManager::getManager()->getUserSession();
     }
 
     /**
@@ -626,12 +626,7 @@ class PKPRequest
 
         // Get all vars (already cleaned)
         $vars = $this->getUserVars();
-
-        if (isset($vars[$key])) {
-            return $vars[$key];
-        } else {
-            return null;
-        }
+        return $vars[$key] ?? null;
     }
 
     /**
@@ -641,12 +636,7 @@ class PKPRequest
      */
     public function &getUserVars()
     {
-        if (!isset($this->_requestVars)) {
-            $this->_requestVars = array_map(function ($s) {
-                return is_string($s) ? trim($s) : $s;
-            }, array_merge($_GET, $_POST));
-        }
-
+        $this->_requestVars ??= array_map(fn($s) => is_string($s) ? trim($s) : $s, array_merge($_GET, $_POST));
         return $this->_requestVars;
     }
 
@@ -759,11 +749,9 @@ class PKPRequest
     /**
      * Get the current "context" (press/journal/etc) object.
      *
-     * @return Context
-     *
      * @see PKPPageRouter::getContext()
      */
-    public function &getContext()
+    public function &getContext(): Context
     {
         return $this->_delegateToRouter('getContext');
     }

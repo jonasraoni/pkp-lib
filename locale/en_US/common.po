@@ -1976,7 +1976,7 @@ msgstr "This must contain {$size} items."
 msgid "validator.string"
 msgstr "This is not a valid string."
 
-msgid "validator.timeZone"
+msgid "validator.timezone"
 msgstr "This is not a valid time zone."
 
 msgid "validator.unique"
