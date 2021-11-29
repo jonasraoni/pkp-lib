@@ -24,15 +24,15 @@ use APP\statistics\StatisticsHelper;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Database\MySqlConnection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\plugins\PluginRegistry;
 use PKP\security\Role;
-use PKP\site\VersionCheck;
+use PKP\session\SessionManager;
 use PKP\statistics\PKPStatisticsHelper;
 
 interface iPKPApplicationInfoProvider
@@ -296,7 +296,7 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider
     /**
      * Return a HTTP client implementation.
      *
-     * @return \GuzzleHttp\Client
+     * @return Client
      */
     public function getHttpClient()
     {
@@ -311,7 +311,7 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider
             $userAgent .= '?';
         }
 
-        return new \GuzzleHttp\Client([
+        return new Client([
             'proxy' => [
                 'http' => Config::getVar('proxy', 'http_proxy', null),
                 'https' => Config::getVar('proxy', 'https_proxy', null),
@@ -980,6 +980,14 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider
     public static function isUpgrading(): bool
     {
         return defined('RUNNING_UPGRADE');
+    }
+
+    /**
+     * Retrieves whether the application is ready (installed and not being upgraded)
+     */
+    public static function isReady(): bool
+    {
+        return static::isInstalled() && !static::isUpgrading();
     }
 
     /**

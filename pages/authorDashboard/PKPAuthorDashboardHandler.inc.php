@@ -21,7 +21,6 @@ use APP\workflow\EditorDecisionActionsManager;
 use Illuminate\Support\Enumerable;
 use PKP\log\SubmissionEmailLogEntry;
 use PKP\security\authorization\AuthorDashboardAccessPolicy;
-use PKP\facades\Locale;
 use PKP\security\Role;
 
 use PKP\submission\PKPSubmission;

@@ -82,7 +82,7 @@ class PKPPageRouter extends PKPRouter
         if (SessionManager::isDisabled() && !$testOnly) {
             return false;
         }
-        if (!Application::isInstalled()) {
+        if (!Application::isReady()) {
             return false;
         }
         if (!empty($_POST) || Validation::isLoggedIn()) {

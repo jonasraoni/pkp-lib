@@ -21,7 +21,6 @@ use PKP\components\forms\context\PKPNotifyUsersForm;
 use PKP\config\Config;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
-use PKP\facades\Locale;
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\Role;
 use PKP\site\VersionCheck;

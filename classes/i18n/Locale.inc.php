@@ -24,11 +24,9 @@ namespace PKP\i18n;
 use Closure;
 use DateInterval;
 use DirectoryIterator;
-use Exception;
 use Illuminate\Support\Facades\Cache;
 use InvalidArgumentException;
 use PKP\config\Config;
-use PKP\core\Core;
 use PKP\core\PKPRequest;
 use PKP\facades\Repo;
 use PKP\i18n\interfaces\LocaleInterface;
@@ -61,9 +59,6 @@ class Locale implements LocaleInterface
     /** Current locale cache */
     protected ?string $locale = null;
 
-    /** @var LocaleBundle[] Locale bundles cache */
-    protected ?array $localeBundles = null;
-
     /** @var int[] Folders where locales can be found, where key = path and value = loading priority */
     protected array $paths = [];
 
@@ -85,12 +80,14 @@ class Locale implements LocaleInterface
     /** @var string[]|null Supported locales cache, where key = locale and value = name */
     protected ?array $supportedLocales = null;
 
-    /** 
-     * @var array[]|null Discovered locale files by path and locale.
-     * First dimension = key represents a path and the value the second dimension
-     * Second dimension = key represents a locale and the value a list of paths for the locale files
-     */
-    protected ?array $localeFiles = null;
+    /** @var LocaleBundle[] Keeps a cache for the locale bundles */
+    protected array $localeBundles = [];
+
+    /** @var string[][][]|null Discovered locale files, keyed first by base path and then by locale */
+    protected array $localeFiles = [];
+
+    /** Keeps cached data related only to the current locale */
+    protected array $cache = [];
 
     /**
      * @copy \Illuminate\Contracts\Translation\Translator::get()
@@ -118,7 +115,7 @@ class Locale implements LocaleInterface
             $locale = $request->getUserVar('setLocale')
                 ?: (SessionManager::hasSession() ? SessionManager::getManager()->getUserSession()->getSessionVar('currentLocale') : null)
                 ?: $request->getCookieVar('currentLocale');
-            $this->setLocale(in_array($locale, array_keys($this->getSupportedLocales())) ? $locale : $this->getPrimaryLocale());
+            $this->setLocale($locale);
             return $this->locale;
         })();
     }
@@ -128,8 +125,10 @@ class Locale implements LocaleInterface
      */
     public function setLocale($locale): void
     {
-        if (!$this->isLocaleValid($locale) || !in_array($locale, array_keys($this->getSupportedLocales()))) {
-            throw new InvalidArgumentException("Invalid locale \"${locale}\", default locale restored");
+        if (!$this->isLocaleValid($locale) || !$this->isSupported($locale)) {
+            if ($locale) {
+                error_log((string) new InvalidArgumentException("Invalid/unsupported locale \"${locale}\", default locale restored"));
+            }
             $locale = $this->getPrimaryLocale();
         }
 
@@ -169,7 +168,7 @@ class Locale implements LocaleInterface
         $realPath = $path->getRealPath();
         if (($this->paths[$realPath] ?? null) !== $priority) {
             $this->paths[$realPath] = $priority;
-            $this->localeBundles = null;
+            $this->localeBundles = [];
             $this->locales = null;
         }
     }
@@ -182,7 +181,7 @@ class Locale implements LocaleInterface
         // Invalidate the loaded bundles cache
         if (array_search($fileLoader, $this->loaders[$priority] ?? [], true) === false) {
             $this->loaders[$priority][] = $fileLoader;
-            $this->localeBundles = null;
+            $this->localeBundles = [];
             ksort($this->loaders, SORT_NUMERIC);
         }
     }
@@ -192,7 +191,7 @@ class Locale implements LocaleInterface
      */
     public function isLocaleValid(?string $locale): bool
     {
-        return !empty($locale) && preg_match(LocaleInterface::LOCALE_EXPRESSION, $locale) && file_exists(Core::getBaseDir() . "/locale/${locale}");
+        return !empty($locale) && preg_match(LocaleInterface::LOCALE_EXPRESSION, $locale);
     }
 
     /**
@@ -220,6 +219,7 @@ class Locale implements LocaleInterface
                         }
                     }
                 }
+                ksort($locales);
                 return $locales;
             }
         );
@@ -251,19 +251,26 @@ class Locale implements LocaleInterface
     }
 
     /**
+     * Retrieves whether the given locale is supported
+     */
+    public function isSupported(string $locale): bool
+    {
+        static $locales;
+        $locales ??= SessionManager::isDisabled()
+            ? array_keys($this->getLocales())
+            : (($context = $this->_getRequest()->getContext()) ? $context->getSupportedLocales() : $this->_getRequest()->getSite()->getSupportedLocales());
+        return in_array($locale, $locales);
+    }
+
+    /**
      * @copy LocaleInterface::getSupportedFormLocales()
      */
     public function getSupportedFormLocales(): array
     {
-        return $this->supportedFormLocales ??= array_map(
-            fn (LocaleMetadata $locale) => $locale->getDisplayName(),
-            SessionManager::isDisabled() ? $this->getLocales() : array_combine(
-                $locales = ($context = $this->_getRequest()->getContext())
-                    ? $context->getSupportedFormLocales()
-                    : $this->_getRequest()->getSite()->getSupportedLocales(),
-                $locales
-            )
-        );
+        return $this->supportedFormLocales ??= (fn(): array => SessionManager::isDisabled()
+            ? array_map(fn(LocaleMetadata $locale) => $locale->locale, $this->getLocales())
+            : (($context = $this->_getRequest()->getContext()) ? $context->getSupportedFormLocaleNames() : $this->_getRequest()->getSite()->getSupportedLocaleNames())
+        )();
     }
 
     /**
@@ -271,15 +278,10 @@ class Locale implements LocaleInterface
      */
     public function getSupportedLocales(): array
     {
-        return $this->supportedLocales ??= array_map(
-            fn (LocaleMetadata $locale) => $locale->getDisplayName(),
-            SessionManager::isDisabled() ? $this->getLocales() : array_combine(
-                $locales = ($context = $this->_getRequest()->getContext())
-                    ? $context->getSupportedLocales()
-                    : $this->_getRequest()->getSite()->getSupportedLocales(),
-                $locales
-            )
-        );
+        return $this->supportedLocales ??= (fn(): array => SessionManager::isDisabled()
+            ? array_map(fn(LocaleMetadata $locale) => $locale->locale, $this->getLocales())
+            : ($this->_getRequest()->getContext() ?? $this->_getRequest()->getSite())->getSupportedLocaleNames()
+        )();
     }
 
     /**
@@ -301,10 +303,10 @@ class Locale implements LocaleInterface
     /**
      * @copy LocaleInterface::getBundle()
      */
-    public function getBundle(?string $locale = null, bool $cacheInMemory = true): LocaleBundle
+    public function getBundle(?string $locale = null, bool $useCache = true): LocaleBundle
     {
         $locale ??= $this->getLocale();
-        if (!isset($this->localeBundles[$locale])) {
+        $getter = function () use ($locale): LocaleBundle {
             $bundle = [];
             foreach ($this->paths as $folder => $priority) {
                 $bundle += $this->_getLocaleFiles($folder, $locale, $priority);
@@ -312,14 +314,9 @@ class Locale implements LocaleInterface
             foreach ($this->loaders as $loader) {
                 $loader($locale, $bundle);
             }
-            $localeBundle = new LocaleBundle($locale, $bundle);
-            if (!$cacheInMemory) {
-                return $localeBundle;
-            }
-            $this->localeBundles[$locale] = $localeBundle;
-        }
-
-        return $this->localeBundles[$locale];
+            return new LocaleBundle($locale, $bundle);
+        };
+        return $useCache ? $this->localeBundles[$locale] ??= $getter() : $getter();
 }
 
     /**
@@ -335,7 +332,7 @@ class Locale implements LocaleInterface
      */
     public function getCountries(?string $locale = null): Countries
     {
-        return $this->_getIsoCodes($locale)->getCountries();
+        return $this->_getLocaleCache(__METHOD__, $locale, fn () => $this->_getIsoCodes($locale)->getCountries());
     }
 
     /**
@@ -343,7 +340,7 @@ class Locale implements LocaleInterface
      */
     public function getCurrencies(?string $locale = null): Currencies
     {
-        return $this->_getIsoCodes($locale)->getCurrencies();
+        return $this->_getLocaleCache(__METHOD__, $locale, fn () => $this->_getIsoCodes($locale)->getCurrencies());
     }
 
     /**
@@ -351,7 +348,7 @@ class Locale implements LocaleInterface
      */
     public function getLanguages(?string $locale = null): LanguagesInterface
     {
-        return $this->_getIsoCodes($locale)->getLanguages();
+        return $this->_getLocaleCache(__METHOD__, $locale, fn () => $this->_getIsoCodes($locale)->getLanguages());
     }
 
     /**
@@ -359,7 +356,7 @@ class Locale implements LocaleInterface
      */
     public function getScripts(?string $locale = null): Scripts
     {
-        return $this->_getIsoCodes($locale)->getScripts();
+        return $this->_getLocaleCache(__METHOD__, $locale, fn () => $this->_getIsoCodes($locale)->getScripts());
     }
     
 
@@ -379,10 +376,24 @@ class Locale implements LocaleInterface
             return $value;
         }
 
-        error_log((string) (new Exception("Missing locale key \"${key}\" for the locale \"${locale}\"")));
+        error_log("Missing locale key \"${key}\" for the locale \"${locale}\"");
         return is_callable($this->missingKeyHandler) ? ($this->missingKeyHandler)($key) : '##' . htmlentities($key) . '##';
     }
 
+    /**
+     * Retrieves a cached item only if it belongs to the current locale. If it doesn't exist, the getter will be called
+     */
+    private function _getLocaleCache(string $key, ?string $locale, callable $getter)
+    {
+        if (($locale ??= $this->getLocale()) !== $this->getLocale()) {
+            return $getter();
+        }
+        if (!isset($this->cache[$key][$locale])) {
+            // Ensures the previous cache is cleared
+            $this->cache[$key] = [$locale => $getter()];
+        }
+        return $this->cache[$key][$locale];
+    }
 
     /**
      * Given a locale folder, retrieves all locale files (.po)
@@ -393,7 +404,7 @@ class Locale implements LocaleInterface
     {
         $files = $this->localeFiles[$folder][$locale] ??= (function () use ($folder, $locale): array {
             $files = [];
-            if (is_dir($path = "$folder/$locale")) {
+            if (is_dir($path = "${folder}/${locale}")) {
                 $directory = new RecursiveDirectoryIterator($path);
                 $iterator = new RecursiveIteratorIterator($directory);
                 $files = array_keys(iterator_to_array(new RegexIterator($iterator, '/\.po$/i', RecursiveRegexIterator::GET_MATCH)));
@@ -408,7 +419,7 @@ class Locale implements LocaleInterface
      */
     private function _getRequest(): PKPRequest
     {
-        return App::make(PKPRequest::class);
+        return app(PKPRequest::class);
     }
 
     /**

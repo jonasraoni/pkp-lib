@@ -136,9 +136,6 @@
 				{fbvFormSection label="installer.databaseDriver" description="installer.databaseDriverInstructions"}
 					{fbvElement type="select" id="databaseDriver" from=$databaseDriverOptions selected=$databaseDriver translate=false size=$fbvStyles.size.SMALL}
 				{/fbvFormSection}
-				{fbvFormSection label="installer.connectionCharset"}
-					{fbvElement type="select" id="connectionCharset" from=$connectionCharsetOptions selected=$connectionCharset translate=false size=$fbvStyles.size.SMALL}
-				{/fbvFormSection}
 				{fbvFormSection label="installer.databaseHost"}
 					{fbvElement type="text" id="databaseHost" value=$databaseHost maxlength="60" size=$fbvStyles.size.MEDIUM}
 				{/fbvFormSection}

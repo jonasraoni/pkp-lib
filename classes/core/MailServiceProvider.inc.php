@@ -15,10 +15,10 @@
 
 namespace PKP\core;
 
-use PKP\mail\Mailer;
 use Illuminate\Mail\MailManager;
 use Illuminate\Mail\MailServiceProvider as IlluminateMailService;
 use InvalidArgumentException;
+use PKP\mail\Mailer;
 use Symfony\Component\Mailer\Transport\SendmailTransport;
 
 class MailServiceProvider extends IlluminateMailService
@@ -26,7 +26,7 @@ class MailServiceProvider extends IlluminateMailService
     /**
      * Register mailer excluding markdown renderer
      */
-    public function register() : void
+    public function register(): void
     {
         $this->registerIlluminateMailer();
     }
@@ -34,11 +34,10 @@ class MailServiceProvider extends IlluminateMailService
     /**
      * @copydoc \Illuminate\Mail\MailServiceProvider::registerIlluminateMailer()
      */
-    public function registerIlluminateMailer() : void
+    public function registerIlluminateMailer(): void
     {
         $this->app->singleton('mail.manager', function ($app) {
-            return new class($app) extends MailManager
-            {
+            return new class($app) extends MailManager {
                 /**
                  * @see MailManager::resolve()
                  *
@@ -46,7 +45,7 @@ class MailServiceProvider extends IlluminateMailService
                  *
                  * @throws InvalidArgumentException
                  */
-                protected function resolve($name) : Mailer
+                protected function resolve($name): Mailer
                 {
                     $config = $this->getConfig($name);
 
@@ -85,7 +84,7 @@ class MailServiceProvider extends IlluminateMailService
     /**
      * @copydoc \Illuminate\Mail\MailServiceProvider::provides()
      */
-    public function provides() : array
+    public function provides(): array
     {
         return
             [

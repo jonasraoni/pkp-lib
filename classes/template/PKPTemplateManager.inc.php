@@ -468,7 +468,7 @@ class PKPTemplateManager extends Smarty
      *
      * @param string $name Unique name for the LESS file
      *
-     * @return $path string Path to the less file or false if not found
+     * @return string Path to the less file or false if not found
      */
     public function getCachedLessFilePath($name)
     {
@@ -1139,7 +1139,7 @@ class PKPTemplateManager extends Smarty
     {
         if (Application::isInstalled()) {
             $context = $this->_request->getContext();
-            if ($context instanceof \PKP\core\Context) {
+            if ($context instanceof \PKP\context\Context) {
                 $resourceName .= $context->getData('themePluginPath');
             }
         }

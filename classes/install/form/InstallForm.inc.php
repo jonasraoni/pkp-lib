@@ -39,9 +39,6 @@ class InstallForm extends MaintenanceForm
     /** @var array locale completeness booleans */
     public $localesComplete;
 
-    /** @var array connection character sets supported by this system */
-    public $supportedConnectionCharsets = ['utf8' => 'Unicode (UTF-8)'];
-
     /** @var array database drivers supported by this system */
     public $supportedDatabaseDrivers = [
         // <driver> => array(<php-module>, <name>)
@@ -110,7 +107,6 @@ class InstallForm extends MaintenanceForm
             'languageOptions' => $languages,
             'localeOptions' => $this->supportedLocales,
             'localesComplete' => $this->localesComplete,
-            'connectionCharsetOptions' => $this->supportedConnectionCharsets,
             'allowFileUploads' => ini_get('file_uploads') ? __('common.yes') : __('common.no'),
             'maxFileUploadSize' => ini_get('upload_max_filesize'),
             'databaseDriverOptions' => $this->getDatabaseDriversOptions(),
@@ -145,9 +141,8 @@ class InstallForm extends MaintenanceForm
             'timeZone' => 'UTC',
             'locale' => Locale::getLocale(),
             'additionalLocales' => [],
-            'connectionCharset' => 'utf8',
             'filesDir' => $docRoot . 'files',
-            'databaseDriver' => 'mysql',
+            'databaseDriver' => 'mysqli',
             'databaseHost' => 'localhost',
             'databaseUsername' => Application::getName(),
             'databasePassword' => '',
@@ -166,7 +161,6 @@ class InstallForm extends MaintenanceForm
             'timeZone',
             'locale',
             'additionalLocales',
-            'connectionCharset',
             'filesDir',
             'adminUsername',
             'adminPassword',

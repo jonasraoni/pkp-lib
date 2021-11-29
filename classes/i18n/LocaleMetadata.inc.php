@@ -114,9 +114,9 @@ class LocaleMetadata
     /**
      * Retrieves whether the locale can be considered complete respecting a threshold level of completeness
      */
-    public function isComplete(float $minimumThreshold = 0.9): bool
+    public function isComplete(float $minimumThreshold = 0.9, ?string $referenceLocale = null): bool
     {
-        return $this->getCompletenessRatio() >= $minimumThreshold;
+        return $this->getCompletenessRatio($referenceLocale) >= $minimumThreshold;
     }
 
     /**

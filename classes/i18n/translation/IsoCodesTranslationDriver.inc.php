@@ -22,17 +22,25 @@ declare(strict_types=1);
 
 namespace PKP\i18n\translation;
 
+use APP\core\Application;
+use DateInterval;
 use DomainException;
-use Gettext\Loader\MoLoader;
+use Illuminate\Support\Facades\Cache;
 use PKP\i18n\interfaces\LocaleInterface;
 use PKP\i18n\translation\Translator;
 use Sokil\IsoCodes\TranslationDriver\TranslationDriverInterface;
 
 class IsoCodesTranslationDriver implements TranslationDriverInterface
 {
+    /** @var string Max lifetime for the cache, a new cache file is created whenever the translation file is modified */
+    protected const MAX_CACHE_LIFETIME = '1 year';
+
     protected ?Translator $translator = null;
     protected string $locale;
 
+    /**
+     * Constructor
+     */
     public function __construct(string $locale)
     {
         $this->setLocale($locale);
@@ -56,7 +64,11 @@ class IsoCodesTranslationDriver implements TranslationDriverInterface
         foreach ($locales as $locale) {
             $path = "${directory}/${locale}/LC_MESSAGES/${isoNumber}.mo";
             if (file_exists($path)) {
-                $this->translator = Translator::createFromTranslations((new MoLoader())->loadFile($path));
+                // Check if it's installed before caching the ISO codes (huge dataset), just to avoid a slow installation page
+                $loader = fn () => Translator::createFromTranslationsArray(LocaleFile::loadArray($path, Application::isInstalled()));
+                $this->translator = Application::isInstalled()
+                    ? Cache::remember($this->_getCacheKey($path), DateInterval::createFromDateString(static::MAX_CACHE_LIFETIME), $loader)
+                    : $loader();
                 break;
             }
         }
@@ -76,5 +88,13 @@ class IsoCodesTranslationDriver implements TranslationDriverInterface
     public function translate(string $isoNumber, string $message): string
     {
         return ($this->translator ? $this->translator->getSingular($message) : $message) ?: $message;
+    }
+
+    /**
+     * Retrieves the cache key
+     */
+    private static function _getCacheKey(string $path): string
+    {
+        return __METHOD__ . static::MAX_CACHE_LIFETIME . '.' . sha1($path . filemtime($path));
     }
 }

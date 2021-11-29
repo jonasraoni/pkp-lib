@@ -46,7 +46,7 @@ class PKPAcronPlugin extends GenericPlugin
         $success = parent::register($category, $path, $mainContextId);
         HookRegistry::register('Installer::postInstall', [&$this, 'callbackPostInstall']);
 
-        if (!Application::isInstalled() || Application::isUpgrading()) {
+        if (!Application::isReady()) {
             return $success;
         }
         if ($success) {

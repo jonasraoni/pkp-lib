@@ -28,10 +28,7 @@ use Illuminate\Log\LogServiceProvider;
 use Illuminate\Queue\Failed\DatabaseFailedJobProvider;
 use Illuminate\Support\Facades\Facade;
 use PKP\config\Config;
-use PKP\facades\Locale;
 use PKP\i18n\LocaleServiceProvider;
-use PKP\i18n\translation\IsoCodesTranslationDriver;
-use Sokil\IsoCodes\IsoCodesFactory;
 
 use Throwable;
 
@@ -90,9 +87,6 @@ class PKPContainer extends Container
             KernelContract::class,
             Kernel::class
         );
-
-        // This singleton is necessary to keep user selected language across the application
-        $this->singleton(IsoCodesFactory::class, fn(self $container, array $params): IsoCodesFactory => new IsoCodesFactory(null, new IsoCodesTranslationDriver($params['locale'] ?? Locale::getLocale())));
 
         $this->singleton(
             'queue.failer',

@@ -13,6 +13,7 @@
  * @brief Handle installation requests.
  */
 
+use APP\core\Application;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
 

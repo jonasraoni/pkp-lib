@@ -105,7 +105,7 @@ class PKPInstall extends Installer
             'database' => $this->getParam('databaseName'),
             'username' => $this->getParam('databaseUsername'),
             'password' => $this->getParam('databasePassword'),
-            'charset' => $this->getParam('connectionCharset'),
+            'charset' => 'utf8',
             'collation' => 'utf8_general_ci',
         ];
         FacadesConfig::set('database', $config);
@@ -205,7 +205,7 @@ class PKPInstall extends Installer
                 ],
                 'i18n' => [
                     'locale' => $this->getParam('locale'),
-                    'connection_charset' => $this->getParam('connectionCharset') == '' ? 'Off' : $this->getParam('connectionCharset'),
+                    'connection_charset' => 'utf8',
                 ],
                 'files' => [
                     'files_dir' => $this->getParam('filesDir')

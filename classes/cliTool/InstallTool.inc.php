@@ -86,7 +86,6 @@ class InstallTool extends \PKP\cliTool\CommandLineTool
         $this->printTitle('installer.localeSettings');
         $this->readParamOptions('locale', 'locale.primary', $installForm->supportedLocales, 'en_US');
         $this->readParamOptions('additionalLocales', 'installer.additionalLocales', $installForm->supportedLocales, '', true);
-        $this->readParamOptions('connectionCharset', 'installer.connectionCharset', $installForm->supportedConnectionCharsets, '');
 
         // File Settings
         $this->printTitle('installer.fileSettings');

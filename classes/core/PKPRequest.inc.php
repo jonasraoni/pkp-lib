@@ -751,7 +751,7 @@ class PKPRequest
      *
      * @see PKPPageRouter::getContext()
      */
-    public function &getContext(): Context
+    public function &getContext(): ?Context
     {
         return $this->_delegateToRouter('getContext');
     }

@@ -19,7 +19,7 @@ class MockLocaleMetadata extends LocaleMetadata
 {
     protected bool $isComplete = false;
 
-    public function isComplete(float $minimumThreshold = 0.9): bool
+    public function isComplete(float $minimumThreshold = 0.9, ?string $referenceLocale = null): bool
     {
         return $this->isComplete;
     }

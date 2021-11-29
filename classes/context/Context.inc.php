@@ -18,6 +18,7 @@ namespace PKP\context;
 use APP\core\Application;
 use Illuminate\Support\Arr;
 use PKP\config\Config;
+use PKP\facades\Locale;
 use PKP\statistics\PKPStatisticsHelper;
 
 // Constant used to distinguish whether metadata is enabled and whether it

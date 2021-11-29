@@ -324,7 +324,7 @@ class DAO extends EntityDAO
                         ->delete();
 
                     $previous = Locale::getMissingKeyHandler();
-                    Locale::setMissingKeyHandler(fn(string $key): string =>  error_log("Missing locale key used by email: \"$key\""));
+                    Locale::setMissingKeyHandler(fn (string $key): string => '');
                     $translatedSubject = __($subject, [], $locale);
                     $translatedBody = __($body, [], $locale);
                     Locale::setMissingKeyHandler($previous);

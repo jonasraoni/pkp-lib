@@ -88,15 +88,18 @@ interface LocaleInterface extends \Illuminate\Contracts\Translation\Translator
     public function uninstallLocale(string $locale): void;
 
     /**
-     * Get all supported form locales for the current context (if not available, then from the site).
+     * Retrieves whether the given locale is in the list of supported locales
+     */
+    public function isSupported(string $locale): bool;
 
+    /**
+     * Get all supported form locales for the current context (if not available, then from the site).
      * @return string[]
      */
     public function getSupportedFormLocales(): array;
 
     /**
      * Get all supported locales for the current context (if not available, then from the site).
-
      * @return string[]
      */
     public function getSupportedLocales(): array;
@@ -116,7 +119,7 @@ interface LocaleInterface extends \Illuminate\Contracts\Translation\Translator
      * 
      * @return LocaleBundle
      */
-    public function getBundle(?string $locale = null, bool $cacheInMemory = true): LocaleBundle;
+    public function getBundle(?string $locale = null, bool $useCache = true): LocaleBundle;
 
     /**
      * Retrieves the default locale

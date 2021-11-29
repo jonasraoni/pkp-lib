@@ -19,6 +19,7 @@ namespace PKP\i18n\translation;
 
 use DateInterval;
 use Illuminate\Support\Facades\Cache;
+use PKP\facades\Locale;
 
 class LocaleBundle
 {
@@ -110,17 +111,17 @@ class LocaleBundle
      */
     public function getTranslator(): Translator
     {
-        return $this->translator ??= Cache::remember(
-            $this->_getCacheKey(),
-            DateInterval::createFromDateString(static::MAX_CACHE_LIFETIME),
-            function (): Translator {
-                $translator = new Translator();
-                // Merge all the locale files into a single structure
-                array_walk($this->paths, fn(int $_, string $path) => $translator->addTranslations(LocaleFile::loadArray($path)));
-                Cache::put($this->_getCacheKey(), $translator);
-                return $translator;
-            }
-        );
+        // Caches only the supported locales (avoid spending time with one-offs)
+        $isSupported = Locale::isSupported($this->locale);
+        $loader = function () use ($isSupported): Translator {
+            $translator = new Translator();
+            // Merge all the locale files into a single structure
+            array_walk($this->paths, fn (int $_, string $path) => $translator->addTranslations(LocaleFile::loadArray($path, $isSupported)));
+            return $translator;
+        };
+        return $this->translator ??= $isSupported
+            ? Cache::remember($this->_getCacheKey(), DateInterval::createFromDateString(static::MAX_CACHE_LIFETIME), $loader)
+            : $loader();
     }
 
     /**
