@@ -46,8 +46,8 @@ class FilterHelper
             // Instantiate and configure the filter group.
             $filterGroup = new FilterGroup();
             $filterGroup->setSymbolic($filterGroupSymbolic);
-            $filterGroup->setDisplayName($filterGroupNode->getAttribute('displayName'));
-            $filterGroup->setDescription($filterGroupNode->getAttribute('description'));
+            $filterGroup->setDisplayName(__($filterGroupNode->getAttribute('displayName')));
+            $filterGroup->setDescription(__($filterGroupNode->getAttribute('description')));
             $filterGroup->setInputType($filterGroupNode->getAttribute('inputType'));
             $filterGroup->setOutputType($filterGroupNode->getAttribute('outputType'));
 
