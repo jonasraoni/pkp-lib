@@ -40,6 +40,9 @@ class ListPanel
     /** @var string Title (expects a translation key) */
     public $title = '';
 
+    /** @var array Query params when getting suggestions. */
+    public array $getParams = [];
+
     /**
      * Initialize the form with config parameters
      *
