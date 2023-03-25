@@ -27,6 +27,9 @@ use PKP\security\Role;
 
 abstract class PKPStatsEditorialHandler extends APIHandler
 {
+    /** @var string The name of the section ids query param for this application */
+    public $sectionIdsQueryParam;
+
     /**
      * Constructor
      */

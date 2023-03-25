@@ -79,6 +79,9 @@ abstract class CounterR5Report
     /** The granularity of the usage data to include in the report. */
     protected string $granularity = 'Month';
 
+    /** @var array */
+    protected $institutionId;
+
     /**
      * Get report name defined by COUNTER.
      */
