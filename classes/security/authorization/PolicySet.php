@@ -18,6 +18,8 @@
 
 namespace PKP\security\authorization;
 
+use Exception;
+
 class PolicySet
 {
     public const COMBINING_DENY_OVERRIDES = 1;
@@ -104,6 +106,16 @@ class PolicySet
     public function getEffectIfNoPolicyApplies()
     {
         return $this->_effectIfNoPolicyApplies;
+    }
+
+    /**
+     * This method must return a value of either AUTHORIZATION_DENY or AUTHORIZATION_PERMIT.
+     *
+     * @return int
+     */
+    public function effect()
+    {
+        throw new Exception('Not implemented');
     }
 }
 

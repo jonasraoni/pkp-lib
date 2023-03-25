@@ -77,6 +77,11 @@ abstract class EntityDAO
     }
 
     /**
+     * Retrieves a new instance of the entity
+     */
+    abstract public function newDataObject();
+
+    /**
      * Convert a row from the database query into a DataObject
      */
     public function fromRow(object $row): DataObject

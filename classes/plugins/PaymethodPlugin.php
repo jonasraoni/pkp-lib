@@ -15,6 +15,9 @@
 
 namespace PKP\plugins;
 
+use Exception;
+use PKP\core\PKPRequest;
+
 abstract class PaymethodPlugin extends LazyLoadPlugin
 {
     /**
@@ -51,6 +54,16 @@ abstract class PaymethodPlugin extends LazyLoadPlugin
     public function saveSettings($params, $slimRequest, $request)
     {
         assert(false); // implement in child classes
+    }
+
+    /**
+     * Handle incoming requests/notifications
+     *
+     * @param array $args
+     * @param PKPRequest $request
+     */
+    public function handle($args, $request) {
+        throw new Exception('Not implemented');
     }
 }
 
