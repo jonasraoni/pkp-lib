@@ -28,7 +28,7 @@ class PKPAnnouncementsListPanel extends ListPanel
     public $form = null;
 
     /** @var int Max number of items available to display in this list panel  */
-    public $itemsMax = [];
+    public $itemsMax = 0;
 
     /**
      * @copydoc ListPanel::getConfig()
