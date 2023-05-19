@@ -68,7 +68,8 @@ class LogMigration extends \PKP\migration\Migration
             $table->bigInteger('log_id')->autoIncrement();
             $table->bigInteger('assoc_type');
             $table->bigInteger('assoc_id');
-            $table->bigInteger('sender_id');
+            $table->bigInteger('sender_id')->nullable();
+            $table->foreign('sender_id', 'email_log_sender_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->datetime('date_sent');
             $table->bigInteger('event_type')->nullable();
             $table->string('from_address', 255)->nullable();

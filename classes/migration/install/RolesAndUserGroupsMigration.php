@@ -28,7 +28,8 @@ class RolesAndUserGroupsMigration extends \PKP\migration\Migration
         Schema::create('user_groups', function (Blueprint $table) {
             $table->comment('All defined user roles in a context, such as Author, Reviewer, Section Editor and Journal Manager.');
             $table->bigInteger('user_group_id')->autoIncrement();
-            $table->bigInteger('context_id');
+            $table->bigInteger('context_id')->nullable();
+            $table->foreign('context_id', 'user_groups_context_id')->references(Application::getContextDAO()->primaryKeyColumn)->on(Application::getContextDAO()->tableName)->onDelete('cascade');
             $table->bigInteger('role_id');
             $table->smallInteger('is_default')->default(0);
             $table->smallInteger('show_title')->default(1);

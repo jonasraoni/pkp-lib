@@ -327,6 +327,6 @@ abstract class I6093_AddForeignKeys extends \PKP\migration\Migration
      */
     public function down(): void
     {
-        throw new DowngradeNotSupportedException('Downgrade unsupported due to removed data');
+        throw new DowngradeNotSupportedException();
     }
 }
