@@ -497,7 +497,7 @@ abstract class PreflightCheckMigration extends \PKP\migration\Migration
             // Depends directly on ~2 entities: context_id->context_table.context_id parent_id->categories.category_id
             // Custom field (not found in at least one of the softwares)
             $affectedRows += $this->deleteRequiredReference('categories', 'context_id', $this->getContextTable(), $this->getContextKeyField());
-            $affectedRows += $this->deleteOptionalReference('categories', 'parent_id', 'categories', 'category_id');
+            $affectedRows += $this->deleteOptionalReference('categories', 'parent_id', 'categories', 'category_id', $this->ignoreZero('parent_id'));
             return $affectedRows;
         });
 
