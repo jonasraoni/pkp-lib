@@ -37,6 +37,7 @@ class ProcessQueueJobs extends ScheduledTask
      */
     public function executeActions()
     {
+        return true;
         if (Application::isUnderMaintenance()) {
             return true;
         }
