@@ -101,7 +101,7 @@ abstract class SchemaDAO extends DAO
                             $object->getId(),
                             $localeKey,
                             $propName,
-                            $this->convertToDB($localeValue, $schema->properties->{$propName}->type),
+                            $this->convertToDB($localeValue, $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? [])),
                         ]);
                     }
                 } else {
@@ -109,7 +109,7 @@ abstract class SchemaDAO extends DAO
                         $object->getId(),
                         '',
                         $propName,
-                        $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type),
+                        $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? [])),
                     ]);
                 }
             }
@@ -167,14 +167,14 @@ abstract class SchemaDAO extends DAO
                     } else {
                         DB::table($this->settingsTableName)->updateOrInsert(
                             [$this->primaryKeyColumn => $object->getId(), 'locale' => $localeKey, 'setting_name' => $propName],
-                            ['setting_value' => $this->convertToDB($localeValue, $schema->properties->{$propName}->type)]
+                            ['setting_value' => $this->convertToDB($localeValue, $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []))]
                         );
                     }
                 }
             } else {
                 DB::table($this->settingsTableName)->updateOrInsert(
                     [$this->primaryKeyColumn => $object->getId(), 'locale' => '', 'setting_name' => $propName],
-                    ['setting_value' => $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type)]
+                    ['setting_value' => $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []))]
                 );
             }
         }
@@ -229,10 +229,10 @@ abstract class SchemaDAO extends DAO
         $object = $this->newDataObject();
 
         foreach ($this->primaryTableColumns as $propName => $column) {
-            if (isset($primaryRow[$column])) {
+            if (array_key_exists($column, $primaryRow)) {
                 $object->setData(
                     $propName,
-                    $this->convertFromDb($primaryRow[$column], $schema->properties->{$propName}->type)
+                    $this->convertFromDb($primaryRow[$column], $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []))
                 );
             }
         }
@@ -249,7 +249,8 @@ abstract class SchemaDAO extends DAO
                     $settingRow['setting_name'],
                     $this->convertFromDB(
                         $settingRow['setting_value'],
-                        $schema->properties->{$settingRow['setting_name']}->type
+                        $schema->properties->{$settingRow['setting_name']}->type,
+                        in_array('nullable', $schema->properties->{$settingRow['setting_name']}->validation ?? [])
                     ),
                     empty($settingRow['locale']) ? null : $settingRow['locale']
                 );
@@ -292,7 +293,7 @@ abstract class SchemaDAO extends DAO
                 ) {
                     $primaryDbProps[$columnName] = null;
                 } else {
-                    $primaryDbProps[$columnName] = $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type);
+                    $primaryDbProps[$columnName] = $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []));
                 }
             }
         }

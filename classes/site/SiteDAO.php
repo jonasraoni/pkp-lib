@@ -66,10 +66,10 @@ class SiteDAO extends \PKP\db\DAO
         $site = $this->newDataObject();
 
         foreach ($this->primaryTableColumns as $propName => $column) {
-            if (isset($primaryRow[$column])) {
+            if (array_key_exists($column, $primaryRow)) {
                 $site->setData(
                     $propName,
-                    $this->convertFromDb($primaryRow[$column], $schema->properties->{$propName}->type)
+                    $this->convertFromDb($primaryRow[$column], $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []))
                 );
             }
         }
@@ -150,14 +150,14 @@ class SiteDAO extends \PKP\db\DAO
                     } else {
                         DB::table('site_settings')->updateOrInsert(
                             ['locale' => $localeKey, 'setting_name' => $propName],
-                            ['setting_value' => $this->convertToDB($localeValue, $schema->properties->{$propName}->type)]
+                            ['setting_value' => $this->convertToDB($localeValue, $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []))]
                         );
                     }
                 }
             } else {
                 DB::table('site_settings')->updateOrInsert(
                     ['locale' => '', 'setting_name' => $propName],
-                    ['setting_value' => $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type)]
+                    ['setting_value' => $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []))]
                 );
             }
         }

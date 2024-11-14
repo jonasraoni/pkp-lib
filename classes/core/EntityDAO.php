@@ -105,7 +105,7 @@ abstract class EntityDAO
             if (property_exists($row, $column)) {
                 $object->setData(
                     $propName,
-                    $this->convertFromDB($row->{$column}, $schema->properties->{$propName}->type, true)
+                    $this->convertFromDB($row->{$column}, $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []))
                 );
             }
         }
@@ -121,7 +121,8 @@ abstract class EntityDAO
                         $row->setting_name,
                         $this->convertFromDB(
                             $row->setting_value,
-                            $schema->properties->{$row->setting_name}->type
+                            $schema->properties->{$row->setting_name}->type,
+                            in_array('nullable', $schema->properties->{$row->setting_name}->validation ?? [])
                         ),
                         empty($row->locale) ? null : $row->locale
                     );
@@ -166,14 +167,14 @@ abstract class EntityDAO
                             $this->primaryKeyColumn => $object->getId(),
                             'locale' => $localeKey,
                             'setting_name' => $propName,
-                            'setting_value' => $this->convertToDB($localeValue, $schema->properties->{$propName}->type),
+                            'setting_value' => $this->convertToDB($localeValue, $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? [])),
                         ]);
                     }
                 } else {
                     DB::table($this->settingsTable)->insert([
                         $this->primaryKeyColumn => $object->getId(),
                         'setting_name' => $propName,
-                        'setting_value' => $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type),
+                        'setting_value' => $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? [])),
                     ]);
                 }
             }
@@ -226,7 +227,7 @@ abstract class EntityDAO
                                         'setting_name' => $propName,
                                     ],
                                     [
-                                        'setting_value' => $this->convertToDB($localeValue, $schema->properties->{$propName}->type),
+                                        'setting_value' => $this->convertToDB($localeValue, $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? [])),
                                     ]
                                 );
                         }
@@ -240,7 +241,7 @@ abstract class EntityDAO
                                 'setting_name' => $propName,
                             ],
                             [
-                                'setting_value' => $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type),
+                                'setting_value' => $this->convertToDB($sanitizedProps[$propName], $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? [])),
                             ]
                         );
                 }
@@ -297,7 +298,7 @@ abstract class EntityDAO
         $primaryDbProps = [];
         foreach ($this->primaryTableColumns as $propName => $columnName) {
             if ($propName !== 'id' && array_key_exists($propName, $sanitizedProps)) {
-                $primaryDbProps[$columnName] = $this->convertToDB($sanitizedProps[$propName] ?? null, $schema->properties->{$propName}->type, true);
+                $primaryDbProps[$columnName] = $this->convertToDB($sanitizedProps[$propName] ?? null, $schema->properties->{$propName}->type, in_array('nullable', $schema->properties->{$propName}->validation ?? []));
                 // Convert empty string values for DATETIME columns into null values
                 // because an empty string can not be saved to a DATETIME column
                 if ($primaryDbProps[$columnName] === ''
