@@ -70,7 +70,7 @@ class DataObjectRequiredPolicy extends AuthorizationPolicy
         parent::__construct($message);
         $this->_request = $request;
         assert(is_array($args));
-        $this->_args = & $args;
+        $this->_args = &$args;
         $this->_parameterName = $parameterName;
         $this->_operations = $operations;
     }

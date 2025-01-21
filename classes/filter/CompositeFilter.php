@@ -71,7 +71,7 @@ abstract class CompositeFilter extends PersistableFilter
         }
 
         // Add the filter to the list.
-        $this->_filters[$seq] = & $filter;
+        $this->_filters[$seq] = &$filter;
         return $seq;
     }
 
@@ -83,7 +83,7 @@ abstract class CompositeFilter extends PersistableFilter
     {
         $filter = null;
         if (isset($this->_filters[$seq])) {
-            $filter = & $this->_filters[$seq];
+            $filter = &$this->_filters[$seq];
         }
         return $filter;
     }
@@ -406,7 +406,7 @@ abstract class CompositeFilter extends PersistableFilter
         $seq = (int)$seq;
 
         // Identify the sub-filter.
-        $filter = & $this->getFilter($seq);
+        $filter = &$this->getFilter($seq);
         if (is_null($filter)) {
             throw new Exception('Invalid filter sequence number!');
         }

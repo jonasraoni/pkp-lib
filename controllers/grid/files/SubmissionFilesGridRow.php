@@ -98,9 +98,9 @@ class SubmissionFilesGridRow extends GridRow
         parent::initialize($request, $template);
 
         // Retrieve the submission file.
-        $submissionFileData = & $this->getData();
+        $submissionFileData = &$this->getData();
         assert(isset($submissionFileData['submissionFile']));
-        $submissionFile = & $submissionFileData['submissionFile']; /** @var SubmissionFile $submissionFile */
+        $submissionFile = &$submissionFileData['submissionFile']; /** @var SubmissionFile $submissionFile */
         assert($submissionFile instanceof SubmissionFile);
 
         // File grid row actions:

@@ -47,7 +47,7 @@ class ArrayItemIterator extends ItemIterator
             $this->theArray = array_slice($theArray, ($page - 1) * $itemsPerPage, $itemsPerPage, true);
             $this->page = $page;
         } else {
-            $this->theArray = & $theArray;
+            $this->theArray = &$theArray;
             $this->page = 1;
             $this->itemsPerPage = max(count($this->theArray), 1);
         }

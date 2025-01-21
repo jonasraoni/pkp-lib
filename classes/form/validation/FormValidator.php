@@ -55,11 +55,11 @@ class FormValidator
      */
     public function __construct(&$form, $field, $type, $message, $validator = null)
     {
-        $this->_form = & $form;
+        $this->_form = &$form;
         $this->_field = $field;
         $this->_type = $type;
         $this->_message = $message;
-        $this->_validator = & $validator;
+        $this->_validator = &$validator;
 
         $form->cssValidation[$field] = [];
         if ($type == self::FORM_VALIDATOR_REQUIRED_VALUE) {
@@ -137,7 +137,7 @@ class FormValidator
             return true;
         }
 
-        $validator = & $this->getValidator();
+        $validator = &$this->getValidator();
         if (is_null($validator)) {
             // Default check: field must not be empty.
             $fieldValue = $this->getFieldValue();
@@ -160,7 +160,7 @@ class FormValidator
      */
     public function getFieldValue()
     {
-        $form = & $this->getForm();
+        $form = &$this->getForm();
         $fieldValue = $form->getData($this->getField());
         if (is_null($fieldValue) || is_scalar($fieldValue)) {
             $fieldValue = trim((string)$fieldValue);

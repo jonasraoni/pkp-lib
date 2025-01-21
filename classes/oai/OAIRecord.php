@@ -36,13 +36,13 @@ class OAIRecord extends OAIIdentifier
 
     public function setData($name, &$value)
     {
-        $this->data[$name] = & $value;
+        $this->data[$name] = &$value;
     }
 
     public function &getData($name)
     {
         if (isset($this->data[$name])) {
-            $returner = & $this->data[$name];
+            $returner = &$this->data[$name];
         } else {
             $returner = null;
         }

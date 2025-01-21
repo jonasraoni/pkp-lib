@@ -433,7 +433,7 @@ class Form
      */
     public function addCheck($formValidator)
     {
-        $this->_checks[] = & $formValidator;
+        $this->_checks[] = &$formValidator;
     }
 
     /**

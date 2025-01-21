@@ -85,7 +85,7 @@ class XMLNode
      */
     public function setParent(&$parent)
     {
-        $this->parent = & $parent;
+        $this->parent = &$parent;
     }
 
     /**
@@ -136,7 +136,7 @@ class XMLNode
      */
     public function setValue($value)
     {
-        $this->value = & $value;
+        $this->value = &$value;
     }
 
     /**
@@ -159,7 +159,7 @@ class XMLNode
             $name = [$name];
         }
         foreach ($this->children as $key => $junk) {
-            $child = & $this->children[$key];
+            $child = &$this->children[$key];
             if (in_array($child->getName(), $name)) {
                 if ($index == 0) {
                     return $child;
@@ -181,9 +181,9 @@ class XMLNode
      */
     public function &getChildValue($name, $index = 0)
     {
-        $node = & $this->getChildByName($name);
+        $node = &$this->getChildByName($name);
         if ($node) {
-            $returner = & $node->getValue();
+            $returner = &$node->getValue();
         } else {
             $returner = null;
         }
@@ -195,7 +195,7 @@ class XMLNode
      */
     public function addChild(&$node)
     {
-        $this->children[] = & $node;
+        $this->children[] = &$node;
     }
 
     /**

@@ -54,8 +54,8 @@ class OrderGridItemsFeature extends OrderItemsFeature
      */
     public function saveSequence($args)
     {
-        $request = & $args['request'];
-        $grid = & $args['grid'];
+        $request = &$args['request'];
+        $grid = &$args['grid'];
 
         $data = json_decode($request->getUserVar('data'));
 

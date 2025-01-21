@@ -62,7 +62,7 @@ abstract class OAIMetadataFormatPlugin extends Plugin
     {
         $namesOnly = $args[0];
         $identifier = $args[1];
-        $formats = & $args[2];
+        $formats = &$args[2];
 
         if ($namesOnly) {
             $formats = array_merge($formats, [$this->getMetadataPrefix()]);

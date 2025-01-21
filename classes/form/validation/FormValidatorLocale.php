@@ -65,7 +65,7 @@ class FormValidatorLocale extends FormValidator
      */
     public function getFieldValue()
     {
-        $form = & $this->getForm();
+        $form = &$this->getForm();
         $data = $form->getData($this->getField());
 
         $fieldValue = '';

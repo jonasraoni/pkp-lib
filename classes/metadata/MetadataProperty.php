@@ -206,8 +206,8 @@ class MetadataProperty
 
         // Initialize the class
         $this->_name = (string)$name;
-        $this->_assocTypes = & $assocTypes;
-        $this->_allowedTypes = & $canonicalizedTypes;
+        $this->_assocTypes = &$assocTypes;
+        $this->_allowedTypes = &$canonicalizedTypes;
         $this->_translated = (bool)$translated;
         $this->_cardinality = (int)$cardinality;
         $this->_displayName = (string)$displayName;

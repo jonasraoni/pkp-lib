@@ -48,7 +48,7 @@ class FormValidatorBoolean extends FormValidator
     public function isValid()
     {
         $value = $this->getFieldValue();
-        $form = & $this->getForm();
+        $form = &$this->getForm();
         if (empty($value) || $value == 'on') {
             // Make sure that the form will contain a real
             // boolean value after validation.

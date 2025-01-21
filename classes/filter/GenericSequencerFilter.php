@@ -37,7 +37,7 @@ class GenericSequencerFilter extends CompositeFilter
         foreach ($this->getFilters() as $filter) {
             if (is_null($previousOutput)) {
                 // First filter
-                $previousOutput = & $input;
+                $previousOutput = &$input;
             }
             $output = $filter->execute($previousOutput);
 

@@ -283,7 +283,7 @@ class MetadataDescription extends \PKP\core\DataObject
     public function addStatement($propertyName, $value, $locale = null, $replace = false)
     {
         // Check the property
-        $property = & $this->getProperty($propertyName);
+        $property = &$this->getProperty($propertyName);
         if (is_null($property)) {
             return false;
         }
@@ -310,7 +310,7 @@ class MetadataDescription extends \PKP\core\DataObject
         }
 
         // Handle cardinality
-        $existingValue = & $this->getStatement($propertyName, $locale);
+        $existingValue = &$this->getStatement($propertyName, $locale);
         switch ($property->getCardinality()) {
             case MetadataProperty::METADATA_PROPERTY_CARDINALITY_ONE:
                 if (isset($existingValue) && !$replace) {
@@ -389,7 +389,7 @@ class MetadataDescription extends \PKP\core\DataObject
     public function &getStatement($propertyName, $locale = null)
     {
         // Check the property
-        $property = & $this->getProperty($propertyName);
+        $property = &$this->getProperty($propertyName);
         assert(isset($property) && $property instanceof \PKP\metadata\MetadataProperty);
 
         // Handle translation
@@ -461,7 +461,7 @@ class MetadataDescription extends \PKP\core\DataObject
             if (is_scalar($content) || is_string(key($content))) {
                 $values = [&$content];
             } else {
-                $values = & $content;
+                $values = &$content;
             }
 
             if ($replace == self::METADATA_DESCRIPTION_REPLACE_PROPERTIES) {
@@ -480,7 +480,7 @@ class MetadataDescription extends \PKP\core\DataObject
                         if (is_scalar($translation)) {
                             $translationValues = [&$translation];
                         } else {
-                            $translationValues = & $translation;
+                            $translationValues = &$translation;
                         }
                         $translationIndex = 0;
                         foreach ($translationValues as $translationValue) {
@@ -519,7 +519,7 @@ class MetadataDescription extends \PKP\core\DataObject
      */
     public function &getProperties()
     {
-        $metadataSchema = & $this->getMetadataSchema();
+        $metadataSchema = &$this->getMetadataSchema();
         return $metadataSchema->getProperties();
     }
 
@@ -533,7 +533,7 @@ class MetadataDescription extends \PKP\core\DataObject
      */
     public function &getProperty($propertyName)
     {
-        $metadataSchema = & $this->getMetadataSchema();
+        $metadataSchema = &$this->getMetadataSchema();
         return $metadataSchema->getProperty($propertyName);
     }
 
@@ -547,7 +547,7 @@ class MetadataDescription extends \PKP\core\DataObject
      */
     public function getNamespacedPropertyId($propertyName)
     {
-        $metadataSchema = & $this->getMetadataSchema();
+        $metadataSchema = &$this->getMetadataSchema();
         return $metadataSchema->getNamespacedPropertyId($propertyName);
     }
 
@@ -559,7 +559,7 @@ class MetadataDescription extends \PKP\core\DataObject
      */
     public function getPropertyNames()
     {
-        $metadataSchema = & $this->getMetadataSchema();
+        $metadataSchema = &$this->getMetadataSchema();
         return $metadataSchema->getPropertyNames();
     }
 
@@ -573,7 +573,7 @@ class MetadataDescription extends \PKP\core\DataObject
      */
     public function getPropertyNamesByType($propertyType)
     {
-        $metadataSchema = & $this->getMetadataSchema();
+        $metadataSchema = &$this->getMetadataSchema();
         return $metadataSchema->getPropertyNamesByType($propertyType);
     }
 
@@ -598,7 +598,7 @@ class MetadataDescription extends \PKP\core\DataObject
      */
     public function hasProperty($propertyName)
     {
-        $metadataSchema = & $this->getMetadataSchema();
+        $metadataSchema = &$this->getMetadataSchema();
         return $metadataSchema->hasProperty($propertyName);
     }
 
@@ -611,7 +611,7 @@ class MetadataDescription extends \PKP\core\DataObject
      */
     public function hasStatement($propertyName)
     {
-        $statements = & $this->getStatements();
+        $statements = &$this->getStatements();
         return (isset($statements[$propertyName]));
     }
 

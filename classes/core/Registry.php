@@ -54,7 +54,7 @@ class Registry
     public static function set(string $key, mixed &$value): void
     {
         $registry = & self::_getRegistry();
-        $registry[$key] = & $value;
+        $registry[$key] = &$value;
     }
 
     /**

@@ -182,7 +182,7 @@ class MetadataSchema
     {
         assert(is_string($propertyName));
         if ($this->hasProperty($propertyName)) {
-            $property = & $this->_properties[$propertyName];
+            $property = &$this->_properties[$propertyName];
         } else {
             $property = null;
         }
@@ -199,7 +199,7 @@ class MetadataSchema
      */
     public function getNamespacedPropertyId($propertyName)
     {
-        $property = & $this->getProperty($propertyName);
+        $property = &$this->getProperty($propertyName);
         assert($property instanceof \PKP\metadata\MetadataProperty);
         return $this->getNamespace() . ucfirst($property->getId());
     }
@@ -247,7 +247,7 @@ class MetadataSchema
         $property = new MetadataProperty($name, $this->_assocTypes, $allowedTypes, $translated, $cardinality, $displayName, $validationMessage, $mandatory);
 
         // Add the property
-        $this->_properties[$name] = & $property;
+        $this->_properties[$name] = &$property;
     }
 
     /**

@@ -91,12 +91,12 @@ class DataObjectTest extends PKPTestCase
                 'en' => 'testVal2'
             ]
         ];
-        $result = & $this->dataObject->getAllData();
+        $result = &$this->dataObject->getAllData();
         self::assertEquals($expectedResult, $result);
 
         // Should be returned by-ref:
-        $testVal1 = & $this->dataObject->getData('testVar1');
-        $testVal2 = & $this->dataObject->getData('testVar2', 'en');
+        $testVal1 = &$this->dataObject->getData('testVar1');
+        $testVal2 = &$this->dataObject->getData('testVar2', 'en');
         $testVal1 = $testVal2 = 'something else';
         $expectedResult = [
             'testVar1' => 'something else',
@@ -104,7 +104,7 @@ class DataObjectTest extends PKPTestCase
                 'en' => 'something else'
             ]
         ];
-        $result = & $this->dataObject->getAllData();
+        $result = &$this->dataObject->getAllData();
         self::assertEquals($expectedResult, $result);
     }
 
@@ -112,7 +112,7 @@ class DataObjectTest extends PKPTestCase
     {
         $expectedResult = ['someKey' => 'someVal'];
         $this->dataObject->setAllData($expectedResult);
-        $result = & $this->dataObject->getAllData();
+        $result = &$this->dataObject->getAllData();
         self::assertEquals($expectedResult, $result);
 
         // Test assignment is not done by reference

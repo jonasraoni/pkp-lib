@@ -97,7 +97,7 @@ class OrderCategoryGridItemsFeature extends OrderItemsFeature
     public function getInitializedCategoryRowInstance($args)
     {
         if ($this->getType() != self::ORDER_CATEGORY_GRID_CATEGORIES_ROWS_ONLY) {
-            $row = & $args['row'];
+            $row = &$args['row'];
             $this->addRowOrderAction($row);
         }
     }
@@ -107,8 +107,8 @@ class OrderCategoryGridItemsFeature extends OrderItemsFeature
      */
     public function saveSequence($args)
     {
-        $request = & $args['request'];
-        $grid = & $args['grid'];
+        $request = &$args['request'];
+        $grid = &$args['grid'];
 
         $data = json_decode($request->getUserVar('data'));
         $gridCategoryElements = $grid->getGridDataElements($request);

@@ -53,7 +53,7 @@ class EntityDAOTest extends PKPTestCase
 
         // Inject a test schema
         Hook::add('Schema::get::test_schema', function ($hookName, $args) {
-            $schema = & $args[0];
+            $schema = &$args[0];
             $schema = json_decode('{
                 "title": "Test Schema",
                 "description": "A schema for testing purposes",

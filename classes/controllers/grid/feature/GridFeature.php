@@ -232,8 +232,8 @@ class GridFeature
      */
     public function fetchGrid($args)
     {
-        $grid = & $args['grid'];
-        $request = & $args['request'];
+        $grid = &$args['grid'];
+        $request = &$args['request'];
 
         $this->setOptions($request, $grid);
     }

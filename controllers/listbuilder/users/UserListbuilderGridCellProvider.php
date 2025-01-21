@@ -38,7 +38,7 @@ class UserListbuilderGridCellProvider extends GridCellProvider
      */
     public function getTemplateVarsFromRowColumn($row, $column)
     {
-        $user = & $row->getData();
+        $user = &$row->getData();
         $columnId = $column->getId();
         // Allow for either Users or Authors (both have a getFullName method).
         assert($user instanceof Identity && !empty($columnId));

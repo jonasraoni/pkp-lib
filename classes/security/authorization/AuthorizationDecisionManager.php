@@ -203,7 +203,7 @@ class AuthorizationDecisionManager
         $decidedByOverriddenEffect = false;
 
         // Separated from below for bug #6821.
-        $context = & $this->getAuthorizedContext();
+        $context = &$this->getAuthorizedContext();
 
         // Go through all policies within the policy set
         // and combine them with the configured algorithm.

@@ -48,7 +48,7 @@ class GridDataProvider
      */
     public function setAuthorizedContext(&$authorizedContext)
     {
-        $this->_authorizedContext = & $authorizedContext;
+        $this->_authorizedContext = &$authorizedContext;
     }
 
     /**

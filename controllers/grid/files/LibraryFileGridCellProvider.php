@@ -34,7 +34,7 @@ class LibraryFileGridCellProvider extends GridCellProvider
      */
     public function getTemplateVarsFromRowColumn($row, $column)
     {
-        $element = & $row->getData();
+        $element = &$row->getData();
         $columnId = $column->getId();
         assert($element instanceof \PKP\core\DataObject && !empty($columnId));
         switch ($columnId) {

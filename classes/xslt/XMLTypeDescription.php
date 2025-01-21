@@ -124,7 +124,7 @@ class XMLTypeDescription extends TypeDescription
             $xmlDom = new DOMDocument('1.0', 'utf-8');
             $xmlDom->loadXML($object);
         } else {
-            $xmlDom = & $object;
+            $xmlDom = &$object;
         }
 
         switch ($this->_validationStrategy) {

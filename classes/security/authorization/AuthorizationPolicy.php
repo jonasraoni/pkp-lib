@@ -112,7 +112,7 @@ class AuthorizationPolicy
      */
     public function setAuthorizedContext(&$authorizedContext): void
     {
-        $this->_authorizedContext = & $authorizedContext;
+        $this->_authorizedContext = &$authorizedContext;
     }
 
     /**

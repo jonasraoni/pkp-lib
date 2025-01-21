@@ -136,7 +136,7 @@ class SubmissionComment extends \PKP\core\DataObject
     public function getAuthorName()
     {
         // Reference used to set if not already fetched
-        $authorFullName = & $this->getData('authorFullName');
+        $authorFullName = &$this->getData('authorFullName');
 
         if (!isset($authorFullName)) {
             $user = Repo::user()->get($this->getAuthorId(), true);
@@ -154,7 +154,7 @@ class SubmissionComment extends \PKP\core\DataObject
     public function getAuthorEmail()
     {
         // Reference used to set if not already fetched
-        $authorEmail = & $this->getData('authorEmail');
+        $authorEmail = &$this->getData('authorEmail');
 
         if (!isset($authorEmail)) {
             $user = Repo::user()->get($this->getAuthorId(), true);

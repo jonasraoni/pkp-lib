@@ -275,7 +275,7 @@ abstract class PKPStatisticsHelper
             $this->institutionDataCache = [];
         }
 
-        $cachedInstitutionData = & $this->institutionDataCache;
+        $cachedInstitutionData = &$this->institutionDataCache;
         if (array_key_exists($hashedIp, $cachedInstitutionData) && array_key_exists($contextId, $cachedInstitutionData[$hashedIp])) {
             return $cachedInstitutionData[$hashedIp][$contextId];
         }

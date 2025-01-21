@@ -90,7 +90,7 @@ class FileNameGridColumn extends GridColumn
         $cellActions = parent::getCellActions($request, $row, $position);
 
         // Retrieve the submission file.
-        $submissionFileData = & $row->getData();
+        $submissionFileData = &$row->getData();
         assert(isset($submissionFileData['submissionFile']));
         $submissionFile = $submissionFileData['submissionFile']; /** @var SubmissionFile $submissionFile */
 

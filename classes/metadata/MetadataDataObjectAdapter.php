@@ -88,15 +88,15 @@ class MetadataDataObjectAdapter extends PersistableFilter
 
         if ($mode == self::METADATA_DOA_INJECTION_MODE) {
             // We are in meta-data injection mode (or both input and output are meta-data descriptions).
-            $metadataTypeDescription = & $inputType; /** @var MetadataTypeDescription $metadataTypeDescription */
+            $metadataTypeDescription = &$inputType; /** @var MetadataTypeDescription $metadataTypeDescription */
             assert($outputType instanceof ClassTypeDescription);
-            $dataObjectTypeDescription = & $outputType; /** @var ClassTypeDescription $dataObjectTypeDescription */
+            $dataObjectTypeDescription = &$outputType; /** @var ClassTypeDescription $dataObjectTypeDescription */
         } else {
             // We are in meta-data extraction mode.
             assert($outputType instanceof \PKP\metadata\MetadataTypeDescription);
-            $metadataTypeDescription = & $outputType;
+            $metadataTypeDescription = &$outputType;
             assert($inputType instanceof ClassTypeDescription);
-            $dataObjectTypeDescription = & $inputType;
+            $dataObjectTypeDescription = &$inputType;
         }
 
         // Extract information from the input/output types.
@@ -170,7 +170,7 @@ class MetadataDataObjectAdapter extends PersistableFilter
      */
     public function getMetadataNamespace()
     {
-        $metadataSchema = & $this->getMetadataSchema();
+        $metadataSchema = &$this->getMetadataSchema();
         return $metadataSchema->getNamespace();
     }
 
@@ -219,7 +219,7 @@ class MetadataDataObjectAdapter extends PersistableFilter
      */
     public function setTargetDataObject(&$targetDataObject)
     {
-        $this->_targetDataObject = & $targetDataObject;
+        $this->_targetDataObject = &$targetDataObject;
     }
 
     /**
@@ -299,16 +299,16 @@ class MetadataDataObjectAdapter extends PersistableFilter
         // Do we inject or extract metadata?
         switch ($this->getMode()) {
             case self::METADATA_DOA_INJECTION_MODE:
-                $targetDataObject = & $this->getTargetDataObject();
+                $targetDataObject = &$this->getTargetDataObject();
 
                 // Instantiate a new data object if none was given.
                 if (is_null($targetDataObject)) {
-                    $targetDataObject = & $this->instantiateDataObject();
+                    $targetDataObject = &$this->instantiateDataObject();
                     assert(is_a($targetDataObject, $this->getDataObjectName()));
                 }
 
                 // Inject meta-data into the data object.
-                $output = & $this->injectMetadataIntoDataObject($input, $targetDataObject);
+                $output = &$this->injectMetadataIntoDataObject($input, $targetDataObject);
                 break;
 
             case self::METADATA_DOA_EXTRACTION_MODE:
@@ -375,9 +375,9 @@ class MetadataDataObjectAdapter extends PersistableFilter
 
             // Retrieve all properties and add
             // their names to the cache
-            $metadataSchema = & $this->getMetadataSchema();
+            $metadataSchema = &$this->getMetadataSchema();
             $metadataSchemaNamespace = $metadataSchema->getNamespace();
-            $properties = & $metadataSchema->getProperties();
+            $properties = &$metadataSchema->getProperties();
             foreach ($properties as $property) {
                 $propertyAssocTypes = $property->getAssocTypes();
                 if (in_array($this->_assocType, $propertyAssocTypes)) {
@@ -456,7 +456,7 @@ class MetadataDataObjectAdapter extends PersistableFilter
      */
     public function extractUnmappedDataObjectMetadataFields(&$dataObject, &$metadataDescription)
     {
-        $metadataSchema = & $this->getMetadataSchema();
+        $metadataSchema = &$this->getMetadataSchema();
         $handledNamespace = $metadataSchema->getNamespace();
 
         // Handle translated and non-translated statements separately.

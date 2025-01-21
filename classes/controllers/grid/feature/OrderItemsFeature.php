@@ -145,7 +145,7 @@ class OrderItemsFeature extends GridFeature
      */
     public function getInitializedRowInstance($args)
     {
-        $row = & $args['row'];
+        $row = &$args['row'];
         if ($args['grid']->getDataElementSequence($row->getData()) !== false) {
             $this->addRowOrderAction($row);
         }
@@ -156,7 +156,7 @@ class OrderItemsFeature extends GridFeature
      */
     public function gridInitialize($args)
     {
-        $grid = & $args['grid'];
+        $grid = &$args['grid'];
 
         if ($this->isOrderActionNecessary()) {
             $grid->addAction(

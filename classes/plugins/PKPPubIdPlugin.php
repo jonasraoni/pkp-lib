@@ -392,7 +392,7 @@ abstract class PKPPubIdPlugin extends LazyLoadPlugin
      */
     public function addToSchema($hookName, $params)
     {
-        $schema = & $params[0];
+        $schema = &$params[0];
         foreach (array_merge($this->getFormFieldNames(), $this->getDAOFieldNames()) as $fieldName) {
             $schema->properties->{$fieldName} = (object) [
                 'type' => 'string',

@@ -56,10 +56,10 @@ class XMLParserDOMHandler extends XMLParserHandler
             $this->currentNode->addChild($node);
             $node->setParent($this->currentNode);
         } else {
-            $this->rootNode = & $node;
+            $this->rootNode = &$node;
         }
 
-        $this->currentNode = & $node;
+        $this->currentNode = &$node;
     }
 
     /**
@@ -68,7 +68,7 @@ class XMLParserDOMHandler extends XMLParserHandler
     public function endElement(XMLParser|PKPXMLParser $parser, string $tag): void
     {
         $this->currentNode->setValue($this->currentData);
-        $this->currentNode = & $this->currentNode->getParent();
+        $this->currentNode = &$this->currentNode->getParent();
         $this->currentData = null;
     }
 

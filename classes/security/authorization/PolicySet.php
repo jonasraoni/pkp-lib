@@ -61,7 +61,7 @@ class PolicySet
         if ($addToTop) {
             array_unshift($this->_policies, $policyOrPolicySet);
         } else {
-            $this->_policies[] = & $policyOrPolicySet;
+            $this->_policies[] = &$policyOrPolicySet;
         }
     }
 

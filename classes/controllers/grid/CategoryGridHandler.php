@@ -169,7 +169,7 @@ class CategoryGridHandler extends GridHandler
      */
     public function hasGridDataElementsInCategory($categoryElement, $request)
     {
-        $data = & $this->getGridCategoryDataElements($request, $categoryElement);
+        $data = &$this->getGridCategoryDataElements($request, $categoryElement);
         assert(is_array($data));
         return (bool) count($data);
     }
@@ -358,7 +358,7 @@ class CategoryGridHandler extends GridHandler
      */
     protected function setFirstDataColumn()
     {
-        $columns = & $this->getColumns();
+        $columns = &$this->getColumns();
         reset($columns);
         // Category grids will always have indent column firstly,
         // so we need to consider the first column the second one.

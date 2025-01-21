@@ -126,7 +126,7 @@ class MetadataTypeDescription extends ClassTypeDescription
         }
 
         // Check the meta-data schema.
-        $metadataSchema = & $object->getMetadataSchema();
+        $metadataSchema = &$object->getMetadataSchema();
         if (!$metadataSchema instanceof $this->_metadataSchemaClassName) {
             return false;
         }

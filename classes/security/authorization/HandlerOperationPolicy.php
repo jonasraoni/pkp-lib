@@ -36,7 +36,7 @@ class HandlerOperationPolicy extends AuthorizationPolicy
     public function __construct($request, $operations, $message = null)
     {
         parent::__construct($message);
-        $this->_request = & $request;
+        $this->_request = &$request;
 
         // Make sure a single operation doesn't have to
         // be passed in as an array.

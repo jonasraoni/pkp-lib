@@ -84,7 +84,7 @@ class PKPSubmissionFilesUploadBaseForm extends Form
         $this->_stageId = $stageId;
 
         if ($reviewRound) {
-            $this->_reviewRound = & $reviewRound;
+            $this->_reviewRound = &$reviewRound;
         } elseif ($assocType == Application::ASSOC_TYPE_REVIEW_ASSIGNMENT && !$reviewRound) {
             // Get the review assignment object.
             $reviewAssignment = Repo::reviewAssignment()->get((int) $assocId);

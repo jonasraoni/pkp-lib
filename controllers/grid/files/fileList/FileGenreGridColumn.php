@@ -46,9 +46,9 @@ class FileGenreGridColumn extends GridColumn
     public function getTemplateVarsFromRow($row)
     {
         // Retrieve the submission file.
-        $submissionFileData = & $row->getData();
+        $submissionFileData = &$row->getData();
         assert(isset($submissionFileData['submissionFile']));
-        $submissionFile = & $submissionFileData['submissionFile']; /** @var SubmissionFile $submissionFile */
+        $submissionFile = &$submissionFileData['submissionFile']; /** @var SubmissionFile $submissionFile */
         assert($submissionFile instanceof SubmissionFile);
 
         // Retrieve the genre label for the submission file.

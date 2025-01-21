@@ -30,7 +30,7 @@ class LibraryFileGridCategoryRow extends GridCategoryRow
      */
     public function __construct($context)
     {
-        $this->_context = & $context;
+        $this->_context = &$context;
         parent::__construct();
     }
 

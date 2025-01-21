@@ -136,13 +136,13 @@ class FilterDAOTest extends DatabaseTestCase
 
         // Check that sub-filters were correctly
         // linked to the composite filter.
-        $subFilters = & $testFilter->getFilters();
+        $subFilters = &$testFilter->getFilters();
         self::assertEquals(2, count($subFilters));
         foreach ($subFilters as $subFilter) {
             self::assertTrue($subFilter->getId() > 0);
             self::assertEquals($filterId, $subFilter->getParentFilterId());
         }
-        $subSubFilters = & $subFilters[2]->getFilters();
+        $subSubFilters = &$subFilters[2]->getFilters();
         self::assertEquals(2, count($subSubFilters));
         foreach ($subSubFilters as $subSubFilter) {
             self::assertTrue($subSubFilter->getId() > 0);

@@ -102,7 +102,7 @@ class Dispatcher
         /** @var PKPRouter */
         $router = null;
         foreach ($routerNames as $shortcut => $routerCandidateName) {
-            $routerCandidate = & $this->_instantiateRouter($routerCandidateName, $shortcut);
+            $routerCandidate = &$this->_instantiateRouter($routerCandidateName, $shortcut);
 
             // Does this router support the current request?
             if ($routerCandidate->supports($request)) {
@@ -115,8 +115,8 @@ class Dispatcher
 
                 // We've found our router and can go on
                 // to handle the request.
-                $router = & $routerCandidate;
-                $this->_router = & $router;
+                $router = &$routerCandidate;
+                $this->_router = &$router;
                 break;
             }
         }
@@ -129,7 +129,7 @@ class Dispatcher
 
         // Can we serve a cached response?
         if ($router->isCacheable($request)) {
-            $this->_requestCallbackHack = & $request;
+            $this->_requestCallbackHack = &$request;
             if (Config::getVar('cache', 'web_cache')) {
                 if ($this->_displayCached($router, $request)) {
                     exit;
@@ -221,7 +221,7 @@ class Dispatcher
             throw new \Exception('Specified router is not configured!');
         }
         $routerName = $this->_routerNames[$shortcut];
-        $router = & $this->_instantiateRouter($routerName, $shortcut);
+        $router = &$this->_instantiateRouter($routerName, $shortcut);
 
         return $router->url($request, $newContext, $handler, $op, $path, $params, $anchor, $escape, $urlLocaleForPage);
     }

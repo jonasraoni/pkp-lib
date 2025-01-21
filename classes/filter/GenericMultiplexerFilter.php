@@ -78,7 +78,7 @@ class GenericMultiplexerFilter extends CompositeFilter
             }
 
             // Execute the filter
-            $intermediateOutput = & $filter->execute($clonedInput);
+            $intermediateOutput = &$filter->execute($clonedInput);
 
             // Propagate errors of sub-filters (if any)
             foreach ($filter->getErrors() as $errorMessage) {
@@ -98,7 +98,7 @@ class GenericMultiplexerFilter extends CompositeFilter
                 }
             } else {
                 // Add the output to the output array.
-                $output[] = & $intermediateOutput;
+                $output[] = &$intermediateOutput;
             }
             unset($clonedInput, $intermediateOutput);
         }

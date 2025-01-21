@@ -54,7 +54,7 @@ class PluginGridRow extends GridRow
         parent::initialize($request, $template);
 
         // Is this a new row or an existing row?
-        $plugin = & $this->getData(); /** @var Plugin $plugin */
+        $plugin = &$this->getData(); /** @var Plugin $plugin */
         assert($plugin instanceof Plugin);
 
         $rowId = $this->getId();

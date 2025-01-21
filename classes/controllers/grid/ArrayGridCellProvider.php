@@ -34,7 +34,7 @@ class ArrayGridCellProvider extends GridCellProvider
      */
     public function getTemplateVarsFromRowColumn($row, $column)
     {
-        $element = & $row->getData();
+        $element = &$row->getData();
         $columnId = $column->getId();
         switch ($columnId) {
             case 'id':

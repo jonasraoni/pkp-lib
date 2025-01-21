@@ -123,8 +123,8 @@ class GeneralPagingFeature extends GridFeature
      */
     public function setGridDataElements($args)
     {
-        $grid = & $args['grid'];
-        $data = & $args['data'];
+        $grid = &$args['grid'];
+        $data = &$args['data'];
 
         if (is_array($data)) {
             $request = Application::get()->getRequest();
@@ -143,7 +143,7 @@ class GeneralPagingFeature extends GridFeature
     public function getRequestArgs($args)
     {
         $grid = $args['grid'];
-        $requestArgs = & $args['requestArgs'];
+        $requestArgs = &$args['requestArgs'];
 
         // Add paging info so grid actions will not lose paging context.
         // Only works if grid link actions use the getRequestArgs
