@@ -114,13 +114,7 @@ abstract class PKPContextService implements EntityPropertyInterface, EntityReadI
      * Get a collection of Context objects limited, filtered
      * and sorted by $args
      *
-     * @param array $args {
-     *   @option bool isEnabled
-     *   @option int userId
-     *   @option string searchPhrase
-     *   @option int count
-     *   @option int offset
-     * }
+     * @param array{isEnabled: bool, userId: int, searchPhrase: string, count: int, offset: int} $args
      *
      * @return DAOResultIterator<Context>
      */

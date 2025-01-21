@@ -52,7 +52,7 @@
  *   for (optional): What the section's label is for
  *   inline: Adds .inline to the element's parent container and causes it to display inline with other elements
  *   size: One of $fbvStyles.size.SMALL (adds .quarter to element's parent container) or $fbvStyles.size.MEDIUM (adds
- *    .half to element's parentcontainer)
+ *    .half to element's parent container)
  *   required: Adds an asterisk and a .required class to the element's label
  */
 

@@ -147,7 +147,7 @@ class Core
      * were built using the system.
      *
      * @param $urlInfo Full url or just path info.
-     * @param $userVars (optional) Pass GET variables if needed (for testing only).
+     * @param array $userVars (optional) Pass GET variables if needed (for testing only).
      */
     public static function getPage(string $urlInfo, array $userVars = []): string
     {
@@ -159,7 +159,7 @@ class Core
      * Get the operation present into the passed url information. It expects that urls were built using the system.
      *
      * @param $urlInfo Full url or just path info.
-     * @param $userVars (optional) Pass GET variables if needed (for testing only).
+     * @param array $userVars (optional) Pass GET variables if needed (for testing only).
      */
     public static function getOp(string $urlInfo, array $userVars = []): string
     {
@@ -173,7 +173,7 @@ class Core
      * It expects that urls were built using the system.
      *
      * @param $urlInfo Full url or just path info.
-     * @param $userVars (optional) Pass GET variables if needed (for testing only).
+     * @param array $userVars (optional) Pass GET variables if needed (for testing only).
      */
     public static function getArgs(string $urlInfo, array $userVars = []): array
     {
@@ -242,7 +242,7 @@ class Core
      * is set to use base url override, context
      * path for the passed url.
      *
-     * @return Array with two elements, base url and context path.
+     * @return array with two elements, base url and context path.
      */
     protected static function _getBaseUrlAndPath(string $url): array
     {

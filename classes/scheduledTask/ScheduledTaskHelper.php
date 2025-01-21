@@ -36,7 +36,7 @@ class ScheduledTaskHelper
      * Constructor.
      * Overwrites both parameters if one is not passed.
      *
-     * @param string $contactName (optional)    Contact name
+     * @param string $contactName (optional) Contact name
      */
     public function __construct(public string $contactEmail = '', public string $contactName = '')
     {

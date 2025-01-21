@@ -295,7 +295,7 @@ abstract class PKPRouter
      * 4) execution
      * 5) client response
      *
-     * @param array{0:PKPHandler,1:string} $serviceEndpoint
+     * @param array{PKPHandler, string} $serviceEndpoint
      * @param bool $validate whether or not to execute the validation step.
      */
     public function _authorizeInitializeAndCallRequest(callable|array $serviceEndpoint, PKPRequest $request, array $args, bool $validate = true): void

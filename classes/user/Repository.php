@@ -260,9 +260,7 @@ class Repository
     /**
      * Retrieves a filtered user report instance
      *
-     * @param array $args
-     * - @option int[] contextIds Context IDs (required)
-     * - @option int[] userGroupIds List of user groups (all groups by default)
+     * @param array{contextIds: int[], userGroupIds: int[]} $args [Context IDs (required), List of user groups (all groups by default)]
      *
      * @hook User::getReport [[$report]]
      */

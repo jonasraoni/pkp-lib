@@ -500,7 +500,7 @@ class PKPStatsEditorialService
     /**
      * Get a QueryBuilder object with the passed args
      *
-     * @param array{dateStart:string,dateEnd:string,contextIds:array|int,sectionIds:array|int} $args
+     * @param array{dateStart: string, dateEnd: string, contextIds: array|int, sectionIds: array|int} $args
      *
      * @hook Stats::editorial::queryBuilder [[&$qb, $args]]
      */

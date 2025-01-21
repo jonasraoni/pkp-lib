@@ -25,9 +25,7 @@ interface EntityPropertyInterface
      *
      * @param object $entity The object to convert
      * @param array $props The properties to include in the result
-     * @param array $args Additional variable which may be required
-     *  $args['request'] PKPRequest Required
-     *  $args['apiRequest'] \Illuminate\Http\Request
+     * @param array{request: \PKP\core\PKPRequest, apiRequest: \Illuminate\Http\Request} $args Additional variable which may be required
      *
      * @return array
      */
@@ -37,9 +35,7 @@ interface EntityPropertyInterface
      * Returns summary properties for an entity
      *
      * @param object $entity The object to convert
-     * @param array $args Additional variables which may be required
-     *  $args['request'] PKPRequest Required
-     *  $args['apiRequest'] \Illuminate\Http\Request
+     * @param array{request: \PKP\core\PKPRequest, apiRequest: \Illuminate\Http\Request} $args Additional variables which may be required
      *
      * @return array
      */
@@ -49,9 +45,7 @@ interface EntityPropertyInterface
      * Returns full properties for an entity
      *
      * @param object $entity The object to convert
-     * @param array $args Additional variable which may be required
-     *  $args['request'] PKPRequest Required
-     *  $args['apiRequest'] \Illuminate\Http\Request
+     * @param array{request: \PKP\core\PKPRequest, apiRequest: \Illuminate\Http\Request} $args Additional variable which may be required
      *
      * @return array
      */

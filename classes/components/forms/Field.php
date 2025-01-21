@@ -74,13 +74,7 @@ abstract class Field
      * Initialize the form field
      *
      * @param string $name
-     * @param array $args [
-     *
-     *  @option label string|object
-     *  @option groupId string
-     *  @option isRequired boolean
-     *  @option isMultilingual boolean
-     * ]
+     * @param array{label: string|object, groupId: string, isRequired: boolean, isMultilingual: boolean} $args
      */
     public function __construct($name, $args = [])
     {

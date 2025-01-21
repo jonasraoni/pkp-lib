@@ -102,11 +102,7 @@ class PKPThemeForm extends FormComponent
      *
      * @param string $theme The theme's base plugin path
      * @param \PKP\components\forms\Field $field
-     * @param array $position [
-     *
-     *  @option string One of `before` or `after`
-     *  @option string The field to position it before or after
-     * ]
+     * @param array{string, string} $position [FIELD_POSITION_BEFORE or FIELD_POSITION_AFTER, The theme to position it before or after]
      *
      * @return FormComponent
      */

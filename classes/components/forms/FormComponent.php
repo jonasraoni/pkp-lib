@@ -80,11 +80,7 @@ class FormComponent
      * Add a form field
      *
      * @param Field $field
-     * @param array $position [
-     *
-     *  @option string One of FIELD_POSITION_BEFORE or FIELD_POSITION_AFTER
-     *  @option string The field to position it before or after
-     * ]
+     * @param array{string, string} $position [FIELD_POSITION_BEFORE or FIELD_POSITION_AFTER, The field to position it before or after]
      */
     public function addField($field, $position = []): static
     {
@@ -129,18 +125,8 @@ class FormComponent
     /**
      * Add a form group
      *
-     * @param array $args [
-     *
-     *  @option id string Required A unique ID for this form group
-     *  @option label string A label to identify this group of fields. Will become the fieldset's <legend>
-     *  @option description string A description of this group of fields.
-     * ]
-     *
-     * @param array $position [
-     *
-     *  @option string One of FIELD_POSITION_BEFORE or FIELD_POSITION_AFTER
-     *  @option string The group to position it before or after
-     * ]
+     * @param array{id: string, label: string, description: string} $args [Required A unique ID for this form group, A label to identify this group of fields. Will become the fieldset's <legend>, A description of this group of fields]
+     * @param array{string, string} $position [FIELD_POSITION_BEFORE or FIELD_POSITION_AFTER, The group to position it before or after]
      */
     public function addGroup($args, $position = []): static
     {
@@ -174,20 +160,8 @@ class FormComponent
     /**
      * Add a form page
      *
-     * @param array $args [
-     *
-     *  @option id string Required A unique ID for this form page
-     *  @option label string The name of the page to identify it in the page list
-     *  @option submitButton array Required Assoc array defining submission/next button params. Supports any param of the Button component in the UI Library.
-     *  @option cancelButton array Assoc array defining the cancel button params. Supports any param of the Button component in the UI Library.
-     *  @option previousButton array Assoc array defining button params to go back to the previous page. Supports any param of the Button component in the UI Library.
-     * ]
-     *
-     * @param array $position [
-     *
-     *  @option string One of FIELD_POSITION_BEFORE or FIELD_POSITION_AFTER
-     *  @option string The page to position it before or after
-     * ]
+     * @param array{id: string, label: string, submitButton: array, cancelButton: array, previousButton: array} $args [Required A unique ID for this form page, The name of the page to identify it in the page list, Required Assoc array defining submission/next button params. Supports any param of the Button component in the UI Library, Assoc array defining the cancel button params. Supports any param of the Button component in the UI Library, Assoc array defining button params to go back to the previous page. Supports any param of the Button component in the UI Library]
+     * @param array{string, string} $position [FIELD_POSITION_BEFORE or FIELD_POSITION_AFTER, The page to position it before or after]
      */
     public function addPage($args, $position = []): static
     {

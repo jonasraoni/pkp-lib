@@ -103,7 +103,7 @@ class DataObject
      *     'en' => 'in English',
      *     ...
      *   )
-     * @param $locale (optional) non-null for a single
+     * @param ?string $locale (optional) non-null for a single
      *  localized value. Null for a non-localized value or
      *  when setting all locales at once (see comment for
      *  $value parameter)
@@ -138,7 +138,7 @@ class DataObject
     /**
      * Unset an element of the data object.
      *
-     * @param $locale (optional) non-null for a single
+     * @param ?string $locale (optional) non-null for a single
      *  localized value. Null for a non-localized value or
      *  when unsetting all locales at once.
      */

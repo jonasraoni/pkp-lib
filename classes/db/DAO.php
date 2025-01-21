@@ -524,13 +524,13 @@ class DAO
      * to the client to refresh itself according to changes
      * in the DB.
      *
-     * @param $elementId (Optional) To refresh a single element
+     * @param ?string $elementId (Optional) To refresh a single element
      *  give the element ID here. Otherwise all elements will
      *  be refreshed.
-     * @param $parentElementId (Optional) To refresh a single
+     * @param ?string $parentElementId (Optional) To refresh a single
      *  element that is associated with another one give the parent
      *  element ID here.
-     * @param $content (Optional) Additional content to pass back
+     * @param string $content (Optional) Additional content to pass back
      *  to the handler of the JSON message.
      *
      * @deprecated 3.4

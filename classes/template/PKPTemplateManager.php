@@ -1437,13 +1437,7 @@ class PKPTemplateManager extends Smarty
      * Clear the cache when a context or site has changed it's active theme
      *
      * @param string $hookName
-     * @param array $args [
-     *
-     * 	@option Context|Site The new values
-     * 	@option Context|Site The old values
-     * 	@option array Key/value of params that were modified
-     * 	@option Request
-     * ]
+     * @param array{Context|\PKP\site\Site, Context|\PKP\site\Site, array, Request} $args [The new values, The old values, Key/value of params that were modified, Request]
      */
     public function clearThemeTemplateCache($hookName, $args)
     {
@@ -1494,11 +1488,7 @@ class PKPTemplateManager extends Smarty
     /**
      * Display the sidebar
      *
-     * @param array $args [
-     *   @option array Params passed to the hook
-     *   @option Smarty
-     *   @option string The output
-     * ]
+     * @param array{array, Smarty, string} $args [Params passed to the hook, Smarty, The output]
      */
     public function displaySidebar(string $hookName, array $args): bool
     {

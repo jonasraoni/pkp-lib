@@ -682,7 +682,7 @@ class PKPRequest
     /**
      * Set a cookie variable.
      *
-     * @param $expire (optional)
+     * @param int $expire (optional)
      */
     public function setCookieVar(string $key, string $value, int $expire = 0)
     {

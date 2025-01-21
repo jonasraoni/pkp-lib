@@ -152,7 +152,7 @@ class DAOResultFactory extends ItemIterator
     /**
      * Return the next row, with key.
      *
-     * @return ?array{mixed,T} ($key, $value)
+     * @return ?array{mixed, T} ($key, $value)
      */
     public function nextWithKey(mixed $idField = null): array
     {
