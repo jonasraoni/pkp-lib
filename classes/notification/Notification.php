@@ -23,12 +23,12 @@ class Notification extends Model
 {
     use HasCamelCasing;
 
-    // Notification levels.  Determines notification behavior
+    // Notification levels. Determines notification behavior
     public const NOTIFICATION_LEVEL_TRIVIAL = 1;
     public const NOTIFICATION_LEVEL_NORMAL = 2;
     public const NOTIFICATION_LEVEL_TASK = 3;
 
-    // Notification types.  Determines what text and URL to display for notification
+    // Notification types. Determines what text and URL to display for notification
     public const NOTIFICATION_TYPE_SUCCESS = 0x0000001;
     public const NOTIFICATION_TYPE_WARNING = 0x0000002;
     public const NOTIFICATION_TYPE_ERROR = 0x0000003;

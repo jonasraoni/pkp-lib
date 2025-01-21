@@ -31,8 +31,8 @@ class SubmissionFileRequestedRevisionRequiredPolicy extends SubmissionFileBaseAc
 {
     //
     // Implement template methods from AuthorizationPolicy
-    // Note:  This class is subclassed in each Application, so that Policies have the opportunity to add
-    // constraints to the effect() method.  See e.g. SubmissionFileRequestedRevisionRequiredPolicy.php in OMP.
+    // Note: This class is subclassed in each Application, so that Policies have the opportunity to add
+    // constraints to the effect() method. See e.g. SubmissionFileRequestedRevisionRequiredPolicy.php in OMP.
     //
     /**
      * @see AuthorizationPolicy::effect()

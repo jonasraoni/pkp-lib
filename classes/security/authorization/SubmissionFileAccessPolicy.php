@@ -121,7 +121,7 @@ class SubmissionFileAccessPolicy extends ContextPolicy
             $authorFileAccessPolicy = new PolicySet(PolicySet::COMBINING_DENY_OVERRIDES);
             $authorFileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, Role::ROLE_ID_AUTHOR, $roleAssignments[Role::ROLE_ID_AUTHOR]));
 
-            // 2) ...if they are assigned to the workflow stage as an author.  Note: This loads the application-specific policy class.
+            // 2) ...if they are assigned to the workflow stage as an author. Note: This loads the application-specific policy class.
             $stageId = $request->getUserVar('stageId');
             $authorFileAccessPolicy->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
             $authorFileAccessPolicy->addPolicy(new SubmissionFileMatchesWorkflowStageIdPolicy($request, $submissionFileId, $stageId));

@@ -247,8 +247,8 @@ class PKPSessionGuard extends SessionGuard
     /**
      * Invalidate/Remove/Delete other user session by user auth identifier name (e.g. user_id)
      *
-     * @param int       $userId                 The user id for which session data need to be removed
-     * @param string    $excludableSessionId    The session id which should be kept
+     * @param int $userId The user id for which session data need to be removed
+     * @param string $excludableSessionId The session id which should be kept
      */
     public function invalidateOtherSessions(int $userId, ?string $excludableSessionId = null): void
     {

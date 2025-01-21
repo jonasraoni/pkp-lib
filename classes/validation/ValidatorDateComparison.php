@@ -27,8 +27,8 @@ class ValidatorDateComparison extends Validator
     /**
      * Constructor.
      *
-     * @param DateTimeInterface|Carbon  $comparingDate  the comparing date
-     * @param DateComparisonRule        $rule           the comparing rule
+     * @param DateTimeInterface|Carbon $comparingDate the comparing date
+     * @param DateComparisonRule $rule the comparing rule
      */
     public function __construct(
         protected DateTimeInterface|Carbon $comparingDate,

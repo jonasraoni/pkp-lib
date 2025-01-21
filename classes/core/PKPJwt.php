@@ -9,9 +9,9 @@
  *
  * @class PKPJwt
  *
- * @brief   Override the package \Firebase\JWT\JWT::decode method to handle string payload
- *          which has been deprecated in 6.0+ and cause breaking/invalidation of previous
- *          API Keys.
+ * @brief Override the package \Firebase\JWT\JWT::decode method to handle string payload
+ *  which has been deprecated in 6.0+ and cause breaking/invalidation of previous
+ *  API Keys.
  *
  * @see https://github.com/pkp/pkp-lib/issues/9110
  */
@@ -28,25 +28,20 @@ class PKPJwt extends JWT
     /**
      * Decodes a JWT string into a PHP object.
      *
-     * @param string                 $jwt            The JWT
-     * @param Key|ArrayAccess<string,Key>|array<string,Key> $keyOrKeyArray  The Key or associative array of key IDs
-     *                                                                      (kid) to Key objects.
-     *                                                                      If the algorithm used is asymmetric, this is
-     *                                                                      the public key.
-     *                                                                      Each Key object contains an algorithm and
-     *                                                                      matching key.
-     *                                                                      Supported algorithms are 'ES384','ES256',
-     *                                                                      'HS256', 'HS384', 'HS512', 'RS256', 'RS384'
-     *                                                                      and 'RS512'.
-     * @param stdClass               $headers                               Optional. Populates stdClass with headers.
+     * @param string $jwt The JWT
+     * @param \Firebase\JWT\Key|\ArrayAccess<string,\Firebase\JWT\Key>|array<string,\Firebase\JWT\Key> $keyOrKeyArray  The Key or associative array of key IDs
+     * (kid) to Key objects. If the algorithm used is asymmetric, this is the public key.
+     * Each Key object contains an algorithm and matching key.
+     * Supported algorithms are 'ES384','ES256', 'HS256', 'HS384', 'HS512', 'RS256', 'RS384' and 'RS512'.
+     * @param stdClass $headers Optional. Populates stdClass with headers.
      *
-     * @throws InvalidArgumentException     Provided key/key-array was empty or malformed
-     * @throws DomainException              Provided JWT is malformed
-     * @throws UnexpectedValueException     Provided JWT was invalid
-     * @throws SignatureInvalidException    Provided JWT was invalid because the signature verification failed
-     * @throws BeforeValidException         Provided JWT is trying to be used before it's eligible as defined by 'nbf'
-     * @throws BeforeValidException         Provided JWT is trying to be used before it's been created as defined by 'iat'
-     * @throws ExpiredException             Provided JWT has since expired, as defined by the 'exp' claim
+     * @throws \InvalidArgumentException Provided key/key-array was empty or malformed
+     * @throws \DomainException Provided JWT is malformed
+     * @throws UnexpectedValueException Provided JWT was invalid
+     * @throws \Firebase\JWT\SignatureInvalidException Provided JWT was invalid because the signature verification failed
+     * @throws \Firebase\JWT\BeforeValidException Provided JWT is trying to be used before it's eligible as defined by 'nbf'
+     * @throws \Firebase\JWT\BeforeValidException Provided JWT is trying to be used before it's been created as defined by 'iat'
+     * @throws \Firebase\JWT\ExpiredException Provided JWT has since expired, as defined by the 'exp' claim
      *
      * @return stdClass The JWT's payload as a PHP object
      *

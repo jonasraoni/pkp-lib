@@ -404,7 +404,7 @@ abstract class Collector implements CollectorInterface, ViewsCount
         }
 
         // Add support to search using DOI identifiers
-        // search phrases starting with number followed by a '.'  will be interpreted as a DOI identifier. E.g: 10.1
+        // search phrases starting with number followed by a '.' will be interpreted as a DOI identifier. E.g: 10.1
         $isSearchPhraseDoi = Doi::beginsWithDoiPrefixPattern($this->searchPhrase ?: '');
         // Prepare keywords (allows short and numeric words)
         $keywords = collect(!$isSearchPhraseDoi ? Application::getSubmissionSearchIndex()->filterKeywords($this->searchPhrase, false, true, true) : [])

@@ -164,11 +164,11 @@ class APIHandler extends PKPHandler
      * Add a new route details pushed from the `APIHandler::endpoints::ENTITY_NAME` hook
      * for the current running API Controller
      *
-     * @param string    $method     The route HTTP request method e.g. `GET`,`POST`,...
-     * @param string    $uri        The route uri segment
-     * @param callable  $callback   The callback handling to execute actions when route got hit
-     * @param string    $name       The name of route
-     * @param array     $roles      The route accessable role from `Role::ROLE_ID_*`
+     * @param string $method The route HTTP request method e.g. `GET`,`POST`,...
+     * @param string $uri The route uri segment
+     * @param callable $callback The callback handling to execute actions when route got hit
+     * @param string $name The name of route
+     * @param array $roles The route accessable role from `Role::ROLE_ID_*`
      */
     public function addRoute(string $method, string $uri, callable $callback, string $name, array $roles): void
     {

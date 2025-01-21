@@ -278,8 +278,7 @@ abstract class PKPTestCase extends TestCase
      *
      * @see https://docs.guzzlephp.org/en/stable/testing.html
      *
-     * @param bool $setToRegistry   Should store it in app registry to be used by call
-     *                              as `Application::get()->getHttpClient()`
+     * @param bool $setToRegistry Should store it in app registry to be used by call as `Application::get()->getHttpClient()`
      *
      */
     protected function mockGuzzleClient(bool $setToRegistry = true): MockInterface|LegacyMockInterface

@@ -35,9 +35,9 @@ class PKPUserProvider implements UserProvider
     /**
      * Create a new database user provider.
      *
-     * @param  \Illuminate\Database\ConnectionInterface     $connection The active database connection.
-     * @param  \Illuminate\Contracts\Hashing\Hasher         $hasher     The hasher implementation.
-     * @param  string                                       $table      The table containing the users.
+     * @param \Illuminate\Database\ConnectionInterface $connection The active database connection.
+     * @param \Illuminate\Contracts\Hashing\Hasher $hasher The hasher implementation.
+     * @param string $table The table containing the users.
      */
     public function __construct(
         protected ConnectionInterface $connection,
@@ -62,7 +62,7 @@ class PKPUserProvider implements UserProvider
     /**
      * Retrieve a user by their unique identifier and "remember me" token.
      *
-     * @param  string   $token
+     * @param string $token
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */

@@ -190,7 +190,7 @@ abstract class PKPBaseController extends Controller
      * Policies must be added in the authorize() method before the parent::authorize()
      * call so that PKPBaseController::authorize() will be able to enforce them.
      *
-     * @param bool                          $addToTop               Whether to insert the new policy to the top of the list.
+     * @param bool $addToTop Whether to insert the new policy to the top of the list.
      *
      */
     public function addPolicy(AuthorizationPolicy|PolicySet $authorizationPolicy, bool $addToTop = false): void
@@ -265,8 +265,8 @@ abstract class PKPBaseController extends Controller
     /**
      * Add role - operation assignments to the controller action/method.
      *
-     * @param int|array     $roleIds        One or more of the ROLE_ID_* constants
-     * @param string|array  $operations     A single method name or an array of method names to be assigned.
+     * @param int|array $roleIds One or more of the ROLE_ID_* constants
+     * @param string|array $operations A single method name or an array of method names to be assigned.
      */
     public function addRoleAssignment(int|array $roleIds, string|array $operations): void
     {
@@ -317,9 +317,8 @@ abstract class PKPBaseController extends Controller
      *
      * NB: This method will be called once for every request only.
      *
-     * @param array         $args               request arguments
-     * @param array         $roleAssignments    the operation role assignment,
-     *                                          see getRoleAssignment() for more details.
+     * @param array $args request arguments
+     * @param array $roleAssignments the operation role assignment, see getRoleAssignment() for more details.
      *
      */
     public function authorize(PKPRequest $request, array &$args, array $roleAssignments): bool
@@ -525,12 +524,11 @@ abstract class PKPBaseController extends Controller
      * 3. Ensures an end date is no later than yesterday
      * 4. Ensures the start date is not later than the end date
      *
-     * @param array     $params             The params to validate
-     * @param string    $dateStartParam     Where the find the start date in the array of params
-     * @param string    $dateEndParam       Where to find the end date in the array of params
+     * @param array $params The params to validate
+     * @param string $dateStartParam Where the find the start date in the array of params
+     * @param string $dateEndParam Where to find the end date in the array of params
      *
-     * @return bool|string  True if they validate, or a string which
-     *                      contains the locale key of an error message.
+     * @return bool|string  True if they validate, or a string which contains the locale key of an error message.
      */
     protected function _validateStatDates(array $params, string $dateStartParam = 'dateStart', string $dateEndParam = 'dateEnd'): bool|string
     {

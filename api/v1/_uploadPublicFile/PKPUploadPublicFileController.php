@@ -251,7 +251,7 @@ class PKPUploadPublicFileController extends PKPBaseController
      * A recursive function to get a filename that will not overwrite an
      * existing file
      *
-     * @param string        $path           Preferred filename
+     * @param string $path Preferred filename
      *
      */
     private function _getFilename(string $path, FileManager $fileManager): string

@@ -488,7 +488,7 @@ class Schema extends \PKP\core\maps\Schema
     /**
      * Get details about a submission's stage(s)
      *
-     * @return array
+     * @return array<array{id: int, label: string, queries: array<array{id: int, assocType: int, assocId: int, stageId: int, seq: int, closed: bool}>, statusId: int, status: string, files: array<array{count: int}>}>
      * [
      *  {
      *  `id` int stage id
@@ -612,7 +612,7 @@ class Schema extends \PKP\core\maps\Schema
                                 ->getCount()
                         ];
 
-                        // See if the  current user can only recommend:
+                        // See if the current user can only recommend:
                         $user = $request->getUser();
 
                         // Replaces StageAssignmentDAO::getEditorsAssignedToStage

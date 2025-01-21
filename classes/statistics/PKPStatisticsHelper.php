@@ -185,7 +185,7 @@ abstract class PKPStatisticsHelper
      * @param string $hashedIp Hashed user IP
      * @param bool $flush If true empty cache
      *
-     * @return array Cached Geo data
+     * @return array{country: string, region: string, city: string} Cached Geo data
      *  [
      *   hashedIP => [
      *    'country' => string Country ISO code,
@@ -202,7 +202,7 @@ abstract class PKPStatisticsHelper
             $this->geoDataCache = [];
         }
 
-        $cachedGeoData &= $this->geoDataCache;
+        $cachedGeoData = &$this->geoDataCache;
         if (array_key_exists($hashedIp, $cachedGeoData)) {
             return $cachedGeoData[$hashedIp];
         }

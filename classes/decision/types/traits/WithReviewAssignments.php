@@ -24,9 +24,9 @@ trait WithReviewAssignments
     /**
      * Get all the review assignments based on review assignment states
      *
-     * @param  int $submissionId            The targeted submission id
-     * @param  int $reviewRoundId           The targeted review round id
-     * @param  int $reviewAssignmentStatus  One of the DecisionType::REVIEW_ASSIGNMENT_STATUS_* constants
+     * @param int $submissionId The targeted submission id
+     * @param int $reviewRoundId The targeted review round id
+     * @param int $reviewAssignmentStatus One of the DecisionType::REVIEW_ASSIGNMENT_STATUS_* constants
      *
      * @throws \Exception
      *
@@ -64,9 +64,9 @@ trait WithReviewAssignments
     /**
      * Get all the reviewers id based on review assignment states
      *
-     * @param  int $submissionId            The targeted submission id
-     * @param  int $reviewRoundId           The targeted review round id
-     * @param  int $reviewAssignmentStatus  One of the DecisionType::REVIEW_ASSIGNMENT_STATUS_* constants
+     * @param int $submissionId The targeted submission id
+     * @param int $reviewRoundId The targeted review round id
+     * @param int $reviewAssignmentStatus One of the DecisionType::REVIEW_ASSIGNMENT_STATUS_* constants
      *
      * @return array<int>
      */

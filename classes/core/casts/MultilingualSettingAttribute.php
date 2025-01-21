@@ -9,8 +9,8 @@
  *
  * @class MultilingualSettingAttribute
  *
- * @brief   Caster to cast the viven values of multilingual attribute in proper
- *          format before storing in DB.
+ * @brief Caster to cast the viven values of multilingual attribute in proper
+ *   format before storing in DB.
  */
 
 namespace PKP\core\casts;

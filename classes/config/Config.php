@@ -30,7 +30,7 @@ define('CONFIG_FILE', \PKP\core\Core::getBaseDir() . '/config.inc.php');
 class Config
 {
     /**
-     * The sensitive data from the config files in the formate of `section` to `keys` mapping as
+     * @var array<string, string[]> The sensitive data from the config files in the formate of `section` to `keys` mapping as
      * [
      *   'section1' => ['key1', 'key2', ...],
      *   'section2' => ['key1', 'key2', ...],

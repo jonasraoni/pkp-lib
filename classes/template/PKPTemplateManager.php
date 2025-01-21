@@ -455,7 +455,7 @@ class PKPTemplateManager extends Smarty
      *
      * @param string $name Unique name for this LESS stylesheet
      * @param string $lessFile Path to the LESS file to compile
-     * @param array $args Optional arguments. Supports:
+     * @param array{baseUrl: string, addLess: array} $args Optional arguments. Supports:
      *   'baseUrl': Base URL to use when rewriting URLs in the LESS file.
      *   'addLess': Array of additional LESS files to parse before compiling
      *
@@ -534,13 +534,7 @@ class PKPTemplateManager extends Smarty
      * @param string $name Unique identifier for the stylesheet
      * @param string $style The stylesheet to be included. Should be a URL
      *   or, if the `inline` argument is included, stylesheet data to be output.
-     * @param array $args Key/value array defining display details
-     *   `priority` int The order in which to print this stylesheet.
-     *      Default: STYLE_SEQUENCE_NORMAL
-     *   `contexts` string|array Where the stylesheet should be loaded.
-     *      Default: array('frontend')
-     *   `inline` bool Whether the $stylesheet value should be output directly as
-     *      stylesheet data. Used to pass backend data to the scripts.
+     * @param array{priority: int, contexts: string|array, inline: bool} $args [The order in which to print this stylesheet Default: STYLE_SEQUENCE_NORMAL, Where the stylesheet should be loaded Default: ['frontend'], Whether the $stylesheet value should be output directly as stylesheet data. Used to pass backend data to the scripts.]
      */
     public function addStyleSheet(string $name, string $style, array $args = []): void
     {
@@ -568,13 +562,7 @@ class PKPTemplateManager extends Smarty
      * @param string $name Unique identifier for the script
      * @param string $script The script to be included. Should be a URL or, if
      *   the `inline` argument is included, script data to be output.
-     * @param array $args Key/value array defining display details
-     *   `priority` int The order in which to print this script.
-     *      Default: STYLE_SEQUENCE_NORMAL
-     *   `contexts` string|array Where the script should be loaded.
-     *      Default: array('frontend')
-     *   `inline` bool Whether the $script value should be output directly as
-     *      script data. Used to pass backend data to the scripts.
+     * @param array{priority: int, contexts: string|array, inline: bool} $args [The order in which to print this script Default: STYLE_SEQUENCE_NORMAL, Where the script should be loaded Default: ['frontend'], Whether the $script value should be output directly as script data. Used to pass backend data to the scripts]
      */
     public function addJavaScript(string $name, string $script, array $args = []): void
     {
@@ -603,11 +591,7 @@ class PKPTemplateManager extends Smarty
      *
      * @param string $name Unique identifier for the header
      * @param string $header The header to be included.
-     * @param array $args Key/value array defining display details
-     *   `priority` int The order in which to print this header.
-     *      Default: STYLE_SEQUENCE_NORMAL
-     *   `contexts` string|array Where the header should be loaded.
-     *      Default: array('frontend')
+     * @param array{priority: int, contexts: string|array} $args [The order in which to print this header Default: STYLE_SEQUENCE_NORMAL, Where the header should be loaded Default: ['frontend']
      */
     public function addHeader(string $name, string $header, array $args = []): void
     {

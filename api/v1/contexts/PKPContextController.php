@@ -707,9 +707,9 @@ class PKPContextController extends PKPBaseController
     /**
      * Updates a settings plugin according to a given schema. Used in lieu of a generic plugin settings management workflow.
      *
-     * @param Plugin $plugin        Currently configured registration agency plugin. Should also implement IDoiRegistrationAgency
-     * @param string $schemaName    Name of RegistrationAgencySettings child class used as schema name
-     * @param array $props          Plugin properties to update
+     * @param Plugin $plugin Currently configured registration agency plugin. Should also implement IDoiRegistrationAgency
+     * @param string $schemaName Name of RegistrationAgencySettings child class used as schema name
+     * @param array $props Plugin properties to update
      *
      */
     protected function updateRegistrationAgencyPluginSettings(int $contextId, Plugin $plugin, string $schemaName, array $props): void

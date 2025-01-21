@@ -39,8 +39,8 @@ class PKPPublication extends \PKP\core\DataObject
     /**
      * Combine the localized title, prefix and subtitle
      *
-     * @param  string $preferredLocale  Override the publication's default locale and return the title in a specified locale.
-     * @param  string $format           Define the return data format as text or html
+     * @param string $preferredLocale Override the publication's default locale and return the title in a specified locale.
+     * @param string $format Define the return data format as text or html
      *
      * @return string
      */
@@ -79,8 +79,8 @@ class PKPPublication extends \PKP\core\DataObject
     /**
      * Combine the localized title and prefix
      *
-     * @param  string $preferredLocale  Override the publication's default locale and return the title in a specified locale.
-     * @param  string $format           Define the return data format as text or html
+     * @param string $preferredLocale Override the publication's default locale and return the title in a specified locale.
+     * @param string $format Define the return data format as text or html
      *
      * @return string
      */
@@ -114,8 +114,8 @@ class PKPPublication extends \PKP\core\DataObject
     /**
      * Get the localized sub title
      *
-     * @param  string $preferredLocale  Override the publication's default locale and return the title in a specified locale.
-     * @param  string $format           Define the return data format as text or html
+     * @param string $preferredLocale Override the publication's default locale and return the title in a specified locale.
+     * @param string $format Define the return data format as text or html
      *
      * @return string
      */

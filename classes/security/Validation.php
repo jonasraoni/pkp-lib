@@ -83,12 +83,10 @@ class Validation
     /**
      * Mark the user as logged in in the current session.
      *
-     * @param User      $user       user to register in the session
-     * @param string    $reason     reference to string to receive the reason an account
-     *                              was disabled; null otherwise
+     * @param User $user user to register in the session
+     * @param string $reason reference to string to receive the reason an account was disabled; null otherwise
      *
-     * @return mixed                User or boolean the User associated with the login credentials,
-     *                              or false if the credentials are invalid
+     * @return mixed User or boolean the User associated with the login credentials, or false if the credentials are invalid
      */
     public static function registerUserSession($user, &$reason)
     {
@@ -477,9 +475,9 @@ class Validation
     /**
      * Get the user's administration level
      *
-     * @param int   $administeredUserId     User ID of user to potentially administer
-     * @param int   $administratorUserId    User ID of user who wants to do the administrating
-     * @param int   $contextId              The journal/context Id
+     * @param int $administeredUserId User ID of user to potentially administer
+     * @param int $administratorUserId User ID of user who wants to do the administrating
+     * @param int $contextId The journal/context Id
      *
      * @return int The authorized administration level
      */

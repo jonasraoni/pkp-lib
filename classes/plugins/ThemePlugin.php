@@ -188,7 +188,7 @@ abstract class ThemePlugin extends LazyLoadPlugin
      * @param string $style The stylesheet. Should be a path relative to the
      *   theme directory or, if the `inline` argument is included, style data to
      *   be output.
-     * @param array $args Optional arguments hash. Supported args:
+     * @param array{context: string, priority: int, addLess: array, addLessVariables: string, inline: bool} $args Optional arguments hash. Supported args:
      *   'context': Whether to load this on the `frontend` or `backend`.
      *      default: `frontend`
      *   'priority': Controls order in which styles are printed

@@ -384,7 +384,7 @@ class ReviewRoundDAO extends \PKP\db\DAO
      *
      * @throws \Exception
      *
-     * @return int      Number of internal review round associated with this submission
+     * @return int Number of internal review round associated with this submission
      *
      */
     public function getReviewRoundCountBySubmissionId(int $submissionId, ?int $stageId = null)

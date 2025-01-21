@@ -162,8 +162,8 @@ class FormBuilderVocabulary
             $smarty->assign('FBV_id', $params['id'] ?? null);
 
             // Since $content will contain input fields that may have unique Ids appended, the 'for'
-            // attribute on the form section's label needs to include this.  Look for the assigned
-            // form element within $content and extract the full id.  Default to the passed in param
+            // attribute on the form section's label needs to include this. Look for the assigned
+            // form element within $content and extract the full id. Default to the passed in param
             // otherwise.
             if (!empty($params['for'])) {
                 if (preg_match('/id="(' . preg_quote($params['for'], '/') . '\-[^"]+)"/', $content, $matches)) {
@@ -195,13 +195,13 @@ class FormBuilderVocabulary
             }
 
             // If we are displaying checkboxes or radio options, we'll need to use a
-            //  list to organize our elements -- Otherwise we use divs and spans
+            // list to organize our elements -- Otherwise we use divs and spans
             if (isset($params['list']) && $params['list'] != false) {
                 $smarty->assign('FBV_listSection', true);
             } else {
                 // Double check that we don't have lists in the content.
-                //  This is a kludge but the only way to make sure we've
-                //  set the list parameter when we're using lists
+                // This is a kludge but the only way to make sure we've
+                // set the list parameter when we're using lists
                 if (substr(trim($content), 0, 4) == '<li>') {
                     throw new Exception('FBV: list attribute not set on form section containing lists');
                 }
@@ -386,7 +386,7 @@ class FormBuilderVocabulary
         $autocompleteId = $params['id'];
 
         // We then override the id parameter to differentiate it from the hidden element
-        //  and make sure that the text input is not read by the Form class.
+        // and make sure that the text input is not read by the Form class.
         $params['id'] = $autocompleteId . '_input';
 
         // We set this now, so that we unset the param for the text input.

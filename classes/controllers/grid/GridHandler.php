@@ -1345,8 +1345,7 @@ class GridHandler extends PKPHandler
 
     private function checkIfResetActionsNeeded($request)
     {
-        // #8696: This is added in order to reset the page of a grid to 1 if the "search" button is clicked, effectively executing a
-        //        new search.
+        // #8696: This is added in order to reset the page of a grid to 1 if the "search" button is clicked, effectively executing a new search.
 
         // Check if the grid has any PagingFeature features
         if ($this->getFeatures() != null) {

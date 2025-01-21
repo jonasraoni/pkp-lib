@@ -57,7 +57,7 @@ class SubmissionFilesMigration extends \PKP\migration\Migration
             $table->bigInteger('assoc_type')->nullable();
             $table->bigInteger('assoc_id')->nullable();
 
-            //  pkp/pkp-lib#5804
+            // pkp/pkp-lib#5804
             $table->index(['file_stage', 'assoc_type', 'assoc_id'], 'submission_files_stage_assoc');
         });
         Schema::table('submission_files', function (Blueprint $table) {

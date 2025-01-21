@@ -16,7 +16,7 @@
  * getHooks.php searches for .tpl and .php files, watching for @hook self-documentation.
  * It expects @hook annotations of the form:
  *
- *   @hook Hook::Name::Here [parameter, list, here] Hook description goes here
+ * @hook Hook::Name::Here [parameter, list, here] Hook description goes here
  *
  */
 

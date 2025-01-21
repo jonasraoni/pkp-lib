@@ -228,7 +228,7 @@ class JobRunner
     /**
      * Check if max job has processed or not
      *
-     * @param int $jobProcessedCount    The number of jobs that has processed so far
+     * @param int $jobProcessedCount The number of jobs that has processed so far
      */
     protected function exceededJobLimit(int $jobProcessedCount): bool
     {
@@ -269,8 +269,8 @@ class JobRunner
     /**
      * Estimate if next job processing time will likely exceed defined max processing run time
      *
-     * @param int $jobProcessedCount        The number of jobs that has processed so far
-     * @param int $jobProcessingStartTime   The start time since job processing has started in seconds
+     * @param int $jobProcessedCount The number of jobs that has processed so far
+     * @param int $jobProcessingStartTime The start time since job processing has started in seconds
      *
      */
     protected function mayExceedMemoryLimitAtNextJob(int $jobProcessedCount, int $jobProcessingStartTime): bool

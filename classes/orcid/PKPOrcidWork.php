@@ -129,7 +129,7 @@ abstract class PKPOrcidWork
      * @param Context $context Context the publication is part of.
      * @param string $publicationUrl Resolving URL for the publication.
      *
-     * @return array            An associative array corresponding to ORCID external-id JSON.
+     * @return array An associative array corresponding to ORCID external-id JSON.
      */
     private function buildOrcidExternalIds(Submission $submission, Publication $publication, Context $context, string $publicationUrl): array
     {
@@ -248,8 +248,7 @@ abstract class PKPOrcidWork
      *
      * @param Author[] $authors Array of Author objects
      *
-     * @return array[]           Array of associative arrays,
-     *                           one for each contributor
+     * @return array[] Array of associative arrays, one for each contributor
      */
     private function buildOrcidContributors(array $authors, Context $context, Publication $publication): array
     {

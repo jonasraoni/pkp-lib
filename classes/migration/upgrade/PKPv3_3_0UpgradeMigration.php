@@ -606,7 +606,7 @@ abstract class PKPv3_3_0UpgradeMigration extends \PKP\migration\Migration
             $table->dropColumn('original_file_name');
             $table->primary('submission_file_id');
         });
-        //  pkp/pkp-lib#5804
+        // pkp/pkp-lib#5804
         if (!Schema::hasIndex('submission_files', 'submission_files_stage_assoc')) {
             Schema::table('submission_files', function (Blueprint $table) {
                 $table->index(['file_stage', 'assoc_type', 'assoc_id'], 'submission_files_stage_assoc');

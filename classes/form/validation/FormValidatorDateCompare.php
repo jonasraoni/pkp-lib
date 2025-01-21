@@ -29,12 +29,12 @@ class FormValidatorDateCompare extends FormValidator
     /**
      * Constructor.
      *
-     * @param Form                      $form           the associated form
-     * @param string                    $field          the name of the associated field
-     * @param DateTimeInterface|Carbon  $comparingDate  the comparing date
-     * @param DateComparisonRule        $comparingRule  the comparing rule
-     * @param string                    $type           the type of check, either "required" or "optional"
-     * @param string                    $message        the error message for validation failures (i18n key)
+     * @param Form $form the associated form
+     * @param string $field the name of the associated field
+     * @param DateTimeInterface|Carbon $comparingDate the comparing date
+     * @param DateComparisonRule $comparingRule the comparing rule
+     * @param string $type the type of check, either "required" or "optional"
+     * @param string $message the error message for validation failures (i18n key)
      */
     public function __construct(&$form, $field, $comparingDate, $comparingRule, $type = 'optional', $message = 'validator.date.comparison')
     {

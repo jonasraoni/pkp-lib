@@ -294,7 +294,7 @@ class UserXmlPKPUserFilter extends \PKP\plugins\importexport\native\filter\Nativ
                 ->get();
 
             // Extract user groups from the User XML and assign the user to those (existing) groups.
-            // Note:  It is possible for a user to exist with no user group assignments so there is
+            // Note: It is possible for a user to exist with no user group assignments so there is
             // no exception thrown as is the case with \PKP\author\Author import.
             $userGroupNodeList = $node->getElementsByTagNameNS($deployment->getNamespace(), 'user_group_ref');
             if ($userGroupNodeList->length > 0) {

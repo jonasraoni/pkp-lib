@@ -146,9 +146,7 @@ class GridFeature
      * extends the getRequestArgs method, this hook will only
      * be called if the extending method call its parent.
      *
-     * @param array $args
-     * 'grid' => GridHandler
-     * 'requestArgs' => array
+     * @param array{grid: GridHandler, requestArgs: array} $args
      */
     public function getRequestArgs($args)
     {
@@ -159,10 +157,7 @@ class GridFeature
      * Hook called every time the grid range info is
      * retrieved.
      *
-     * @param array $args
-     * 'request' => PKPRequest
-     * 'grid' => GridHandler
-     * 'rangeInfo' => DBResultRange
+     * @param array{request: PKPRequest, grid: GridHandler, rangeInfo: \PKP\db\DBResultRange} $args
      */
     public function getGridRangeInfo($args)
     {
@@ -172,11 +167,7 @@ class GridFeature
     /**
     * Hook called when grid data is retrieved.
     *
-    * @param array $args
-    * 'request' => PKPRequest
-    * 'grid' => GridHandler
-    * 'gridData' => mixed (array or ItemIterator)
-    * 'filter' => array
+    * @param array{request: PKPRequest, grid: GridHandler, gridData: \PKP\core\ItemIterator|array, filter: array} $args
     */
     public function getGridDataElements($args)
     {
@@ -186,9 +177,7 @@ class GridFeature
     /**
      * Hook called before grid data is setted.
      *
-     * @param array $args
-     * 'grid' => GridHandler
-     * 'data' => mixed (array or ItemIterator)
+     * @param array{grid: GridHandler, data: \PKP\core\ItemIterator|array} $args
      */
     public function setGridDataElements($args)
     {
@@ -198,9 +187,7 @@ class GridFeature
     /**
      * Hook called every time grid initialize a row object.
      *
-     * @param array $args
-     * 'grid' => GridHandler,
-     * 'row' => GridRow
+     * @param array{grid: GridHandler, row: \PKP\controllers\grid\GridRow} $args
      */
     public function getInitializedRowInstance($args)
     {
@@ -210,10 +197,7 @@ class GridFeature
     /**
      * Hook called on grid category row initialization.
      *
-     * @param array $args 'request' => PKPRequest
-     * 'grid' => CategoryGridHandler
-     * 'categoryId' => int
-     * 'row' => GridCategoryRow
+     * @param array{request: PKPRequest, grid: GridHandler, categoryId: int, row: \PKP\controllers\grid\GridCategoryRow} $args
      */
     public function getInitializedCategoryRowInstance($args)
     {
@@ -234,10 +218,7 @@ class GridFeature
     /**
      * Hook called on grid's data loading.
      *
-     * @param array $args
-     * 'request' => PKPRequest,
-     * 'grid' => GridHandler,
-     * 'gridData' => array
+     * @param array{request: PKPRequest, grid: GridHandler, gridData: \PKP\core\ItemIterator|array} $args
      */
     public function loadData($args)
     {
@@ -260,10 +241,7 @@ class GridFeature
     /**
      * Hook called after a group of rows is fetched.
      *
-     * @param array $args
-     * 'request' => PKPRequest
-     * 'grid' => GridHandler
-     * 'jsonMessage' => JSONMessage
+     * @param array{request: PKPRequest, grid: GridHandler, jsonMessage: \PKP\core\JSONMessage} $args
      */
     public function fetchRows($args)
     {
@@ -273,11 +251,7 @@ class GridFeature
     /**
      * Hook called after a row is fetched.
      *
-     * @param array $args
-     * 'request' => PKPRequest
-     * 'grid' => GridHandler
-     * 'row' => mixed GridRow or null
-     * 'jsonMessage' => JSONMessage
+     * @param array{request: PKPRequest, grid: GridHandler, row: mixed|GridRow|null, jsonMessage: \PKP\core\JSONMessage} $args
      */
     public function fetchRow($args)
     {
@@ -288,8 +262,7 @@ class GridFeature
      * Hook called when save grid items sequence
      * is requested.
      *
-     * @param array $args 'request' => PKPRequest,
-     * 'grid' => GridHandler
+     * @param array{request: PKPRequest, grid: GridHandler} $args
      */
     public function saveSequence($args)
     {

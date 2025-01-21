@@ -42,7 +42,7 @@ class FileArchive
         }
         unlink($archivePath);
 
-        // attempt to use Zip first, if it is available.  Otherwise
+        // attempt to use Zip first, if it is available. Otherwise
         // fall back to the tar CLI.
         $zipTest = false;
         if (self::zipFunctional()) {

@@ -293,10 +293,10 @@ class XSLTransformer
             $xmlDOM = new DOMDocument('1.0', static::XSLT_PROCESSOR_ENCODING);
 
             // These are required for external entity resolution (eg. &nbsp;), but can slow processing
-            // substantially (20-100x), often up to 60s.  This can be solved by use of local catalogs, ie.
+            // substantially (20-100x), often up to 60s. This can be solved by use of local catalogs, ie.
             // putenv("XML_CATALOG_FILES=/path/to/catalog.ent");
             //
-            // see:  http://www.whump.com/moreLikeThis/link/03815
+            // see: http://www.whump.com/moreLikeThis/link/03815
             $xmlDOM->recover = true;
             $xmlDOM->substituteEntities = true;
             $xmlDOM->resolveExternals = true;
@@ -356,7 +356,7 @@ class XSLTransformer
             }
         }
 
-        //  Import the style sheet
+        // Import the style sheet
         $processor->importStylesheet($xslDOM);
 
         // Process depending on the requested result type

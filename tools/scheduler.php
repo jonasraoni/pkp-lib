@@ -270,8 +270,8 @@ class CommandScheduler extends CommandLineTool
     /**
      * Get the selected command name by index.
      *
-     * @param array $commandNames   The name of schedule task to retrieve
-     * @param bool  $noScroll       Present the tasks list with no scrolling
+     * @param array $commandNames The name of schedule task to retrieve
+     * @param bool $noScroll Present the tasks list with no scrolling
      *
      */
     protected function getSelectedCommandByIndex(array $commandNames, bool $noScroll = false): int

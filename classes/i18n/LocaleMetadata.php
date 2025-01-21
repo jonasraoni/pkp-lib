@@ -80,9 +80,9 @@ class LocaleMetadata
     /**
      * Retrieves this locale display name
      *
-     * @param string    $locale             The locale code the name of this locale should be displayed in
-     * @param bool      $withCountry        Whether to append the country name to language
-     * @param int       $langLocaleStatus   The language locale conversion value specified by const LocaleMetadata::LANGUAGE_LOCALE_*
+     * @param string $locale The locale code the name of this locale should be displayed in
+     * @param bool $withCountry Whether to append the country name to language
+     * @param int $langLocaleStatus The language locale conversion value specified by const LocaleMetadata::LANGUAGE_LOCALE_*
      *
      * @return string The fully qualified locale with/without own translated locale and with/without country name
      */

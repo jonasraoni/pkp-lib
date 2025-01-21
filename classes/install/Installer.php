@@ -719,7 +719,7 @@ class Installer
      *   sync with the PKP\emailTemplates\DAO methods to install email templates.
      *
      * @param object $installer
-     * @param array $attr Attributes: array containing
+     * @param array<array{key: string, locales: string}> $attr Attributes: array containing
      *  'key' => 'EMAIL_KEY_HERE',
      *  'locales' => 'en,fr_CA,...'
      */

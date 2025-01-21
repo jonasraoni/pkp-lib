@@ -21,12 +21,12 @@ use PKP\core\PKPBaseController;
 trait HasRequiredMiddleware
 {
     /**
-     * Following constant define how the required middleware validation will be handled
-     *
      * MIDDLEWARE_MATCH_STRICT  All required middleware must be attached to target route
-     * MIDDLEWARE_MATCH_LOOSE   At least  required middleware must be attached to target route
      */
     public const MIDDLEWARE_MATCH_STRICT = 1;
+    /**
+     * MIDDLEWARE_MATCH_LOOSE   At least  required middleware must be attached to target route
+     */
     public const MIDDLEWARE_MATCH_LOOSE = 2;
 
     /**

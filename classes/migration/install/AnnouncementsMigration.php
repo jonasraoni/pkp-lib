@@ -55,7 +55,7 @@ class AnnouncementsMigration extends \PKP\migration\Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->comment('Announcements are messages that can be presented to users e.g. on the homepage.');
             $table->bigInteger('announcement_id')->autoIncrement();
-            //  NOT NULL not included for upgrade purposes
+            // NOT NULL not included for upgrade purposes
             $table->smallInteger('assoc_type')->nullable();
             $table->bigInteger('assoc_id')->nullable();
 

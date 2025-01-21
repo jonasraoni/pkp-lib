@@ -339,8 +339,8 @@ class PKPUserController extends PKPBaseController
      * Convert the query params passed to the end point. Exclude unsupported
      * params and coerce the type of those passed.
      *
-     * @param array $params         Key/value of request params
-     * @param array $allowedKeys    The param keys which should be processed and returned
+     * @param array $params Key/value of request params
+     * @param array $allowedKeys The param keys which should be processed and returned
      *
      */
     private function _processAllowedParams(array $params, array $allowedKeys): array

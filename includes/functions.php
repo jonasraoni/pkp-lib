@@ -201,9 +201,9 @@ if (!function_exists('runOnCLI')) {
  * @link https://secure.php.net/manual/en/function.ini-get.php
  * @link https://secure.php.net/manual/en/faq.using.php#faq.using.shorthandbytes
  *
- * @param   string  A (PHP ini) byte value, either shorthand or ordinary.
+ * @param string A (PHP ini) byte value, either shorthand or ordinary.
  *
- * @return  int     An integer byte value.
+ * @return int An integer byte value.
  */
 if (!function_exists('convertHrToBytes')) {
     function convertHrToBytes(string $value): int
