@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/section/Collector.php
  *

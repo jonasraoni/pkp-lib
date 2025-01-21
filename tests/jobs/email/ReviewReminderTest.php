@@ -12,19 +12,19 @@
 
 namespace PKP\tests\jobs\email;
 
-use Mockery;
 use APP\core\Application;
-use PKP\tests\PKPTestCase;
-use PKP\jobs\email\ReviewReminder;
-use Illuminate\Support\Facades\Mail;
-use PKP\user\Repository as UserRepository;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PKP\log\event\Repository as EventRepository;
-use PKP\submission\reviewAssignment\ReviewAssignment;
 use APP\submission\Repository as SubmissionRepository;
-use PKP\emailTemplate\Repository as EmailTemplateRepository;
+use Illuminate\Support\Facades\Mail;
+use Mockery;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\emailTemplate\Repository as EmailTemplateRepository;
+use PKP\jobs\email\ReviewReminder;
+use PKP\log\event\Repository as EventRepository;
 use PKP\submission\reviewAssignment\Repository as ReviewAssignmentRepository;
+use PKP\submission\reviewAssignment\ReviewAssignment;
+use PKP\tests\PKPTestCase;
+use PKP\user\Repository as UserRepository;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(ReviewReminder::class)]
@@ -69,7 +69,7 @@ class ReviewReminderTest extends PKPTestCase
         $reviewReminderJob = unserialize($this->serializedJobData);
 
         // Fake the mail facade
-        Mail::fake();        
+        Mail::fake();
 
         // need to mock request so that a valid context information is set and can be retrived
         $this->mockRequest();
@@ -90,7 +90,7 @@ class ReviewReminderTest extends PKPTestCase
             ])
             ->withAnyArgs()
             ->getMock();
-        
+
         $reviewAssignmentRepoMock = Mockery::mock(app(ReviewAssignmentRepository::class))
             ->makePartial()
             ->shouldReceive([
@@ -99,7 +99,7 @@ class ReviewReminderTest extends PKPTestCase
             ])
             ->withAnyArgs()
             ->getMock();
-        
+
         app()->instance(ReviewAssignmentRepository::class, $reviewAssignmentRepoMock);
 
         $userMock = Mockery::mock(\PKP\user\User::class)
@@ -117,7 +117,7 @@ class ReviewReminderTest extends PKPTestCase
             ->withAnyArgs()
             ->andReturn($userMock)
             ->getMock();
-        
+
         app()->instance(UserRepository::class, $userRepoMock);
 
         $contextMock = Mockery::mock(\PKP\context\Context::class)
@@ -128,14 +128,14 @@ class ReviewReminderTest extends PKPTestCase
             ])
             ->withAnyArgs()
             ->getMock();
-        
+
         $contextServiceMock = Mockery::mock(\APP\services\ContextService::class)
             ->makePartial()
             ->shouldReceive('get')
             ->withAnyArgs()
             ->andReturn($contextMock)
             ->getMock();
-        
+
         app()->instance('context', $contextServiceMock);
 
         $publicationMock = Mockery::mock(\APP\publication\Publication::class)
@@ -185,12 +185,12 @@ class ReviewReminderTest extends PKPTestCase
         $eventRepoMock = Mockery::mock(app(EventRepository::class))
             ->makePartial()
             ->shouldReceive([
-                'newDataObject' => new \PKP\log\event\EventLogEntry,
+                'newDataObject' => new \PKP\log\event\EventLogEntry(),
                 'add' => 0,
             ])
             ->withAnyArgs()
             ->getMock();
-        
+
         app()->instance(EventRepository::class, $eventRepoMock);
 
         $reviewReminderJob->handle();

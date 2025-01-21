@@ -14,9 +14,9 @@
 
 namespace PKP\migration\upgrade\v3_5_0;
 
-use Throwable;
 use PKP\core\PKPAppKey;
 use PKP\migration\Migration;
+use Throwable;
 
 class I9895_AddAppKeyToConfigFile extends Migration
 {

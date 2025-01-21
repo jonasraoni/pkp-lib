@@ -18,7 +18,6 @@
 
 namespace PKP\stageAssignment;
 
-use APP\facades\Repo;
 use PKP\core\Core;
 use PKP\userGroup\UserGroup;
 

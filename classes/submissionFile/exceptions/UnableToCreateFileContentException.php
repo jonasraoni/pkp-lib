@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/jats/exceptions/UnableToCreateFileContentException.php
  *
@@ -17,7 +18,6 @@ use Exception;
 
 class UnableToCreateFileContentException extends Exception
 {
-
     public function __construct(string $fileName, public ?Exception $innerException = null)
     {
         parent::__construct(__('submission.files.content.error', ['fileName' => $fileName]), null, $innerException);

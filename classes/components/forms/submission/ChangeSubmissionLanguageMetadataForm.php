@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/submission/ChangeSubmissionLanguageMetadataForm.php
  *
@@ -82,7 +83,8 @@ class ChangeSubmissionLanguageMetadataForm extends FormComponent
         $this->addCancel();
     }
 
-    protected function addCancel() {
+    protected function addCancel()
+    {
         $this->addPage([
             'id' => 'default',
             'submitButton' => ['label' => __('common.confirm')],
@@ -104,7 +106,8 @@ class ChangeSubmissionLanguageMetadataForm extends FormComponent
         );
     }
 
-    protected function setField(Field $field, string $submissionLocaleName, string $submissionLocale): void {
+    protected function setField(Field $field, string $submissionLocaleName, string $submissionLocale): void
+    {
         if ($field->isRequired) {
             $field->groupId = 'metadata';
             $field->description = __("submission.list.changeSubmissionLanguage.metadataDescription.{$field->name}", ['language' => $submissionLocaleName]);

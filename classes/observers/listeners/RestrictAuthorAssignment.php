@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/observers/listeners/RestrictAuthorAssignment.php
  *
@@ -16,7 +17,6 @@
 
 namespace PKP\observers\listeners;
 
-use APP\facades\Repo;
 use Illuminate\Events\Dispatcher;
 use PKP\observers\events\SubmissionSubmitted;
 use PKP\security\Role;
@@ -45,7 +45,7 @@ class RestrictAuthorAssignment
             if (!$userGroup) {
                 continue;
             }
-            
+
             $stageAssignment->canChangeMetadata = $userGroup->permitMetadataEdit;
             $stageAssignment->save();
         }

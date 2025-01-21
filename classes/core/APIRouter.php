@@ -21,8 +21,6 @@ namespace PKP\core;
 use APP\core\Application;
 use Exception;
 use Illuminate\Http\Response;
-use PKP\core\PKPBaseController;
-use PKP\core\PKPRequest;
 use PKP\handler\APIHandler;
 
 class APIRouter extends PKPRouter

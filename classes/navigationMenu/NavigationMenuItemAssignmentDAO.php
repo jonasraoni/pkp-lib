@@ -56,10 +56,10 @@ class NavigationMenuItemAssignmentDAO extends \PKP\db\DAO
     {
         $result = $this->retrieve(
             'SELECT nmi.*,nmh.navigation_menu_id,nmh.parent_id,nmh.seq, nmh.navigation_menu_item_assignment_id
-				FROM navigation_menu_item_assignments as nmh
-				LEFT JOIN navigation_menu_items as nmi ON (nmh.navigation_menu_item_id = nmi.navigation_menu_item_id)
-				WHERE nmh.navigation_menu_id = ?
-				ORDER BY nmh.seq',
+                FROM navigation_menu_item_assignments as nmh
+                LEFT JOIN navigation_menu_items as nmi ON (nmh.navigation_menu_item_id = nmi.navigation_menu_item_id)
+                WHERE nmh.navigation_menu_id = ?
+                ORDER BY nmh.seq',
             [$navigationMenuId]
         );
         return new DAOResultFactory($result, $this, '_fromRow');
@@ -74,10 +74,10 @@ class NavigationMenuItemAssignmentDAO extends \PKP\db\DAO
     {
         $result = $this->retrieve(
             'SELECT nmi.*, nmh.navigation_menu_id, nmh.parent_id, nmh.seq, nmh.navigation_menu_item_assignment_id
-				FROM navigation_menu_item_assignments as nmh
-				LEFT JOIN navigation_menu_items as nmi ON (nmh.navigation_menu_item_id = nmi.navigation_menu_item_id)
-				WHERE nmh.navigation_menu_item_id = ?
-				ORDER BY nmh.seq',
+                FROM navigation_menu_item_assignments as nmh
+                LEFT JOIN navigation_menu_items as nmi ON (nmh.navigation_menu_item_id = nmi.navigation_menu_item_id)
+                WHERE nmh.navigation_menu_item_id = ?
+                ORDER BY nmh.seq',
             [$menuItemId]
         );
         return new DAOResultFactory($result, $this, '_fromRow');
@@ -94,9 +94,9 @@ class NavigationMenuItemAssignmentDAO extends \PKP\db\DAO
         }
         $result = $this->retrieve(
             'SELECT nmh.*
-				FROM navigation_menu_item_assignments as nmh
-				WHERE nmh.navigation_menu_id = ?
-				AND nmh.navigation_menu_item_id = ?' .
+                FROM navigation_menu_item_assignments as nmh
+                WHERE nmh.navigation_menu_id = ?
+                AND nmh.navigation_menu_item_id = ?' .
                 ($parentId !== null ? ' AND nmh.parent_id = ?' : ''),
             $params
         );
@@ -147,12 +147,12 @@ class NavigationMenuItemAssignmentDAO extends \PKP\db\DAO
     {
         $returner = $this->update(
             'UPDATE navigation_menu_item_assignments
-			SET
-				navigation_menu_id = ?,
-				navigation_menu_item_id = ?,
-				parent_id = ?,
-				seq = ?
-			WHERE navigation_menu_item_assignment_id = ?',
+            SET
+                navigation_menu_id = ?,
+                navigation_menu_item_id = ?,
+                parent_id = ?,
+                seq = ?
+            WHERE navigation_menu_item_assignment_id = ?',
             [
                 $navigationMenuItemAssignment->getMenuId(),
                 $navigationMenuItemAssignment->getMenuItemId(),
@@ -173,9 +173,9 @@ class NavigationMenuItemAssignmentDAO extends \PKP\db\DAO
     {
         $this->update(
             'INSERT INTO navigation_menu_item_assignments
-			(navigation_menu_id, navigation_menu_item_id, parent_id, seq)
-			VALUES
-			(?, ?, ?, ?)',
+            (navigation_menu_id, navigation_menu_item_id, parent_id, seq)
+            VALUES
+            (?, ?, ?, ?)',
             [
                 $assignment->getMenuId(),
                 $assignment->getMenuItemId(),

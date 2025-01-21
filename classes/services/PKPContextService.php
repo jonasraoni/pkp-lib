@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/services/PKPContextService.php
  *
@@ -48,11 +49,10 @@ use PKP\services\interfaces\EntityPropertyInterface;
 use PKP\services\interfaces\EntityReadInterface;
 use PKP\services\interfaces\EntityWriteInterface;
 use PKP\submission\GenreDAO;
-use PKP\userGroup\Repository as UserGroupRepository;
-use PKP\validation\ValidatorFactory;
-use PKP\userGroup\UserGroup;
 use PKP\userGroup\relationships\UserUserGroup;
-
+use PKP\userGroup\Repository as UserGroupRepository;
+use PKP\userGroup\UserGroup;
+use PKP\validation\ValidatorFactory;
 
 abstract class PKPContextService implements EntityPropertyInterface, EntityReadInterface, EntityWriteInterface
 {
@@ -115,12 +115,11 @@ abstract class PKPContextService implements EntityPropertyInterface, EntityReadI
      * and sorted by $args
      *
      * @param array $args {
-     *
-     * 		@option bool isEnabled
-     * 		@option int userId
-     * 		@option string searchPhrase
-     * 		@option int count
-     * 		@option int offset
+     *   @option bool isEnabled
+     *   @option int userId
+     *   @option string searchPhrase
+     *   @option int count
+     *   @option int offset
      * }
      *
      * @return DAOResultIterator<Context>
@@ -559,12 +558,12 @@ abstract class PKPContextService implements EntityPropertyInterface, EntityReadI
             ->withRoleIds([Role::ROLE_ID_MANAGER])
             ->isDefault(true)
             ->firstOrFail();
-    
+
         $assignmentExists = UserUserGroup::query()
             ->withUserId($currentUser->getId())
             ->withUserGroupIds([$managerUserGroup->id])
             ->exists();
-    
+
         if (!$assignmentExists) {
             UserUserGroup::create([
                 'userId' => $currentUser->getId(),

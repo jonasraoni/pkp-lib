@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup lib_pkp_classes_user
  */

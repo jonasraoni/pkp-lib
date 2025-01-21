@@ -19,11 +19,11 @@ namespace PKP\task;
 use APP\core\Application;
 use APP\facades\Repo;
 use Carbon\Carbon;
+use PKP\jobs\email\ReviewReminder as ReviewReminderJob;
 use PKP\mail\mailables\ReviewRemindAuto;
 use PKP\mail\mailables\ReviewResponseRemindAuto;
 use PKP\scheduledTask\ScheduledTask;
 use PKP\submission\PKPSubmission;
-use PKP\jobs\email\ReviewReminder as ReviewReminderJob;
 
 class ReviewReminder extends ScheduledTask
 {
@@ -52,7 +52,7 @@ class ReviewReminder extends ScheduledTask
             ->getMany();
 
         foreach ($incompleteAssignments as $reviewAssignment) {
-            
+
             // Fetch the submission
             if ($submission == null || $submission->getId() != $reviewAssignment->getSubmissionId()) {
                 unset($submission);
@@ -73,9 +73,9 @@ class ReviewReminder extends ScheduledTask
                 $context = $contextDao->getById($submission->getData('contextId'));
 
                 $numDaysBeforeReviewResponseReminderDue = (int) $context->getData('numDaysBeforeReviewResponseReminderDue');
-                $numDaysAfterReviewResponseReminderDue  = (int) $context->getData('numDaysAfterReviewResponseReminderDue');
-                $numDaysBeforeReviewSubmitReminderDue   = (int) $context->getData('numDaysBeforeReviewSubmitReminderDue');
-                $numDaysAfterReviewSubmitReminderDue    = (int) $context->getData('numDaysAfterReviewSubmitReminderDue');
+                $numDaysAfterReviewResponseReminderDue = (int) $context->getData('numDaysAfterReviewResponseReminderDue');
+                $numDaysBeforeReviewSubmitReminderDue = (int) $context->getData('numDaysBeforeReviewSubmitReminderDue');
+                $numDaysAfterReviewSubmitReminderDue = (int) $context->getData('numDaysAfterReviewSubmitReminderDue');
             }
 
             $mailable = null;
@@ -85,18 +85,18 @@ class ReviewReminder extends ScheduledTask
             $dateDue = Carbon::parse($reviewAssignment->getDateDue());
 
             // after a REVIEW REQUEST has been responded, the value of `dateReminded` and `reminderWasAutomatic`
-            // get reset, see \PKP\submission\reviewer\ReviewerAction::confirmReview. 
+            // get reset, see \PKP\submission\reviewer\ReviewerAction::confirmReview.
             if ($reviewAssignment->getDateConfirmed() === null) {
                 // REVIEW REQUEST has not been responded
                 // only need to concern with BEFORE/AFTER REVIEW REQUEST RESPONSE reminder
-                
+
                 if ($reviewAssignment->getDateReminded() === null) {
                     // There has not been any reminder sent yet
                     // need to check should we sent a BEFORE REVIEW REQUEST RESPONSE reminder
                     if ($numDaysBeforeReviewResponseReminderDue > 0 &&
                         $dateResponseDue->gt($currentDate) &&
                         $dateResponseDue->diffInDays($currentDate) <= $numDaysBeforeReviewResponseReminderDue) {
-                    
+
                         // ACTION:-> we need to send BEFORE REVIEW REQUEST RESPONSE reminder
                         $mailable = ReviewResponseRemindAuto::class;
                     }
@@ -110,7 +110,7 @@ class ReviewReminder extends ScheduledTask
                         $currentDate->gt($dateResponseDue) &&
                         $dateReminded->lt($dateResponseDue) &&
                         $currentDate->diffInDays($dateResponseDue) >= $numDaysAfterReviewResponseReminderDue) {
-                    
+
                         // ACTION:-> we need to send AFTER REVIEW REQUEST RESPONSE reminder
                         $mailable = ReviewResponseRemindAuto::class;
                     }
@@ -139,7 +139,7 @@ class ReviewReminder extends ScheduledTask
                         $currentDate->gt($dateDue) &&
                         $dateReminded->lt($dateDue) &&
                         $currentDate->diffInDays($dateDue) >= $numDaysAfterReviewSubmitReminderDue) {
-                    
+
                         // ACTION:-> we need to send AFTER REVIEW SUBMIT reminder
                         $mailable = ReviewRemindAuto::class;
                     }

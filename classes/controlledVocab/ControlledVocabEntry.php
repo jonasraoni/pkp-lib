@@ -14,20 +14,17 @@
 
 namespace PKP\controlledVocab;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use PKP\user\interest\UserInterest;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 use PKP\core\traits\ModelWithSettings;
-use PKP\controlledVocab\ControlledVocab;
-use PKP\controlledVocab\ControlledVocabEntryMatch;
+use PKP\user\interest\UserInterest;
 
 class ControlledVocabEntry extends Model
 {
     use ModelWithSettings;
-    
+
     /**
      * @copydoc \Illuminate\Database\Eloquent\Model::$table
      */
@@ -168,8 +165,7 @@ class ControlledVocabEntry extends Model
         string $settingName,
         string $settingValue,
         ControlledVocabEntryMatch $match = ControlledVocabEntryMatch::EXACT
-    ): Builder
-    {
+    ): Builder {
         return $query->whereExists(
             fn ($query) => $query
                 ->select($this->primaryKey)

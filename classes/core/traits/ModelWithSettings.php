@@ -17,10 +17,10 @@
 
 namespace PKP\core\traits;
 
-use Exception;
 use Eloquence\Behaviours\HasCamelCasing;
-use Illuminate\Support\Str;
+use Exception;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 use PKP\core\casts\MultilingualSettingAttribute;
 use PKP\core\maps\Schema;
 use PKP\core\SettingsBuilder;
@@ -75,7 +75,7 @@ trait ModelWithSettings
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        
+
         if (static::getSchemaName()) {
             $this->setSchemaData();
         } else {
@@ -224,11 +224,11 @@ trait ModelWithSettings
     {
         // Need the snake like to key to check for main table to compare with column listing
         $key = Str::snake($key);
-        
+
         if (! isset(static::$guardableColumns[get_class($this)])) {
             $columns = $this->getConnection()
-                        ->getSchemaBuilder()
-                        ->getColumnListing($this->getTable());
+                ->getSchemaBuilder()
+                ->getColumnListing($this->getTable());
 
             if (empty($columns)) {
                 return true;
@@ -239,12 +239,12 @@ trait ModelWithSettings
 
         $settingsWithMultilingual = array_merge($this->getSettings(), $this->getMultilingualProps());
         $camelKey = Str::camel($key);
-        
+
         // Check if this column included in setting and multilingula props and not set to guarded
         if (in_array($camelKey, $settingsWithMultilingual) && !in_array($camelKey, $this->getGuarded())) {
             return true;
         }
-        
+
         return in_array($key, (array)static::$guardableColumns[get_class($this)]);
     }
 }

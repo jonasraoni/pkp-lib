@@ -12,11 +12,11 @@
 
 namespace PKP\tests\jobs\submissions;
 
-use PKP\tests\PKPTestCase;
-use PKP\jobs\submissions\UpdateSubmissionSearchJob;
 use Mockery;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\jobs\submissions\UpdateSubmissionSearchJob;
+use PKP\tests\PKPTestCase;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(UpdateSubmissionSearchJob::class)]
@@ -39,7 +39,7 @@ class UpdateSubmissionSearchJobTest extends PKPTestCase
             unserialize($this->serializedJobData)
         );
     }
-    
+
     /**
      * Ensure that a serialized job can be unserialized and executed
      */
@@ -63,4 +63,3 @@ class UpdateSubmissionSearchJobTest extends PKPTestCase
         $this->expectNotToPerformAssertions();
     }
 }
-

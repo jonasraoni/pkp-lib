@@ -28,7 +28,7 @@ class UsernameExistsRule implements Rule
             $existingUser = Repo::user()->getByUsername($value, true);
             return !isset($existingUser);  // Fail if the username already exists
         }
-        
+
         return true;
     }
 

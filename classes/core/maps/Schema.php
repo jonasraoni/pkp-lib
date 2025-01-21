@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/core/maps/Schema.php
  *

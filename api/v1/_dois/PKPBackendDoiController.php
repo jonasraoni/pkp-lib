@@ -34,7 +34,6 @@ use PKP\security\Role;
 use PKP\submission\GenreDAO;
 use PKP\userGroup\UserGroup;
 
-
 class PKPBackendDoiController extends PKPBaseController
 {
     /**

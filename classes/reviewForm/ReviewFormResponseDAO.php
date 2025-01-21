@@ -85,9 +85,9 @@ class ReviewFormResponseDAO extends \PKP\db\DAO
         $type = $reviewFormResponse->getResponseType();
         $this->update(
             'INSERT INTO review_form_responses
-				(review_form_element_id, review_id, response_type, response_value)
-				VALUES
-				(?, ?, ?, ?)',
+                (review_form_element_id, review_id, response_type, response_value)
+                VALUES
+                (?, ?, ?, ?)',
             [
                 $reviewFormResponse->getReviewFormElementId(),
                 $reviewFormResponse->getReviewId(),
@@ -107,10 +107,10 @@ class ReviewFormResponseDAO extends \PKP\db\DAO
         $type = $reviewFormResponse->getResponseType();
         $this->update(
             'UPDATE review_form_responses
-				SET
-					response_type = ?,
-					response_value = ?
-				WHERE review_form_element_id = ? AND review_id = ?',
+                SET
+                    response_type = ?,
+                    response_value = ?
+                WHERE review_form_element_id = ? AND review_id = ?',
             [
                 $reviewFormResponse->getResponseType(),
                 $this->convertToDB($reviewFormResponse->getValue(), $type),

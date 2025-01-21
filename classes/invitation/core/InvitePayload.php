@@ -48,7 +48,6 @@ abstract class InvitePayload
     /**
      * Convert the Payload instance to an array.
      *
-     * @return array
      */
     public function toArray(): array
     {

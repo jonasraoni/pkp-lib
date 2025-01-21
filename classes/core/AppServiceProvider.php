@@ -17,13 +17,13 @@ namespace PKP\core;
 
 use APP\core\Application;
 use Illuminate\Support\ServiceProvider;
-use PKP\services\PKPStatsSushiService;
-use PKP\services\PKPStatsGeoService;
-use PKP\services\PKPStatsContextService;
-use PKP\services\PKPSiteService;
-use PKP\services\PKPFileService;
 use PKP\context\Context;
+use PKP\services\PKPFileService;
 use PKP\services\PKPSchemaService;
+use PKP\services\PKPSiteService;
+use PKP\services\PKPStatsContextService;
+use PKP\services\PKPStatsGeoService;
+use PKP\services\PKPStatsSushiService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('maps', fn ($app) => new MapContainer);
+        $this->app->singleton('maps', fn ($app) => new MapContainer());
 
         $this->app->singleton(PKPSchemaService::class, fn ($app) => $app->get('schema'));
 
@@ -48,21 +48,21 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(Context::class, fn ($app) => Application::get()->getRequest()->getContext());
 
         // File service
-        $this->app->singleton('file', fn ($app) => new PKPFileService);
+        $this->app->singleton('file', fn ($app) => new PKPFileService());
 
         // Site service
-        $this->app->singleton('site', fn ($app) => new PKPSiteService);
+        $this->app->singleton('site', fn ($app) => new PKPSiteService());
 
         // Schema service
-        $this->app->singleton('schema', fn ($app) => new PKPSchemaService);
+        $this->app->singleton('schema', fn ($app) => new PKPSchemaService());
 
         // Context statistics service
-        $this->app->singleton('contextStats', fn ($app) => new PKPStatsContextService);
+        $this->app->singleton('contextStats', fn ($app) => new PKPStatsContextService());
 
         // Geo statistics service
-        $this->app->singleton('geoStats', fn ($app) => new PKPStatsGeoService);
+        $this->app->singleton('geoStats', fn ($app) => new PKPStatsGeoService());
 
         // SUSHI statistics service
-        $this->app->singleton('sushiStats', fn ($app) => new PKPStatsSushiService);
+        $this->app->singleton('sushiStats', fn ($app) => new PKPStatsSushiService());
     }
 }

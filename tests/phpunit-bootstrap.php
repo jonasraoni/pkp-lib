@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file tests/phpunit-bootstrap.php
  *

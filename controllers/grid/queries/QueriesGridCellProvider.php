@@ -26,7 +26,6 @@ use PKP\controllers\grid\GridHandler;
 use PKP\core\DataObject;
 use PKP\core\PKPApplication;
 use PKP\core\PKPString;
-use PKP\facades\Locale;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxAction;
 use PKP\note\Note;

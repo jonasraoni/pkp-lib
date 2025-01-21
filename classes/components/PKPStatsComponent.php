@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file components/PKPStatsComponent.php
  *

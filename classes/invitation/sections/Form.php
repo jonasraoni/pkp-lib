@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/invitation/sections/Form.php
  *
@@ -10,6 +11,7 @@
  *
  * @brief A section in an invitation workflow that shows a form.
  */
+
 namespace PKP\invitation\sections;
 
 use Exception;
@@ -34,6 +36,7 @@ class Form extends Section
 
     /**
      * @inheritDoc
+     *
      * @throws Exception
      */
     public function getState(): stdClass

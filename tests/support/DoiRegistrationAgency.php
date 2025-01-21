@@ -14,10 +14,10 @@
 
 namespace PKP\tests\support;
 
-use stdClass;
-use PKP\context\Context;
 use APP\plugins\IDoiRegistrationAgency;
+use PKP\context\Context;
 use PKP\doi\RegistrationAgencySettings;
+use stdClass;
 
 class DoiRegistrationAgency implements IDoiRegistrationAgency
 {
@@ -47,11 +47,10 @@ class DoiRegistrationAgency implements IDoiRegistrationAgency
 
     public function getSettingsObject(): RegistrationAgencySettings
     {
-        return new class($this) extends RegistrationAgencySettings
-        {
+        return new class ($this) extends RegistrationAgencySettings {
             public function getSchema(): stdClass
             {
-                return new stdClass;
+                return new stdClass();
             }
 
             public function getFields(Context $context): array

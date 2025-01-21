@@ -10,15 +10,16 @@
  * @class I9678_RemoveScheduledTasksTable
  *
  * @brief Remove scheduled_tasks table.
+ *
  * @see https://github.com/pkp/pkp-lib/issues/9678
- * 
+ *
  */
 
 namespace PKP\migration\upgrade\v3_5_0;
 
-use PKP\migration\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PKP\migration\Migration;
 
 class I9678_RemoveScheduledTasksTable extends Migration
 {

@@ -19,8 +19,8 @@
 namespace PKP\tests\classes\core;
 
 use APP\core\Request;
-use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\BackupGlobals;
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\Depends;
 use PKP\core\PKPRequest;
 use PKP\core\Registry;

@@ -19,8 +19,8 @@
 namespace PKP\tests\classes\security\authorization;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PKP\security\authorization\HandlerOperationPolicy;
 use PKP\security\authorization\AuthorizationPolicy;
+use PKP\security\authorization\HandlerOperationPolicy;
 use PKP\security\authorization\PKPPublicAccessPolicy;
 
 #[CoversClass(PKPPublicAccessPolicy::class)]

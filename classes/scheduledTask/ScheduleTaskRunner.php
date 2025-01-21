@@ -14,20 +14,20 @@
 
 namespace PKP\scheduledTask;
 
-use Throwable;
 use Carbon\Carbon;
-use PKP\core\PKPContainer;
-use Illuminate\Support\Sleep;
-use Illuminate\Support\Collection;
+use Illuminate\Console\Events\ScheduledTaskFailed;
+use Illuminate\Console\Events\ScheduledTaskFinished;
+use Illuminate\Console\Events\ScheduledTaskSkipped;
+use Illuminate\Console\Events\ScheduledTaskStarting;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Console\Events\ScheduledTaskFailed;
-use Illuminate\Console\Events\ScheduledTaskSkipped;
 use Illuminate\Contracts\Cache\Repository as Cache;
-use Illuminate\Console\Events\ScheduledTaskFinished;
-use Illuminate\Console\Events\ScheduledTaskStarting;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Sleep;
+use PKP\core\PKPContainer;
+use Throwable;
 
 class ScheduleTaskRunner
 {
@@ -38,7 +38,7 @@ class ScheduleTaskRunner
 
     /**
      * Constructor
-     * 
+     *
      * @param Schedule $schedule The schedule instance.
      * @param Dispatcher $dispatcher The event dispatcher
      * @param Cache $cache The cache store implementation
@@ -49,8 +49,7 @@ class ScheduleTaskRunner
         protected Dispatcher $dispatcher,
         protected Cache $cache,
         protected ExceptionHandler $handler
-    )
-    {
+    ) {
         $this->startedAt = Carbon::now();
     }
 

@@ -20,8 +20,8 @@ namespace PKP\tests\classes\core;
 
 use Mockery;
 use Mockery\MockInterface;
-use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\BackupGlobals;
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PKP\core\Core;

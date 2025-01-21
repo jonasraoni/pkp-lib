@@ -28,7 +28,7 @@ trait HasReviewDueDate
     public function getReviewSubmitDueDate(Context $context): Carbon
     {
         $numWeeks = (int) $context->getData('numWeeksPerReview');
-        
+
         if ($numWeeks <= 0) {
             $numWeeks = static::REVIEW_SUBMIT_DEFAULT_DUE_WEEKS;
         }
@@ -42,19 +42,19 @@ trait HasReviewDueDate
     public function getReviewResponseDueDate(Context $context): Carbon
     {
         $numWeeks = (int) $context->getData('numWeeksPerResponse');
-        
+
         if ($numWeeks <= 0) {
             $numWeeks = static::REVIEW_RESPONSE_DEFAULT_DUE_WEEKS;
         }
 
         return Carbon::today()->endOfDay()->addWeeks($numWeeks);
     }
-    
+
     /**
      * Get the review submit and response due dates
      */
     public function getDueDates(Context $context): array
-    {   
+    {
         return [
             $this->getReviewSubmitDueDate($context)->getTimestamp(),
             $this->getReviewResponseDueDate($context)->getTimestamp(),

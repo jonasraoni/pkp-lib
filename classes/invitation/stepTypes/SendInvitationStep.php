@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/invitation/stepType/SendInvitationStep.php
  *

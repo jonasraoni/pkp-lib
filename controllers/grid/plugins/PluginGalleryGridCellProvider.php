@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/grid/plugins/PluginGalleryGridCellProvider.php
  *

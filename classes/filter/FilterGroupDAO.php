@@ -33,8 +33,8 @@ class FilterGroupDAO extends \PKP\db\DAO
     {
         $this->update(
             sprintf('INSERT INTO filter_groups
-				(symbolic, display_name, description, input_type, output_type)
-				VALUES (?, ?, ?, ?, ?)'),
+                (symbolic, display_name, description, input_type, output_type)
+                VALUES (?, ?, ?, ?, ?)'),
             [
                 $filterGroup->getSymbolic(),
                 $filterGroup->getDisplayName(),
@@ -91,12 +91,12 @@ class FilterGroupDAO extends \PKP\db\DAO
     {
         $this->update(
             'UPDATE	filter_groups
-			SET	symbolic = ?,
-				display_name = ?,
-				description = ?,
-				input_type = ?,
-				output_type = ?
-			WHERE	filter_group_id = ?',
+            SET	symbolic = ?,
+                display_name = ?,
+                description = ?,
+                input_type = ?,
+                output_type = ?
+            WHERE	filter_group_id = ?',
             [
                 $filterGroup->getSymbolic(),
                 $filterGroup->getDisplayName(),

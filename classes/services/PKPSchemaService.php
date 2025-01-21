@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/services/PKPSchemaService.php
  *
@@ -69,6 +70,7 @@ class PKPSchemaService
      *
      * @hook Schema::get::(schemaName) [[schema]]
      * @hook Schema::get::
+     * @hook Schema::get::before::
      * @hook Schema::get::before::
      * @hook Schema::get::before::
      */
@@ -270,13 +272,13 @@ class PKPSchemaService
             if (empty($propSchema->origin)) {
                 continue;
             }
-    
+
             // Exclude readonly if specified
             if ($excludeReadOnly && !empty($propSchema->readOnly) && $propSchema->readOnly) {
                 continue;
             }
-    
-            switch($propSchema->origin) {
+
+            switch ($propSchema->origin) {
                 case Schema::ATTRIBUTE_ORIGIN_SETTINGS:
                     $propsByOrigin[Schema::ATTRIBUTE_ORIGIN_SETTINGS][] = $propName;
                     break;
@@ -289,10 +291,10 @@ class PKPSchemaService
                     break;
             }
         }
-    
+
         return $propsByOrigin;
     }
-    
+
 
     /**
      * Sanitize properties according to a schema
@@ -626,18 +628,18 @@ class PKPSchemaService
      * any locales that are missing. Given the following:
      *
      * $values = [
-     *	'title' => [
-     *		'en' => 'The Journal of Public Knowledge',
-     *	]
+     *  'title' => [
+     *    'en' => 'The Journal of Public Knowledge',
+     *  ]
      * ]
      *
      * If the locales en and fr_CA are requested, it will return the following:
      *
      * $values = [
-     *	'title' => [
-     *		'en' => 'The Journal of Public Knowledge',
-     *		'fr_CA' => '',
-     *	]
+     *  'title' => [
+     *    'en' => 'The Journal of Public Knowledge',
+     *    'fr_CA' => '',
+     *  ]
      * ]
      *
      * This is primarily used to ensure API responses present a consistent data

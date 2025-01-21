@@ -88,9 +88,9 @@ class ReviewRoundDAO extends \PKP\db\DAO
     {
         $this->update(
             'INSERT INTO review_rounds
-				(submission_id, stage_id, round, status)
-				VALUES
-				(?, ?, ?, ?)',
+                (submission_id, stage_id, round, status)
+                VALUES
+                (?, ?, ?, ?)',
             [
                 (int)$reviewRound->getSubmissionId(),
                 (int)$reviewRound->getStageId(),
@@ -112,10 +112,10 @@ class ReviewRoundDAO extends \PKP\db\DAO
     {
         $returner = $this->update(
             'UPDATE	review_rounds
-			SET	status = ?
-			WHERE	submission_id = ? AND
-				stage_id = ? AND
-				round = ?',
+            SET	status = ?
+            WHERE	submission_id = ? AND
+                stage_id = ? AND
+                round = ?',
             [
                 (int)$reviewRound->getStatus(),
                 (int)$reviewRound->getSubmissionId(),
@@ -173,9 +173,9 @@ class ReviewRoundDAO extends \PKP\db\DAO
     {
         $result = $this->retrieve(
             'SELECT * FROM review_rounds rr
-				INNER JOIN review_round_files rrf
-				ON rr.review_round_id = rrf.review_round_id
-				WHERE rrf.submission_file_id = ?',
+                INNER JOIN review_round_files rrf
+                ON rr.review_round_id = rrf.review_round_id
+                WHERE rrf.submission_file_id = ?',
             [(int) $submissionFileId]
         );
 
@@ -220,8 +220,8 @@ class ReviewRoundDAO extends \PKP\db\DAO
         }
         $result = $this->retrieve(
             'SELECT MAX(stage_id) as stage_id, MAX(round) as round
-			FROM review_rounds
-			WHERE submission_id = ?' .
+            FROM review_rounds
+            WHERE submission_id = ?' .
             ($stageId ? ' AND stage_id = ?' : ''),
             $params
         );
@@ -245,10 +245,10 @@ class ReviewRoundDAO extends \PKP\db\DAO
         }
         $result = $this->retrieve(
             'SELECT	*
-			FROM	review_rounds
-			WHERE	submission_id = ?
-			' . ($stageId ? ' AND stage_id = ?' : '') . '
-			ORDER BY stage_id DESC, round DESC',
+            FROM	review_rounds
+            WHERE	submission_id = ?
+            ' . ($stageId ? ' AND stage_id = ?' : '') . '
+            ORDER BY stage_id DESC, round DESC',
             $params
         );
 
@@ -267,9 +267,9 @@ class ReviewRoundDAO extends \PKP\db\DAO
         }
         $result = $this->retrieve(
             'SELECT	review_round_id
-			FROM	review_rounds
-			WHERE	submission_id = ?
-			' . ($stageId ? ' AND stage_id = ?' : ''),
+            FROM	review_rounds
+            WHERE	submission_id = ?
+            ' . ($stageId ? ' AND stage_id = ?' : ''),
             $params
         );
         return (bool) $result->current();

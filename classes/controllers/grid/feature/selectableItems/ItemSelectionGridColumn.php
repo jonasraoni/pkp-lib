@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/controllers/grid/feature/selectableItems/ItemSelectionGridColumn.php
  *

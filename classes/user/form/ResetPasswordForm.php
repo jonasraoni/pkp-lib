@@ -16,8 +16,8 @@
 
 namespace PKP\user\form;
 
-use APP\facades\Repo;
 use APP\core\Application;
+use APP\facades\Repo;
 use APP\template\TemplateManager;
 use Illuminate\Support\Facades\Auth;
 use PKP\form\Form;
@@ -120,7 +120,7 @@ class ResetPasswordForm extends Form
         $user->setMustChangePassword(0);
 
         Application::get()->getRequest()->getSessionGuard()->updateUser($user);
-        
+
         $user = Auth::logoutOtherDevices($this->getData('password'));
 
         Repo::user()->edit($user);

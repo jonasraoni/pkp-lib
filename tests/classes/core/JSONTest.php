@@ -18,9 +18,9 @@
 
 namespace PKP\tests\classes\core;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\core\JSONMessage;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 use stdClass;
 
 #[CoversClass(JSONMessage::class)]

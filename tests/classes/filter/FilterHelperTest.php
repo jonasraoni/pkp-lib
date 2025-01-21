@@ -18,11 +18,11 @@
 
 namespace PKP\tests\classes\filter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\filter\FilterGroup;
 use PKP\filter\FilterHelper;
 use PKP\filter\FilterSetting;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(FilterHelper::class)]
 class FilterHelperTest extends PKPTestCase

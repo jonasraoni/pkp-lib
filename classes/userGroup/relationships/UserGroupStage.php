@@ -14,11 +14,10 @@
 
 namespace PKP\userGroup\relationships;
 
-use Illuminate\Database\Eloquent\Builder;
 use Eloquence\Behaviours\HasCamelCasing;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use PKP\userGroup\UserGroup;
-
 
 class UserGroupStage extends \Illuminate\Database\Eloquent\Model
 {

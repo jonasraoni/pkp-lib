@@ -14,13 +14,13 @@
 
 namespace PKP\userGroup\relationships;
 
-use PKP\core\Core;
 use APP\facades\Repo;
-use PKP\userGroup\UserGroup;
 use Eloquence\Behaviours\HasCamelCasing;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use PKP\core\Core;
+use PKP\userGroup\UserGroup;
 
 class UserUserGroup extends \Illuminate\Database\Eloquent\Model
 {

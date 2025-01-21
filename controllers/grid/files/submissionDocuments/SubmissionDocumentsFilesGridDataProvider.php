@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/grid/files/submissionDocuments/SubmissionDocumentsFilesGridDataProvider.php
  *

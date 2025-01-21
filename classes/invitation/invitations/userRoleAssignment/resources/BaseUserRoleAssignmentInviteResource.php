@@ -36,7 +36,6 @@ class BaseUserRoleAssignmentInviteResource extends JsonResource
     /**
      * Transform the userGroupsToAdd to include related UserGroup data.
      *
-     * @param array|null $userGroups
      * @return array
      */
     protected function transformUserGroups(?array $userGroups)
@@ -57,8 +56,6 @@ class BaseUserRoleAssignmentInviteResource extends JsonResource
     /**
      * Transform the userGroupsToAdd to include related UserGroup data.
      *
-     * @param array|null $userGroups
-     * @return array
      */
     protected function transformUser(?User $user): ?array
     {

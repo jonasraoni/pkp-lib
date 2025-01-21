@@ -17,13 +17,13 @@ namespace PKP\tests\classes\form\validation;
 use APP\core\Application;
 use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
-use PKP\form\validation\FormValidatorControlledVocab;
-use PKP\form\Form;
-use PKP\form\validation\FormValidator;
-use PKP\tests\PKPTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\controlledVocab\ControlledVocab;
 use PKP\controlledVocab\ControlledVocabEntry;
+use PKP\form\Form;
+use PKP\form\validation\FormValidator;
+use PKP\form\validation\FormValidatorControlledVocab;
+use PKP\tests\PKPTestCase;
 
 #[CoversClass(FormValidatorControlledVocab::class)]
 class FormValidatorControlledVocabTest extends PKPTestCase
@@ -33,9 +33,9 @@ class FormValidatorControlledVocabTest extends PKPTestCase
         // Test form
         $form = new Form('some template');
 
-        $assocId = (DB::table("publications")
-            ->select("publication_id as id")
-            ->orderBy("publication_id", "desc")
+        $assocId = (DB::table('publications')
+            ->select('publication_id as id')
+            ->orderBy('publication_id', 'desc')
             ->first()
             ->id ?? 0) + 100;
 

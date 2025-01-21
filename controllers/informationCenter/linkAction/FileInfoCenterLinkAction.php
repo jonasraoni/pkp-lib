@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/informationCenter/linkAction/FileInfoCenterLinkAction.php
  *

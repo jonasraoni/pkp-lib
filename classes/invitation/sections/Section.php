@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/invitation/sections/Section.php
  *
@@ -10,6 +11,7 @@
  *
  * @brief A base class to define a section in an invitation.
  */
+
 namespace PKP\invitation\sections;
 
 use Exception;

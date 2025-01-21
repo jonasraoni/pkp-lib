@@ -19,7 +19,6 @@ namespace PKP\install;
 use APP\core\Application;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use PKP\config\Config;
 use PKP\core\Core;
 use PKP\core\PKPApplication;

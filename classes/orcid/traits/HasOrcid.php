@@ -16,7 +16,6 @@ namespace PKP\orcid\traits;
 
 trait HasOrcid
 {
-
     /**
      * Checks whether an entity had its ORCID verified as part of a valid ORCID OAuth process.
      */

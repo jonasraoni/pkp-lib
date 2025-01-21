@@ -13,11 +13,11 @@
 namespace PKP\tests\jobs\submissions;
 
 use Mockery;
-use PKP\db\DAORegistry;
-use PKP\tests\PKPTestCase;
-use PKP\jobs\submissions\RemoveSubmissionFileFromSearchIndexJob;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\db\DAORegistry;
+use PKP\jobs\submissions\RemoveSubmissionFileFromSearchIndexJob;
+use PKP\tests\PKPTestCase;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(RemoveSubmissionFileFromSearchIndexJob::class)]
@@ -40,7 +40,7 @@ class RemoveSubmissionFileFromSearchIndexJobTest extends PKPTestCase
             unserialize($this->serializedJobData)
         );
     }
-    
+
     /**
      * Ensure that a serialized job can be unserialized and executed
      */
@@ -64,4 +64,3 @@ class RemoveSubmissionFileFromSearchIndexJobTest extends PKPTestCase
         $this->expectNotToPerformAssertions();
     }
 }
-

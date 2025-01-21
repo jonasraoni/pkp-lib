@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup controllers_modals_review_linkAction Submission Metadata Link Actions
  */

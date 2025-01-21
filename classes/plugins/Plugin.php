@@ -407,10 +407,8 @@ abstract class Plugin
      *
      * @param string $hookName TemplateResource::getFilename
      * @param array $args [
-     *
-     *		@option string File path to preferred template. Leave as-is to not
-     *			override template.
-     *		@option string Template file requested
+     *  @option string File path to preferred template. Leave as-is to not override template.
+     *  @option string Template file requested
      * ]
      *
      * @return bool

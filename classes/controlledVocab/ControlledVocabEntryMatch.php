@@ -22,8 +22,8 @@ enum ControlledVocabEntryMatch
     public function operator(): string
     {
         return match ($this) {
-            static::EXACT => "=",
-            static::PARTIAL => "LIKE"
+            static::EXACT => '=',
+            static::PARTIAL => 'LIKE'
         };
     }
 

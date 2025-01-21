@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/observers/listeners/AssignEditors.php
  *

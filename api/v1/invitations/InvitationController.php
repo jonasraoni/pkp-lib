@@ -136,7 +136,7 @@ class InvitationController extends PKPBaseController
 
             Route::post('add/{type}', $this->add(...))
                 ->name('invitation.add');
-            
+
             Route::put('{invitationId}/populate', $this->populate(...))
                 ->name('invitation.populate')
                 ->whereNumber('invitationId');
@@ -272,9 +272,9 @@ class InvitationController extends PKPBaseController
             'inviteeEmail.prohibited' => __('invitation.api.error.initialization.noUserIdAndEmailTogether'),
             'userId.prohibited' => __('invitation.api.error.initialization.noUserIdAndEmailTogether')
         ];
-        
+
         $validator = ValidatorFactory::make(
-            $payload, 
+            $payload,
             $rules,
             $messages
         );
@@ -335,8 +335,8 @@ class InvitationController extends PKPBaseController
 
         // Build the common query
         $query = InvitationModel::query()
-            ->when($invitationType, fn($query) => $query->byType($invitationType))
-            ->when($context, fn($query) => $query->byContextId($context->getId()))
+            ->when($invitationType, fn ($query) => $query->byType($invitationType))
+            ->when($context, fn ($query) => $query->byContextId($context->getId()))
             ->stillActive();
 
         // Delegate to the specific handler for additional logic

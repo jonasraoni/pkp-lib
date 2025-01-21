@@ -20,11 +20,11 @@ namespace PKP\tests\classes\form\validation;
 
 use APP\core\Application;
 use Mockery;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\core\Registry;
 use PKP\form\Form;
 use PKP\form\validation\FormValidatorPost;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(FormValidatorPost::class)]
 class FormValidatorPostTest extends PKPTestCase

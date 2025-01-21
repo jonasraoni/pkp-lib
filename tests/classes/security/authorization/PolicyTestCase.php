@@ -22,7 +22,6 @@ namespace PKP\tests\classes\security\authorization;
 use APP\core\Application;
 use APP\core\PageRouter;
 use APP\core\Request;
-use APP\facades\Repo;
 use Mockery\Mock;
 use PKP\context\Context;
 use PKP\core\PKPRequest;
@@ -33,7 +32,6 @@ use PKP\security\Role;
 use PKP\tests\PKPTestCase;
 use PKP\user\User;
 use PKP\userGroup\UserGroup;
-
 
 abstract class PolicyTestCase extends PKPTestCase
 {

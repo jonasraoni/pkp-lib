@@ -150,7 +150,6 @@ class OrcidSettingsForm extends FormComponent
      * Gets localized name of ORCID API type for display
      *
      * @param string $apiType One of OrcidManager::API_* constants
-     * @return string
      */
     private function getLocalizedApiTypeString(string $apiType): string
     {

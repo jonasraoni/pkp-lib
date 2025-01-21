@@ -14,11 +14,9 @@
 
 namespace PKP\core;
 
-use APP\facades\Repo;
 use APP\core\Application;
+use APP\facades\Repo;
 use InvalidArgumentException;
-use PKP\core\PKPSessionGuard;
-use PKP\core\PKPUserProvider;
 
 class PKPAuthManager extends \Illuminate\Auth\AuthManager
 {
@@ -48,6 +46,8 @@ class PKPAuthManager extends \Illuminate\Auth\AuthManager
 
     /**
      * @copydoc \Illuminate\Auth\AuthManager::createUserProvider($provider = null)
+     *
+     * @param null|mixed $provider
      */
     public function createUserProvider($provider = null)
     {
@@ -57,17 +57,19 @@ class PKPAuthManager extends \Illuminate\Auth\AuthManager
 
         if (isset($this->customProviderCreators[$driver = ($config['driver'] ?? null)])) {
             return call_user_func(
-                $this->customProviderCreators[$driver], $this->app, $config
+                $this->customProviderCreators[$driver],
+                $this->app,
+                $config
             );
         }
 
         return match ($driver) {
-            'database'                      => $this->createDatabaseProvider($config),
-            'eloquent'                      => $this->createEloquentProvider($config),
-            PKPUserProvider::AUTH_PROVIDER  => $this->createPKPUserProvider($config),
-            default                         => throw new InvalidArgumentException(
-                                                "Authentication user provider [{$driver}] is not defined."
-                                            ),
+            'database' => $this->createDatabaseProvider($config),
+            'eloquent' => $this->createEloquentProvider($config),
+            PKPUserProvider::AUTH_PROVIDER => $this->createPKPUserProvider($config),
+            default => throw new InvalidArgumentException(
+                "Authentication user provider [{$driver}] is not defined."
+            ),
         };
     }
 
@@ -81,7 +83,7 @@ class PKPAuthManager extends \Illuminate\Auth\AuthManager
 
     /**
      * @copydoc \Illuminate\Auth\AuthManager::createSessionDriver($name, $config)
-     * 
+     *
      * @return \PKP\core\PKPSessionGuard
      */
     public function createSessionDriver($name, $config)

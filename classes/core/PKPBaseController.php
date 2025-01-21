@@ -97,7 +97,7 @@ abstract class PKPBaseController extends Controller
         $routes = $router->getRoutes(); /** @var \Illuminate\Routing\RouteCollection $routes */
         $request ??= app('request');
 
-        if($routes->count() <= 0) {
+        if ($routes->count() <= 0) {
             return null;
         }
 
@@ -112,12 +112,12 @@ abstract class PKPBaseController extends Controller
         if (!$requestedRoute = static::getRequestedRoute($request)) {
             return null;
         }
-        
+
         $calledRouteController = (new ReflectionFunction($requestedRoute->action['uses']))->getClosureThis();
 
-        // When the routes are added to router as a closure/callable from other section like from a 
+        // When the routes are added to router as a closure/callable from other section like from a
         // plugin through the hook, the resolved called route class may not be an instance of
-        // `PKPBaseController` and we need to resolve the current controller instance from 
+        // `PKPBaseController` and we need to resolve the current controller instance from
         // `APIHandler::getApiController` method
         if ($calledRouteController instanceof self) {
             return $calledRouteController;

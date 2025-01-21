@@ -19,7 +19,6 @@ namespace PKP\controllers\grid\users\reviewer\form;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\notification\NotificationManager;
-use APP\orcid\actions\SendReviewToOrcid;
 use Illuminate\Support\Facades\Mail;
 use PKP\core\Core;
 use PKP\facades\Locale;

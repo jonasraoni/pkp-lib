@@ -43,8 +43,8 @@ use PKP\notification\Repository as NotificationRepository;
 use PKP\query\Repository as QueryRepository;
 use PKP\stageAssignment\Repository as StageAssignmentRepository;
 use PKP\submissionFile\Repository as SubmissionFileRepository;
-use PKP\userGroup\Repository as UserGroupRepository;
 use PKP\user\interest\Repository as UserInterestRepository;
+use PKP\userGroup\Repository as UserGroupRepository;
 
 class Repo
 {
@@ -142,7 +142,7 @@ class Repo
     {
         return app(QueryRepository::class);
     }
-    
+
     public static function controlledVocab(): ControlledVocabRepository
     {
         return app(ControlledVocabRepository::class);

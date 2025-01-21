@@ -17,9 +17,9 @@ namespace PKP\tests\classes\validation;
 use APP\core\Application;
 use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
-use PKP\controlledVocab\ControlledVocabEntry;
-use PKP\controlledVocab\ControlledVocab;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PKP\controlledVocab\ControlledVocab;
+use PKP\controlledVocab\ControlledVocabEntry;
 use PKP\tests\PKPTestCase;
 use PKP\validation\ValidatorControlledVocab;
 
@@ -28,12 +28,12 @@ class ValidatorControlledVocabTest extends PKPTestCase
 {
     public function testValidatorControlledVocab()
     {
-        $assocId = (DB::table("publications")
-            ->select("publication_id as id")
-            ->orderBy("publication_id", "desc")
+        $assocId = (DB::table('publications')
+            ->select('publication_id as id')
+            ->orderBy('publication_id', 'desc')
             ->first()
             ->id ?? 0) + 100;
-            
+
         $testControlledVocab = Repo::controlledVocab()->build(
             ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_KEYWORD,
             Application::ASSOC_TYPE_CITATION,

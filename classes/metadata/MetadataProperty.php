@@ -431,7 +431,7 @@ class MetadataProperty
                                     ->withLocales([$locale])
                                     ->withSetting('name', $value)
                                     ->first();
-        
+
                                 if (!is_null($entry)) {
                                     // The string was successfully translated so mark it as "valid".
                                     return [self::METADATA_PROPERTY_TYPE_VOCABULARY => $allowedTypeParam];

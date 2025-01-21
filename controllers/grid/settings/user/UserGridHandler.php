@@ -42,8 +42,8 @@ use PKP\security\Role;
 use PKP\security\RoleDAO;
 use PKP\security\Validation;
 use PKP\user\User;
-use PKP\userGroup\UserGroup;
 use PKP\userGroup\relationships\UserUserGroup;
+use PKP\userGroup\UserGroup;
 
 class UserGridHandler extends GridHandler
 {
@@ -165,15 +165,15 @@ class UserGridHandler extends GridHandler
 
                     // fetch user groups where the user is assigned in the current context
                     $userGroups = UserGroup::query()
-                    ->withContextIds($contextId)
-                    ->whereHas('userUserGroups', function ($query) use ($user) {
-                        $query->withUserId($user->getId())
-                              ->withActive();
-                    })
-                    ->get();
-                
-                $roles = $userGroups->map(fn (UserGroup $userGroup) => $userGroup->getLocalizedData('name'))->join(__('common.commaListSeparator'));
-                return ['label' => $roles];
+                        ->withContextIds($contextId)
+                        ->whereHas('userUserGroups', function ($query) use ($user) {
+                            $query->withUserId($user->getId())
+                                ->withActive();
+                        })
+                        ->get();
+
+                    $roles = $userGroups->map(fn (UserGroup $userGroup) => $userGroup->getLocalizedData('name'))->join(__('common.commaListSeparator'));
+                    return ['label' => $roles];
                 }
             }
         );
@@ -550,18 +550,18 @@ class UserGridHandler extends GridHandler
         if (!$request->checkCSRF()) {
             return new JSONMessage(false);
         }
-    
+
         $context = $request->getContext();
         $user = $request->getUser();
-    
+
         // Identify the user Id.
         $userId = $request->getUserVar('rowId');
-    
+
         if ($userId !== null && Validation::getAdministrationLevel($userId, $user->getId(), $context->getId()) === Validation::ADMINISTRATION_PROHIBITED) {
             // We don't have administrative rights over this user.
             return new JSONMessage(false, __('grid.user.cannotAdminister'));
         }
-    
+
         // Check if this user has any active user group assignments for this context.
         $activeUserGroupCount = UserGroup::query()
             ->withContextIds($context->getId())
@@ -570,7 +570,7 @@ class UserGridHandler extends GridHandler
                     ->withActive();
             })
             ->count();
-        
+
         if (!$activeUserGroupCount) {
             return new JSONMessage(false, __('grid.user.userNoRoles'));
         } else {
@@ -582,7 +582,7 @@ class UserGridHandler extends GridHandler
                     $query->withContextIds($context->getId());
                 })
                 ->update(['dateEnd' => now()]);
-        
+
             return \PKP\db\DAO::getDataChangedEvent($userId);
         }
     }

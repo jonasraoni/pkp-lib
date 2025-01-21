@@ -47,9 +47,8 @@ class PKPCatalogHandler extends Handler
      * View the content of a category.
      *
      * @param array $args [
-     *
-     *		@option string Category path
-     *		@option int Page number if available
+     *  @option string Category path
+     *  @option int Page number if available
      * ]
      *
      * @param PKPRequest $request

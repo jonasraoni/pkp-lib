@@ -24,7 +24,6 @@ use PKP\controllers\informationCenter\form\NewFileNoteForm;
 use PKP\core\JSONMessage;
 use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;
-use PKP\db\DAORegistry;
 use PKP\log\event\EventLogEntry;
 use PKP\notification\Notification;
 use PKP\security\authorization\WorkflowStageAccessPolicy;
@@ -67,6 +66,8 @@ class FileInformationCenterHandler extends InformationCenterHandler
 
     /**
      * @copydoc InformationCenterHandler::initialize
+     *
+     * @param null|mixed $args
      */
     public function initialize($request, $args = null)
     {

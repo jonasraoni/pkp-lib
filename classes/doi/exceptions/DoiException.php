@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/doi/exceptions/DoiException.php
  *

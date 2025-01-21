@@ -32,7 +32,6 @@ class EditLibraryFileForm extends LibraryFileForm
     /**
      * Constructor.
      *
-     * @param int $contextId
      * @param int $fileId optional
      */
     public function __construct(int $contextId, $fileId, $submissionId)

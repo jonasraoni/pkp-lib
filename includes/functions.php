@@ -185,7 +185,7 @@ function __p(string $key, int $number, array $replace = [], ?string $locale = nu
 
 /**
  * Check if run on CLI
- * 
+ *
  * @deprecated 3.5.0 use PKPContainer::getInstance()->runningInConsole()
  */
 if (!function_exists('runOnCLI')) {

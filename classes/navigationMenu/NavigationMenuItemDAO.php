@@ -80,10 +80,10 @@ class NavigationMenuItemDAO extends \PKP\db\DAO
     {
         $result = $this->retrieve(
             'SELECT nmi.*
-				FROM navigation_menu_item_assignments as nmh
-				LEFT JOIN navigation_menu_items as nmi ON (nmh.navigation_menu_item_id = nmi.navigation_menu_item_id)
-				WHERE nmh.navigation_menu_id = ?
-				ORDER BY nmh.seq',
+                FROM navigation_menu_item_assignments as nmh
+                LEFT JOIN navigation_menu_items as nmi ON (nmh.navigation_menu_item_id = nmi.navigation_menu_item_id)
+                WHERE nmh.navigation_menu_id = ?
+                ORDER BY nmh.seq',
             [$navigationMenuId]
         );
         return new DAOResultFactory($result, $this, '_fromRow');
@@ -183,9 +183,9 @@ class NavigationMenuItemDAO extends \PKP\db\DAO
     {
         $this->update(
             'INSERT INTO navigation_menu_items
-				(path, context_id, type)
-				VALUES
-				(?, ?, ?)',
+                (path, context_id, type)
+                VALUES
+                (?, ?, ?)',
             [
                 $navigationMenuItem->getPath(),
                 $navigationMenuItem->getContextId(),
@@ -207,11 +207,11 @@ class NavigationMenuItemDAO extends \PKP\db\DAO
     {
         $returner = $this->update(
             'UPDATE navigation_menu_items
-				SET
-					path = ?,
-					context_id = ?,
-					type = ?
-				WHERE navigation_menu_item_id = ?',
+                SET
+                    path = ?,
+                    context_id = ?,
+                    type = ?
+                WHERE navigation_menu_item_id = ?',
             [
                 $navigationMenuItem->getPath(),
                 $navigationMenuItem->getContextId(),
@@ -372,8 +372,8 @@ class NavigationMenuItemDAO extends \PKP\db\DAO
                     $type = null;
                     $this->update(
                         'INSERT INTO navigation_menu_item_settings
-					(navigation_menu_item_id, setting_name, setting_value, setting_type, locale)
-					VALUES (?, ?, ?, ?, ?)',
+                    (navigation_menu_item_id, setting_name, setting_value, setting_type, locale)
+                    VALUES (?, ?, ?, ?, ?)',
                         [$navigationMenuItemId, $name, trim($this->convertToDB($localeValue, $type), '##'), $type, $locale]
                     );
                 }
@@ -392,9 +392,9 @@ class NavigationMenuItemDAO extends \PKP\db\DAO
         }
         $result = $this->retrieve(
             'SELECT	setting_name, setting_value, setting_type, locale
-			FROM	navigation_menu_item_settings
-			WHERE	navigation_menu_item_id = ? AND
-				setting_name = ?' .
+            FROM	navigation_menu_item_settings
+            WHERE	navigation_menu_item_id = ? AND
+                setting_name = ?' .
                 ($locale ? ' AND locale = ?' : ''),
             $params
         );

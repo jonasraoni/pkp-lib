@@ -164,7 +164,7 @@ class PKPNotificationManager extends PKPNotificationOperationManager
                 $submission = Repo::submission()->get($notification->assocId);
                 return __('notification.type.layouteditorRequest', ['title' => $submission->getCurrentPublication()->getLocalizedTitle(null, 'html')]);
             case Notification::NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
-                if($notification->assocType != Application::ASSOC_TYPE_SUBMISSION) {
+                if ($notification->assocType != Application::ASSOC_TYPE_SUBMISSION) {
                     throw new \Exception('Unexpected association type!');
                 }
                 $submission = Repo::submission()->get($notification->assocId);

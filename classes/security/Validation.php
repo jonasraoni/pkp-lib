@@ -27,7 +27,6 @@ use PKP\site\Site;
 use PKP\site\SiteDAO;
 use PKP\user\User;
 use PKP\userGroup\UserGroup;
-use PKP\security\Role;
 
 class Validation
 {
@@ -411,56 +410,56 @@ class Validation
             ->withRoleIds(Role::ROLE_ID_SITE_ADMIN)
             ->whereHas('userUserGroups', function ($query) use ($administeredUserId) {
                 $query->withUserId($administeredUserId)
-                      ->withActive();
+                    ->withActive();
             })
             ->exists();
-    
+
         if ($isAdministeredUserSiteAdmin) {
             return false;
         }
-    
+
         // check if administrator user is site admin
         $isAdministratorUserSiteAdmin = UserGroup::query()
             ->withContextIds($siteContextId)
             ->withRoleIds(Role::ROLE_ID_SITE_ADMIN)
             ->whereHas('userUserGroups', function ($query) use ($administratorUserId) {
                 $query->withUserId($administratorUserId)
-                      ->withActive();
+                    ->withActive();
             })
             ->exists();
-    
+
         if ($isAdministratorUserSiteAdmin) {
             return true;
         }
-    
+
         // Get contexts where administered user has roles
         $administeredUserContexts = UserGroup::query()
             ->whereHas('userUserGroups', function ($query) use ($administeredUserId) {
                 $query->withUserId($administeredUserId)
-                      ->withActive();
+                    ->withActive();
             })
             ->get()
             ->map(fn ($userGroup) => $userGroup->contextId)
             ->unique()
             ->values()
             ->toArray();
-    
+
         // get contexts where administrator user has manager role
         $administratorManagerContexts = UserGroup::query()
             ->withRoleIds(Role::ROLE_ID_MANAGER)
             ->whereHas('userUserGroups', function ($query) use ($administratorUserId) {
                 $query->withUserId($administratorUserId)
-                      ->withActive();
+                    ->withActive();
             })
             ->get()
             ->map(fn ($userGroup) => $userGroup->contextId)
             ->unique()
             ->values()
             ->toArray();
-    
+
         // check for conflicting contexts
         $conflictingContexts = array_diff($administeredUserContexts, $administratorManagerContexts);
-    
+
         if (!empty($conflictingContexts)) {
             // found conflicting contexts: disqualified
             return false;
@@ -490,33 +489,33 @@ class Validation
         if ($administeredUserId == $administratorUserId) {
             return self::ADMINISTRATION_FULL;
         }
-    
+
         $siteContextId = \PKP\core\PKPApplication::SITE_CONTEXT_ID;
-    
+
         // Check if administered user is site admin
         $isAdministeredUserSiteAdmin = UserGroup::query()
             ->withContextIds($siteContextId)
             ->withRoleIds(Role::ROLE_ID_SITE_ADMIN)
             ->whereHas('userUserGroups', function ($query) use ($administeredUserId) {
                 $query->withUserId($administeredUserId)
-                      ->withActive();
+                    ->withActive();
             })
             ->exists();
-    
+
         if ($isAdministeredUserSiteAdmin) {
             return self::ADMINISTRATION_PROHIBITED;
         }
-    
+
         // Check if administrator user is site admin
         $isAdministratorUserSiteAdmin = UserGroup::query()
             ->withContextIds($siteContextId)
             ->withRoleIds(Role::ROLE_ID_SITE_ADMIN)
             ->whereHas('userUserGroups', function ($query) use ($administratorUserId) {
                 $query->withUserId($administratorUserId)
-                      ->withActive();
+                    ->withActive();
             })
             ->exists();
-    
+
         if ($isAdministratorUserSiteAdmin) {
             return self::ADMINISTRATION_FULL;
         }
@@ -526,34 +525,34 @@ class Validation
             ->withRoleIds(Role::ROLE_ID_MANAGER)
             ->whereHas('userUserGroups', function ($query) use ($administratorUserId) {
                 $query->withUserId($administratorUserId)
-                      ->withActive();
+                    ->withActive();
             })
             ->get()
             ->map(fn ($userGroup) => $userGroup->contextId)
             ->unique()
             ->values()
             ->toArray();
-    
+
         // Ensure the administrator has a manager role somewhere
         if (empty($administratorManagerContexts)) {
             return self::ADMINISTRATION_PROHIBITED;
         }
-    
+
         // Get contexts where administered user has roles
         $administeredUserContexts = UserGroup::query()
             ->whereHas('userUserGroups', function ($query) use ($administeredUserId) {
                 $query->withUserId($administeredUserId)
-                      ->withActive();
+                    ->withActive();
             })
             ->get()
             ->map(fn ($userGroup) => $userGroup->contextId)
             ->unique()
             ->values()
             ->toArray();
-    
+
         // Check for conflicting contexts
         $conflictingContexts = array_diff($administeredUserContexts, $administratorManagerContexts);
-    
+
         if (!empty($conflictingContexts)) {
             // Check for partial administration
             if ($contextId !== null && in_array($contextId, $administratorManagerContexts)) {

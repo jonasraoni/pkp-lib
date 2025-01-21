@@ -9,14 +9,14 @@
  *
  * @class PKPAuthenticateSession
  *
- * @brief Monitor session data to control authentication flow 
+ * @brief Monitor session data to control authentication flow
  */
 
 namespace PKP\middleware;
 
-use PKP\security\Validation;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PKP\security\Validation;
 
 class PKPAuthenticateSession extends \Illuminate\Session\Middleware\AuthenticateSession
 {
@@ -24,7 +24,6 @@ class PKPAuthenticateSession extends \Illuminate\Session\Middleware\Authenticate
      * Log the user out of the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return void
      */
     protected function logout($request)
     {
@@ -39,7 +38,6 @@ class PKPAuthenticateSession extends \Illuminate\Session\Middleware\Authenticate
     /**
      * Get the path the user should be redirected to when their session is not authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
     protected function redirectTo(Request $request)

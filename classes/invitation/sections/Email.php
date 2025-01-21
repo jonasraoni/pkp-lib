@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/invitation/sections/Email.php
  *
@@ -70,7 +71,6 @@ class Email extends Section
 
     /**
      * Get all email recipients for email composer
-     * @return array
      */
     protected function getRecipientOptions(): array
     {
@@ -90,7 +90,6 @@ class Email extends Section
 
     /**
      * Get all email templates for email composer
-     * @return array
      */
     protected function getEmailTemplates(): array
     {

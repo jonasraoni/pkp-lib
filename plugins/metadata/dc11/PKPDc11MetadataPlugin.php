@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup plugins_metadata_dc11 Dublin Core 1.1 Metadata Format
  */

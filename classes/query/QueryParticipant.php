@@ -51,8 +51,8 @@ class QueryParticipant extends Model
     protected function id(): Attribute
     {
         return Attribute::make(
-            get: fn($value, $attributes) => $attributes[$this->primaryKey] ?? null,
-            set: fn($value) => [$this->primaryKey => $value],
+            get: fn ($value, $attributes) => $attributes[$this->primaryKey] ?? null,
+            set: fn ($value) => [$this->primaryKey => $value],
         );
     }
 

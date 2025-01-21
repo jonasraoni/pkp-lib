@@ -21,7 +21,6 @@ namespace PKP\validation;
 use Carbon\Carbon;
 use DateTimeInterface;
 use PKP\validation\enums\DateComparisonRule;
-use PKP\validation\ValidatorFactory;
 
 class ValidatorDateComparison extends Validator
 {
@@ -34,8 +33,7 @@ class ValidatorDateComparison extends Validator
     public function __construct(
         protected DateTimeInterface|Carbon $comparingDate,
         protected DateComparisonRule $rule
-    )
-    {
+    ) {
         $this->comparingDate = $comparingDate instanceof Carbon
             ? $comparingDate
             : Carbon::parse($comparingDate);
@@ -49,7 +47,7 @@ class ValidatorDateComparison extends Validator
         $validator = ValidatorFactory::make(
             ['value' => $value],
             ['value' => [
-                'date', 
+                'date',
                 $this->rule->value . ':' . $this->comparingDate->toDateString()
             ]]
         );

@@ -18,9 +18,9 @@
 
 namespace PKP\tests\classes\filter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\filter\Filter;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Filter::class)]
 class FilterTest extends PKPTestCase

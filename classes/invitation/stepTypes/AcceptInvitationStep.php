@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/invitation/stepType/AcceptInvitationStep.php
  *
@@ -10,6 +11,7 @@
  *
  * @brief create accept invitation steps.
  */
+
 namespace PKP\invitation\stepTypes;
 
 use PKP\components\forms\invitation\AcceptUserDetailsForm;
@@ -33,7 +35,7 @@ class AcceptInvitationStep extends InvitationStepTypes
 
         switch ($user) {
             case !null:
-                if(!$user->getData('orcidAccessToken')) {
+                if (!$user->getData('orcidAccessToken')) {
                     $steps[] = $this->verifyOrcidStep();
                     $steps[] = $this->acceptInvitationReviewStep($context);
                 }
@@ -194,8 +196,6 @@ class AcceptInvitationStep extends InvitationStepTypes
 
     /**
      * Get all form locals
-     * @param Context $context
-     * @return array
      */
     private function getFormLocals(Context $context): array
     {

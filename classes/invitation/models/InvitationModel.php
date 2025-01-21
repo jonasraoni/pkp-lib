@@ -15,13 +15,13 @@
 namespace PKP\invitation\models;
 
 use Carbon\Carbon;
+use Eloquence\Behaviours\HasCamelCasing;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\InteractsWithTime;
 use PKP\invitation\core\enums\InvitationStatus;
-use Eloquence\Behaviours\HasCamelCasing;
 
 class InvitationModel extends Model
 {
@@ -143,10 +143,10 @@ class InvitationModel extends Model
     public function scopeByUserId(Builder $query, ?int $userId): Builder
     {
         return $query->when($userId !== null, function ($query) use ($userId) {
-                return $query->where('user_id', $userId);
-            }, function ($query) {
-                return $query->whereNull('user_id');
-            });
+            return $query->where('user_id', $userId);
+        }, function ($query) {
+            return $query->whereNull('user_id');
+        });
     }
 
     /**
@@ -155,10 +155,10 @@ class InvitationModel extends Model
     public function scopeByEmail(Builder $query, ?string $email): Builder
     {
         return $query->when($email !== null, function ($query) use ($email) {
-                return $query->where('email', $email);
-            }, function ($query) {
-                return $query->whereNull('email');
-            });
+            return $query->where('email', $email);
+        }, function ($query) {
+            return $query->whereNull('email');
+        });
     }
 
     /**
@@ -167,10 +167,10 @@ class InvitationModel extends Model
     public function scopeByContextId(Builder $query, ?int $contextId): Builder
     {
         return $query->when($contextId !== null, function ($query) use ($contextId) {
-                return $query->where('context_id', $contextId);
-            }, function ($query) {
-                return $query->whereNull('context_id');
-            });
+            return $query->where('context_id', $contextId);
+        }, function ($query) {
+            return $query->whereNull('context_id');
+        });
     }
 
     /**

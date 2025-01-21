@@ -18,6 +18,7 @@
 
 namespace PKP\tests\classes\filter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterDAO;
 use PKP\filter\FilterGroup;
@@ -25,7 +26,6 @@ use PKP\filter\FilterGroupDAO;
 use PKP\filter\GenericMultiplexerFilter;
 use PKP\filter\GenericSequencerFilter;
 use PKP\tests\DatabaseTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(FilterDAO::class)]
 class FilterDAOTest extends DatabaseTestCase

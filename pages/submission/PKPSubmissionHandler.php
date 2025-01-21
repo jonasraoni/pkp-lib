@@ -266,9 +266,9 @@ abstract class PKPSubmissionHandler extends Handler
 
         if (!$isAdmin) {
             $authorUserGroupIds = UserGroup::withContextIds([$submission->getData('contextId')])
-            ->withRoleIds([Role::ROLE_ID_AUTHOR])
+                ->withRoleIds([Role::ROLE_ID_AUTHOR])
                 ->get()
-                ->map(fn($userGroup) => $userGroup->id)
+                ->map(fn ($userGroup) => $userGroup->id)
                 ->toArray();
 
             $stageAssignments = StageAssignment::withSubmissionIds([$submission->getId()])
@@ -321,7 +321,7 @@ abstract class PKPSubmissionHandler extends Handler
 
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign([
-            'pageTitle' =>  __('submission.wizard.submissionCancelled'),
+            'pageTitle' => __('submission.wizard.submissionCancelled'),
             'pageWidth' => TemplateManager::PAGE_WIDTH_NARROW,
         ]);
         $templateMgr->display('submission/cancelled.tpl');

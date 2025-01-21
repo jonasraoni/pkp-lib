@@ -12,15 +12,15 @@
 
 namespace PKP\tests\jobs\notifications;
 
-use Mockery;
-use PKP\db\DAORegistry;
 use APP\core\Application;
+use Mockery;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\db\DAORegistry;
+use PKP\emailTemplate\Repository as EmailTemplateRepository;
+use PKP\jobs\notifications\StatisticsReportMail;
 use PKP\tests\DatabaseTestCase;
 use PKP\user\Repository as UserRepository;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PKP\jobs\notifications\StatisticsReportMail;
-use PKP\emailTemplate\Repository as EmailTemplateRepository;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(StatisticsReportMail::class)]
@@ -159,7 +159,7 @@ class StatisticsReportMailTest extends DatabaseTestCase
             ->withAnyArgs()
             ->andReturn($userMock)
             ->getMock();
-        
+
         app()->instance(UserRepository::class, $userRepoMock);
 
         $statisticsReportMailJob->handle();

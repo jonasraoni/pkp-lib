@@ -18,9 +18,9 @@
 
 namespace PKP\tests\classes\filter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\filter\ClassTypeDescription;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(ClassTypeDescription::class)]
 class ClassTypeDescriptionTest extends PKPTestCase

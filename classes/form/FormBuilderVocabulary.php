@@ -36,7 +36,7 @@
  *   submitText (optional): Text to display for the submit link (default is 'Ok')
  *   submitDisabled (optional): Whether the submit button should be disabled
  *   confirmSubmit (optional): Text to display in a confirmation dialog that must be okayed
- * 		before the form is submitted
+ *   before the form is submitted
  *   cancelText (optional): Text to display for the cancel link (default is 'Cancel')
  *   hideCancel (optional): Whether the submit button should be disabled
  *   cancelAction (optional): A LinkAction object to execute when cancel is clicked

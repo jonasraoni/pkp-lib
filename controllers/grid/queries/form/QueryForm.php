@@ -37,7 +37,6 @@ use PKP\security\Role;
 use PKP\stageAssignment\StageAssignment;
 use PKP\submission\reviewAssignment\ReviewAssignment;
 use PKP\userGroup\UserGroup;
-use PKP\userGroup\relationships\UserUserGroup;
 
 class QueryForm extends Form
 {
@@ -93,7 +92,7 @@ class QueryForm extends Form
             ]);
 
             Note::create([
-                'userId' =>  $request->getUser()->getId(),
+                'userId' => $request->getUser()->getId(),
                 'assocType' => Application::ASSOC_TYPE_QUERY,
                 'assocId' => $query->id,
             ]);
@@ -313,7 +312,7 @@ class QueryForm extends Form
 
         // Get currently selected participants in the query
         $assignedParticipants = $query->id
-            ? QueryParticipant::withQueryId($query->id)->get()->map(fn($qp) => $qp->userId)->all()
+            ? QueryParticipant::withQueryId($query->id)->get()->map(fn ($qp) => $qp->userId)->all()
             : [];
 
         // Always include current user, even if not with a stage assignment
@@ -346,7 +345,7 @@ class QueryForm extends Form
                         $excludeUsers = StageAssignment::withSubmissionIds([$query->assocId])
                             ->withRoleIds([Role::ROLE_ID_AUTHOR])
                             ->get()
-                            ->map(fn($assignment) => $assignment->userId)
+                            ->map(fn ($assignment) => $assignment->userId)
                             ->all();
                     }
                 }
@@ -381,13 +380,13 @@ class QueryForm extends Form
         foreach ($usersIterator as $participantUser) {
             // fetch user groups where the user is assigned in the current context
             $allUserGroups = UserGroup::query()
-            ->withContextIds($context->getId())
-            ->whereHas('userUserGroups', function ($query) use ($participantUser) {
-                $query->withUserId($participantUser->getId())
-                      ->withActive();
-            })
-            ->get();
-    
+                ->withContextIds($context->getId())
+                ->whereHas('userUserGroups', function ($query) use ($participantUser) {
+                    $query->withUserId($participantUser->getId())
+                        ->withActive();
+                })
+                ->get();
+
             $userRoles = [];
             // get participant's assigned roles
             $participantAssignedRoles = $this->getAssignedRoles($query->assocId, $query->stageId, $participantUser->getId());

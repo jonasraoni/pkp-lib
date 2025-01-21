@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submission/reviewer/form/ReviewerReviewForm.php
  *

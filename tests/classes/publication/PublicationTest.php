@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file tests/classes/publication/PublicationTest.php
  *
@@ -19,10 +20,10 @@ namespace PKP\tests\classes\publication;
 
 use APP\publication\DAO;
 use APP\publication\Publication;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\citation\CitationDAO;
 use PKP\services\PKPSchemaService;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Publication::class)]
 class PublicationTest extends PKPTestCase
@@ -48,7 +49,7 @@ class PublicationTest extends PKPTestCase
         unset($this->publication);
         parent::tearDown();
     }
-    
+
     public function testPageArray()
     {
         $expected = [['i', 'ix'], ['6', '11'], ['19'], ['21']];

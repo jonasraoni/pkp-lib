@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/emailTemplate/Repository.php
  *

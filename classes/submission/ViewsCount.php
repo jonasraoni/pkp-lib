@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submission/ViewsCount.php
  *
@@ -21,6 +22,7 @@ interface ViewsCount
 {
     /**
      * Builds a single query to retrieve submissions count for all dashboard views
+     *
      * @param Collection<string, CollectorInterface> $keyCollectorPair [
      *   Dashboard view unique ID => Submission Collector with filters applied
      * ]

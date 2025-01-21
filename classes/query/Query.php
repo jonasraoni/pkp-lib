@@ -25,8 +25,8 @@ class Query extends Model
 {
     use HasCamelCasing;
 
-    const CREATED_AT = 'date_posted';
-    const UPDATED_AT = 'date_modified';
+    public const CREATED_AT = 'date_posted';
+    public const UPDATED_AT = 'date_modified';
 
     protected $table = 'queries';
     protected $primaryKey = 'query_id';
@@ -55,8 +55,8 @@ class Query extends Model
     protected function id(): Attribute
     {
         return Attribute::make(
-            get: fn($value, $attributes) => $attributes[$this->primaryKey] ?? null,
-            set: fn($value) => [$this->primaryKey => $value],
+            get: fn ($value, $attributes) => $attributes[$this->primaryKey] ?? null,
+            set: fn ($value) => [$this->primaryKey => $value],
         );
     }
 

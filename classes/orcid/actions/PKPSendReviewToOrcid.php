@@ -14,10 +14,6 @@
 
 namespace PKP\orcid\actions;
 
-use APP\submission\Submission;
-use PKP\context\Context;
-use PKP\submission\reviewAssignment\ReviewAssignment;
-
 abstract class PKPSendReviewToOrcid
 {
     public function __construct(

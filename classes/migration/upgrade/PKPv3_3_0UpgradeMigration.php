@@ -340,8 +340,7 @@ abstract class PKPv3_3_0UpgradeMigration extends \PKP\migration\Migration
      * Migrate submission files after major refactor
      *
      *	- Add files table to manage underlying file storage
-     *	- Replace the use of file_id/revision as a unique id with a single
-     * 		auto-incrementing submission_file_id, and update all references.
+     *	- Replace the use of file_id/revision as a unique id with a single auto-incrementing submission_file_id, and update all references.
      *	- Move revisions to a submission_file_revisons table.
      *	- Drop unused columns in submission_files table.
      *
@@ -484,7 +483,7 @@ abstract class PKPv3_3_0UpgradeMigration extends \PKP\migration\Migration
             DB::table('event_log_settings as els')
                 ->join(
                     'event_log_settings as file_setting',
-                    fn(JoinClause $join) =>
+                    fn (JoinClause $join) =>
                     $join->on('file_setting.log_id', '=', 'els.log_id')
                         ->where('file_setting.setting_name', '=', 'fileId')
                         ->where('file_setting.setting_value', '=', (string) $row->file_id)
@@ -821,7 +820,7 @@ abstract class PKPv3_3_0UpgradeMigration extends \PKP\migration\Migration
                     error_log("Failed to migrate the settings entity \"{$tableName}\"\n" . $e);
                     continue;
                 }
-                $settings->each(fn($row) => $this->_toJSON($row, $tableName, ['setting_name', 'locale'], 'setting_value'));
+                $settings->each(fn ($row) => $this->_toJSON($row, $tableName, ['setting_name', 'locale'], 'setting_value'));
             }
         }
 
@@ -876,8 +875,8 @@ abstract class PKPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 
         // Ensure ID fields are included on the filter to avoid updating similar rows
         $primaryKeys = collect(Schema::getIndexes($tableName))
-            ->filter(fn($index) => $index['primary'] || $index['unique'])
-            ->flatMap(fn($index) => $index['columns'])
+            ->filter(fn ($index) => $index['primary'] || $index['unique'])
+            ->flatMap(fn ($index) => $index['columns'])
             ->toArray();
 
         if (!count($primaryKeys)) {

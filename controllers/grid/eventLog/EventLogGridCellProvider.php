@@ -59,7 +59,7 @@ class EventLogGridCellProvider extends DataObjectGridCellProvider
     {
         $element = $row->getData();
         $columnId = $column->getId();
-        assert(($element instanceof \PKP\core\DataObject || $element instanceof EmailLogEntry) && !empty($columnId) );
+        assert(($element instanceof \PKP\core\DataObject || $element instanceof EmailLogEntry) && !empty($columnId));
         /** @var EventLogEntry $element */
         switch ($columnId) {
             case 'date':

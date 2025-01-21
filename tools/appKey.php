@@ -14,13 +14,13 @@
 
 namespace PKP\tools;
 
-use Throwable;
-use PKP\core\PKPAppKey;
 use PKP\cliTool\CommandLineTool;
 use PKP\cliTool\traits\HasCommandInterface;
 use PKP\cliTool\traits\HasParameterList;
+use PKP\core\PKPAppKey;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\Console\Exception\InvalidArgumentException as CommandInvalidArgumentException;
+use Throwable;
 
 define('APP_ROOT', dirname(__FILE__, 4));
 require_once APP_ROOT . '/tools/bootstrap.php';
@@ -31,10 +31,10 @@ class CommandAppKey extends CommandLineTool
     use HasCommandInterface;
 
     protected const AVAILABLE_OPTIONS = [
-        'validate'  => 'admin.cli.tool.appKey.options.validate.description',
-        'generate'  => 'admin.cli.tool.appKey.options.generate.description',
+        'validate' => 'admin.cli.tool.appKey.options.validate.description',
+        'generate' => 'admin.cli.tool.appKey.options.generate.description',
         'configure' => 'admin.cli.tool.appKey.options.configure.description',
-        'usage'     => 'admin.cli.tool.appKey.options.usage.description',
+        'usage' => 'admin.cli.tool.appKey.options.usage.description',
     ];
 
     /**
@@ -151,7 +151,7 @@ class CommandAppKey extends CommandLineTool
             PKPAppKey::writeAppKeyToConfig($appKey);
             $output->success(__('admin.cli.tool.appKey.success.writtenToConfig'));
         } catch (Throwable $exception) {
-            $this->getCommandInterface()->getOutput()->error($exception->getMessage());    
+            $this->getCommandInterface()->getOutput()->error($exception->getMessage());
         } finally {
             return;
         }
@@ -189,7 +189,7 @@ try {
     $tool = new CommandAppKey($argv ?? []);
     $tool->execute();
 } catch (\Throwable $exception) {
-    $output = new \PKP\cliTool\CommandInterface;
+    $output = new \PKP\cliTool\CommandInterface();
 
     if ($exception instanceof CommandInvalidArgumentException) {
         $output->errorBlock([$exception->getMessage()]);

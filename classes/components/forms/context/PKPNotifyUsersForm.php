@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/context/PKPNotifyUsersForm.php
  *
@@ -16,7 +17,6 @@
 namespace PKP\components\forms\context;
 
 use APP\core\Application;
-use APP\facades\Repo;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FieldRichTextarea;
 use PKP\components\forms\FieldText;

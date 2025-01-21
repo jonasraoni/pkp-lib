@@ -12,10 +12,10 @@
 
 namespace PKP\tests\jobs\invitations;
 
-use PKP\tests\PKPTestCase;
-use PKP\jobs\invitations\RemoveExpiredInvitationsJob;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\jobs\invitations\RemoveExpiredInvitationsJob;
+use PKP\tests\PKPTestCase;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(RemoveExpiredInvitationsJob::class)]
@@ -38,7 +38,7 @@ class RemoveExpiredInvitationsJobTest extends PKPTestCase
             unserialize($this->serializedJobData)
         );
     }
-    
+
     /**
      * Ensure that a serialized job can be unserialized and executed
      */
@@ -52,4 +52,3 @@ class RemoveExpiredInvitationsJobTest extends PKPTestCase
         $this->expectNotToPerformAssertions();
     }
 }
-

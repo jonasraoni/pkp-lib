@@ -31,7 +31,7 @@ abstract class I5885_RenameReviewReminderSettingsName extends Migration
             ->update([
                 'setting_name' => 'numDaysAfterReviewResponseReminderDue'
             ]);
-        
+
         DB::table($this->getContextSettingsTable())
             ->where('setting_name', 'numDaysBeforeSubmitReminder')
             ->update([
@@ -49,7 +49,7 @@ abstract class I5885_RenameReviewReminderSettingsName extends Migration
             ->update([
                 'setting_name' => 'numDaysBeforeInviteReminder'
             ]);
-        
+
         DB::table($this->getContextSettingsTable())
             ->where('setting_name', 'numDaysAfterReviewSubmitReminderDue')
             ->update([

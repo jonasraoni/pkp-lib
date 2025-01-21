@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/observers/events/SubmissionSubmitted.php
  *

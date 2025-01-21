@@ -12,13 +12,13 @@
 
 namespace PKP\tests\jobs\metadata;
 
-use Mockery;
-use PKP\db\DAORegistry;
-use PKP\tests\PKPTestCase;
-use PKP\jobs\metadata\BatchMetadataChangedJob;
 use APP\submission\Repository as SubmissionRepository;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Mockery;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\db\DAORegistry;
+use PKP\jobs\metadata\BatchMetadataChangedJob;
+use PKP\tests\PKPTestCase;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(BatchMetadataChangedJob::class)]
@@ -54,6 +54,7 @@ class BatchMetadataChangedJobTest extends PKPTestCase
 
         /**
          * @disregard P1013 PHP Intelephense error suppression
+         *
          * @see https://github.com/bmewburn/vscode-intelephense/issues/568
          */
         $publicationMock = Mockery::mock(\APP\publication\Publication::class)
@@ -61,7 +62,7 @@ class BatchMetadataChangedJobTest extends PKPTestCase
             ->shouldReceive('getData')
             ->with('authors')
             ->andReturn(\Illuminate\Support\LazyCollection::make([new \PKP\author\Author()]))
-            ->shouldReceive('getData') 
+            ->shouldReceive('getData')
             ->with('subject')
             ->andReturn([])
             ->shouldReceive('getData')

@@ -101,9 +101,9 @@ class SiteDAO extends \PKP\db\DAO
         $type = 'array';
         $this->update(
             'INSERT INTO site
-				(redirect_context_id, min_password_length, primary_locale, installed_locales, supported_locales)
-				VALUES
-				(?, ?, ?, ?, ?)',
+                (redirect_context_id, min_password_length, primary_locale, installed_locales, supported_locales)
+                VALUES
+                (?, ?, ?, ?, ?)',
             [
                 $site->getRedirect(),
                 (int) $site->getMinPasswordLength(),

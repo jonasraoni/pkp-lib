@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/publication/PublicationCategory.php
  *
@@ -14,8 +15,8 @@
 namespace PKP\publication;
 
 use Eloquence\Behaviours\HasCamelCasing;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class PublicationCategory extends Model
 {

@@ -151,7 +151,7 @@ class ReviewerAccessInvite extends Invitation implements IBackofficeHandleable, 
     /**
      * @inheritDoc
      */
-    public function getValidationRules(ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array 
+    public function getValidationRules(ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array
     {
         return [
             'reviewAssignmentId' => [
@@ -161,10 +161,13 @@ class ReviewerAccessInvite extends Invitation implements IBackofficeHandleable, 
                     $reviewAssignment = Repo::reviewAssignment()->get($value);
 
                     if (!$reviewAssignment) {
-                        $fail(__('invitation.reviewerAccess.validation.error.reviewAssignmentId.notExisting', 
-                            [
-                                'reviewAssignmentId' => $value
-                            ])
+                        $fail(
+                            __(
+                                'invitation.reviewerAccess.validation.error.reviewAssignmentId.notExisting',
+                                [
+                                    'reviewAssignmentId' => $value
+                                ]
+                            )
                         );
                     }
                 }

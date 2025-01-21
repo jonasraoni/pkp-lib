@@ -15,9 +15,9 @@
 namespace PKP\core;
 
 use Illuminate\Console\OutputStyle;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Console\View\Components\Factory;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 

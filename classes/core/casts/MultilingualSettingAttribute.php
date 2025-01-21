@@ -16,9 +16,9 @@
 namespace PKP\core\casts;
 
 use Exception;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use PKP\core\traits\ModelWithSettings;
 use PKP\facades\Locale;
 
@@ -32,7 +32,7 @@ class MultilingualSettingAttribute implements CastsInboundAttributes
         if (!in_array(ModelWithSettings::class, class_uses_recursive(get_class($model)))) {
             throw new Exception(
                 sprintf(
-                    "Model class %s does not support multilingual setting attributes/properties",
+                    'Model class %s does not support multilingual setting attributes/properties',
                     get_class($model)
                 )
             );
@@ -45,9 +45,9 @@ class MultilingualSettingAttribute implements CastsInboundAttributes
                 "Applying multilingual casting on non-maltilingual attribute {$key} is not allowed"
             );
         }
-        
+
         if (is_string($value)) {
-            return [$key =>  [Locale::getLocale() => $value]];
+            return [$key => [Locale::getLocale() => $value]];
         }
 
         return [$key => $value];

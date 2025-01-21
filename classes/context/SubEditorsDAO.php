@@ -46,9 +46,9 @@ class SubEditorsDAO extends \PKP\db\DAO
     {
         return $this->update(
             'INSERT INTO subeditor_submission_group
-				(context_id, assoc_id, user_id, assoc_type, user_group_id)
-				VALUES
-				(?, ?, ?, ?, ?)',
+                (context_id, assoc_id, user_id, assoc_type, user_group_id)
+                VALUES
+                (?, ?, ?, ?, ?)',
             [
                 $contextId,
                 (int) $assocId,
@@ -84,7 +84,6 @@ class SubEditorsDAO extends \PKP\db\DAO
      *
      * @param int[] $assocIds Section or category ids
      * @param int $assocType Application::ASSOC_TYPE_SECTION or Application::ASSOC_TYPE_CATEGORY
-     * @param int $contextId
      *
      * @return \Illuminate\Support\Collection<int, \stdClass> result rows with userId and userGroupId properties
      */

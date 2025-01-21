@@ -18,9 +18,9 @@
 
 namespace PKP\tests\classes\citation;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\citation\CitationListTokenizerFilter;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(CitationListTokenizerFilter::class)]
 class CitationListTokenizerFilterTest extends PKPTestCase

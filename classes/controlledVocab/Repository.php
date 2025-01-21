@@ -15,8 +15,6 @@
 namespace PKP\controlledVocab;
 
 use Illuminate\Support\Arr;
-use PKP\controlledVocab\ControlledVocab;
-use PKP\controlledVocab\ControlledVocabEntry;
 
 class Repository
 {
@@ -27,12 +25,11 @@ class Repository
         string $symbolic,
         int $assocType,
         ?int $assocId
-    ): ControlledVocab
-    {
+    ): ControlledVocab {
         return ControlledVocab::query()
             ->withSymbolics([$symbolic])
             ->withAssoc($assocType, $assocId)
-            ->firstOr(fn() => ControlledVocab::create([
+            ->firstOr(fn () => ControlledVocab::create([
                 'assocType' => $assocType,
                 'assocId' => $assocId,
                 'symbolic' => $symbolic,
@@ -47,8 +44,7 @@ class Repository
         int $assocType,
         ?int $assocId,
         ?array $locales = []
-    ): array
-    {
+    ): array {
         $result = [];
 
         ControlledVocabEntry::query()
@@ -63,7 +59,7 @@ class Repository
                     $result[$locale][] = $value;
                 }
             });
-        
+
         return $result;
     }
 
@@ -76,15 +72,14 @@ class Repository
         int $assocType,
         ?int $assocId,
         bool $deleteFirst = true,
-    ): void
-    {
+    ): void {
         $controlledVocab = $this->build($symbolic, $assocType, $assocId);
         $controlledVocab->load('controlledVocabEntries');
 
         if ($deleteFirst) {
             ControlledVocabEntry::query()
                 ->whereIn(
-                    (new ControlledVocabEntry)->getKeyName(),
+                    (new ControlledVocabEntry())->getKeyName(),
                     $controlledVocab->controlledVocabEntries->pluck('id')->toArray()
                 )
                 ->delete();
@@ -94,14 +89,14 @@ class Repository
             ->each(
                 fn (array|string $entries, string $locale) => collect(array_values(Arr::wrap($entries)))
                     ->each(
-                        fn (string $vocab, int $index) => 
+                        fn (string $vocab, int $index) =>
                             ControlledVocabEntry::create([
                                 'controlledVocabId' => $controlledVocab->id,
                                 'seq' => $index + 1,
                                 'name' => [
                                     $locale => $vocab
                                 ],
-                            ]) 
+                            ])
                     )
             );
     }

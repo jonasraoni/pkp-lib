@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/grid/settings/reviewForms/ReviewFormElementGridCellProvider.php
  *

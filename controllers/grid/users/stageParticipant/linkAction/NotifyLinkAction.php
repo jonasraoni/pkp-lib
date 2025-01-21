@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/grid/users/stageParticipant/linkAction/NotifyLinkAction.php
  *

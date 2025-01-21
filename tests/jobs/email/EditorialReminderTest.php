@@ -12,18 +12,18 @@
 
 namespace PKP\tests\jobs\email;
 
-use Mockery;
-use PKP\db\DAORegistry;
-use PKP\facades\Locale;
-use PKP\tests\PKPTestCase;
-use PKP\jobs\email\EditorialReminder;
-use PKP\user\Repository as UserRepository;
-use PKP\submission\reviewRound\ReviewRound;
 use APP\submission\Collector as SubmissionCollector;
 use APP\submission\Repository as SubmissionRepository;
-use PKP\emailTemplate\Repository as EmailTemplateRepository;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Mockery;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\db\DAORegistry;
+use PKP\emailTemplate\Repository as EmailTemplateRepository;
+use PKP\facades\Locale;
+use PKP\jobs\email\EditorialReminder;
+use PKP\submission\reviewRound\ReviewRound;
+use PKP\tests\PKPTestCase;
+use PKP\user\Repository as UserRepository;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(EditorialReminder::class)]
@@ -42,7 +42,7 @@ class EditorialReminderTest extends PKPTestCase
     public function testUnserializationGetProperJobInstance(): void
     {
         $this->assertInstanceOf(
-            EditorialReminder::class, 
+            EditorialReminder::class,
             unserialize($this->serializedJobData)
         );
     }
@@ -55,13 +55,13 @@ class EditorialReminderTest extends PKPTestCase
         $this->mockRequest();
 
         $this->mockMail();
-        
+
         /** @var EditorialReminder $editorialReminderJob*/
         $editorialReminderJob = unserialize($this->serializedJobData);
 
         $notificationSubscriptionSettingsDAO = Mockery::mock(
-                \PKP\notification\NotificationSubscriptionSettingsDAO::class
-            )
+            \PKP\notification\NotificationSubscriptionSettingsDAO::class
+        )
             ->makePartial()
             ->shouldReceive('getNotificationSubscriptionSettings')
             ->withAnyArgs()
@@ -85,7 +85,7 @@ class EditorialReminderTest extends PKPTestCase
             ])
             ->withAnyArgs()
             ->getMock();
-        
+
         $contextServiceMock = Mockery::mock(\APP\services\ContextService::class)
             ->makePartial()
             ->shouldReceive('get')
@@ -99,13 +99,14 @@ class EditorialReminderTest extends PKPTestCase
             ->makePartial()
             ->shouldReceive('get')
             ->withAnyArgs()
-            ->andReturn(new \PKP\user\User)
+            ->andReturn(new \PKP\user\User())
             ->getMock();
-        
+
         app()->instance(UserRepository::class, $userRepoMock);
 
         /**
          * @disregard P1013 PHP Intelephense error suppression
+         *
          * @see https://github.com/bmewburn/vscode-intelephense/issues/568
          */
         Locale::shouldReceive('getLocale')
@@ -120,6 +121,7 @@ class EditorialReminderTest extends PKPTestCase
 
         /**
          * @disregard P1013 PHP Intelephense error suppression
+         *
          * @see https://github.com/bmewburn/vscode-intelephense/issues/568
          */
         $submissionCollectorMock = Mockery::mock(app(SubmissionCollector::class))
@@ -140,7 +142,7 @@ class EditorialReminderTest extends PKPTestCase
             ->withAnyArgs()
             ->andReturn(collect([1,2]))
             ->getMock();
-        
+
         app()->instance(SubmissionCollector::class, $submissionCollectorMock);
 
         $publicationMock = Mockery::mock(\APP\publication\Publication::class)
@@ -170,7 +172,7 @@ class EditorialReminderTest extends PKPTestCase
             ])
             ->withAnyArgs()
             ->getMock();
-        
+
         app()->instance(SubmissionRepository::class, $submissionRepoMock);
 
         $reviewRoundMock = Mockery::mock(\PKP\submission\reviewRound\ReviewRound::class)

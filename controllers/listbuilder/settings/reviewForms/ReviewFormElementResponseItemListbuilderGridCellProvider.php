@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/listbuilder/settings/reviewForms/ReviewFormElementResponseItemListbuilderGridCellProvider.php
  *

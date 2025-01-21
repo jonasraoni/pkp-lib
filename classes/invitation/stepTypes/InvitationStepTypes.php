@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/invitation/stepType/InvitationStepTypes.php
  *
@@ -10,6 +11,7 @@
  *
  * @brief A base class to define a step types in an invitation.
  */
+
 namespace PKP\invitation\stepTypes;
 
 use PKP\context\Context;

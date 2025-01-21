@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/log/event/maps/Schema.php
  *

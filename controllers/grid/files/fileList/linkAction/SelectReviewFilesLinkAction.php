@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/grid/files/fileList/linkAction/SelectReviewFilesLinkAction.php
  *

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file plugins/importexport/native/filter/PKPNativeFilterHelper.php
  *
@@ -118,7 +119,7 @@ class PKPNativeFilterHelper
                         $coverImage['uploadName'] = trim(
                             preg_replace(
                                 "/[^a-z0-9\.\-]+/",
-                                "",
+                                '',
                                 str_replace(
                                     [' ', '_', ':'],
                                     '-',

@@ -18,10 +18,10 @@
 
 namespace PKP\tests\classes\config;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\config\Config;
 use PKP\core\Core;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Config::class)]
 class ConfigTest extends PKPTestCase
@@ -34,7 +34,7 @@ class ConfigTest extends PKPTestCase
         return [...parent::getMockedRegistryKeys(), 'configData', 'configFile'];
     }
 
-    
+
     public function testGetDefaultConfigFileName()
     {
         $expectedResult = Core::getBaseDir() . '/config.inc.php';

@@ -20,8 +20,7 @@ class ChangeProfileEmailInvitePayload extends InvitePayload
 {
     public function __construct(
         public ?string $newEmail = null,
-    ) 
-    {
+    ) {
         parent::__construct(get_object_vars($this));
     }
 }

@@ -22,7 +22,6 @@ use PKP\migration\Migration;
 
 class I10362_EventLogEditorNames extends Migration
 {
-
     /**
      * Run the migrations.
      */

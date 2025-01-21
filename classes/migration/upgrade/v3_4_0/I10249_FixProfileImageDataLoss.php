@@ -28,7 +28,7 @@ class I10249_FixProfileImageDataLoss extends \PKP\migration\Migration
      */
     public function up(): void
     {
-        $orderByModifiedDate = fn(string $a, string $b) => filemtime($a) - filemtime($b);
+        $orderByModifiedDate = fn (string $a, string $b) => filemtime($a) - filemtime($b);
         $publicFilesPath = Config::getVar('files', 'public_files_dir') . '/site';
         DB::table('user_settings')
             ->where('setting_name', '=', 'profileImage')

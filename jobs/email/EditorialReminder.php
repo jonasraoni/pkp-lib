@@ -16,7 +16,6 @@
 
 namespace PKP\jobs\email;
 
-use APP\core\Application;
 use APP\facades\Repo;
 use APP\notification\NotificationManager;
 use APP\submission\Submission;

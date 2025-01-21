@@ -169,7 +169,6 @@ class Config
     /**
      * Retrieve whether the specified configuration variable is defined, even if it's null.
      *
-     * @return bool
      */
     public static function hasVar(string $section, string $key): bool
     {

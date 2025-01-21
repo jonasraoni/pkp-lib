@@ -7,7 +7,7 @@
  * Copyright (c) 2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class PrimaryLocaleRequired 
+ * @class PrimaryLocaleRequired
  *
  * @brief Primary Locale required for mandatory multilingual fields
  */
@@ -28,8 +28,8 @@ class PrimaryLocaleRequired implements Rule
     public function passes($attribute, $value)
     {
         $providedLocales = array_keys($value);
-        if (!empty($providedLocales) && 
-            array_key_exists($this->primaryLocale, $value) && 
+        if (!empty($providedLocales) &&
+            array_key_exists($this->primaryLocale, $value) &&
             empty($value[$this->primaryLocale])) {
             return false;
         }

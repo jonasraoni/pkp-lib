@@ -16,7 +16,6 @@ namespace PKP\invitation\invitations\userRoleAssignment\rules;
 
 use APP\facades\Repo;
 use Illuminate\Contracts\Validation\Rule;
-use PKP\invitation\core\Invitation;
 
 class EmailMustNotExistRule implements Rule
 {

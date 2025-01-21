@@ -16,7 +16,6 @@ namespace PKP\migration\upgrade\v3_4_0;
 
 use Exception;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 abstract class I3573_AddPrimaryKeys extends \PKP\migration\Migration

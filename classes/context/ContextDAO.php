@@ -185,8 +185,8 @@ abstract class ContextDAO extends SchemaDAO
 
         $result = $this->retrieve(
             'SELECT * FROM ' . $this->tableName . ' AS c
-			LEFT JOIN ' . $this->settingsTableName . ' AS cs
-			ON c.' . $this->primaryKeyColumn . ' = cs.' . $this->primaryKeyColumn .
+            LEFT JOIN ' . $this->settingsTableName . ' AS cs
+            ON c.' . $this->primaryKeyColumn . ' = cs.' . $this->primaryKeyColumn .
             ' WHERE cs.setting_name = ? AND cs.setting_value = ?' .
             ($contextId !== Application::SITE_CONTEXT_ID_ALL ? ' AND c.' . $this->primaryKeyColumn . ' = ?' : ''),
             $params

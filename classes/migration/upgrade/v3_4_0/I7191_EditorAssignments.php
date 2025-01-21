@@ -26,17 +26,17 @@ abstract class I7191_EditorAssignments extends \PKP\migration\Migration
     /**
      * Retrieves the name of the section table
      */
-    protected abstract function getSectionTable(): string;
+    abstract protected function getSectionTable(): string;
 
     /**
      * Retrieves the name of the section ID field
      */
-    protected abstract function getSectionId(): string;
+    abstract protected function getSectionId(): string;
 
     /**
      * Retrieves the name of the context ID field
      */
-    protected abstract function getContextId(): string;
+    abstract protected function getContextId(): string;
 
     /**
      * Adds a user_group_id column to the subeditor_submission_group
@@ -132,23 +132,29 @@ abstract class I7191_EditorAssignments extends \PKP\migration\Migration
 
         $editorAssignmentsQuery = DB::table('user_groups', 'ug')
             // Look for role assignments at the WORKFLOW_STAGE_ID_SUBMISSION stage
-            ->join('user_group_stage AS ugs', fn (JoinClause $j) => $j->on('ug.user_group_id', '=', 'ugs.user_group_id')
-                ->whereColumn('ug.context_id', '=', 'ugs.context_id')
-                ->where('ugs.stage_id', '=', 1) // WORKFLOW_STAGE_ID_SUBMISSION
+            ->join(
+                'user_group_stage AS ugs',
+                fn (JoinClause $j) => $j->on('ug.user_group_id', '=', 'ugs.user_group_id')
+                    ->whereColumn('ug.context_id', '=', 'ugs.context_id')
+                    ->where('ugs.stage_id', '=', 1) // WORKFLOW_STAGE_ID_SUBMISSION
             )
             // Single users with the roles Role::ROLE_ID_MANAGER and Role::ROLE_ID_ASSISTANT at the context
-            ->join('user_user_groups AS uug', fn (JoinClause $j) => $j->on('uug.user_group_id', '=', 'ug.user_group_id')
-                ->whereIn('ug.role_id', [16, 4097]) // [Role::ROLE_ID_MANAGER, Role::ROLE_ID_ASSISTANT]
-                ->where($userCountQuery, '=', 1)
+            ->join(
+                'user_user_groups AS uug',
+                fn (JoinClause $j) => $j->on('uug.user_group_id', '=', 'ug.user_group_id')
+                    ->whereIn('ug.role_id', [16, 4097]) // [Role::ROLE_ID_MANAGER, Role::ROLE_ID_ASSISTANT]
+                    ->where($userCountQuery, '=', 1)
             )
             // Grabs all sections of the context
             ->join("{$this->getSectionTable()} AS s", "s.{$this->getContextId()}", '=', 'ug.context_id')
             // Only users that are not already assigned to the section
-            ->leftJoin('subeditor_submission_group AS ssg', fn (JoinClause $j) => $j->on('ssg.context_id', '=', 'ug.context_id')
-                ->whereColumn('ssg.assoc_id', '=', "s.{$this->getSectionId()}")
-                ->where('ssg.assoc_type', '=', 530) // ASSOC_TYPE_SECTION
-                ->whereColumn('ssg.user_id', '=', 'uug.user_id')
-                ->whereColumn('ssg.user_group_id', '=', 'ug.user_group_id')
+            ->leftJoin(
+                'subeditor_submission_group AS ssg',
+                fn (JoinClause $j) => $j->on('ssg.context_id', '=', 'ug.context_id')
+                    ->whereColumn('ssg.assoc_id', '=', "s.{$this->getSectionId()}")
+                    ->where('ssg.assoc_type', '=', 530) // ASSOC_TYPE_SECTION
+                    ->whereColumn('ssg.user_id', '=', 'uug.user_id')
+                    ->whereColumn('ssg.user_group_id', '=', 'ug.user_group_id')
             )
             ->whereNull('ssg.user_id')
             ->get([

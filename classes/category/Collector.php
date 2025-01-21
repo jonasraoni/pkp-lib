@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/category/Collector.php
  *
@@ -20,7 +21,6 @@ use Illuminate\Support\LazyCollection;
 use PKP\core\interfaces\CollectorInterface;
 use PKP\plugins\Hook;
 use PKP\publication\PublicationCategory;
-
 
 /**
  * @template T of Category
@@ -138,9 +138,11 @@ class Collector implements CollectorInterface
         });
 
         $qb->when($this->publicationIds !== null, function ($query) {
-            $query->whereIn('c.category_id', PublicationCategory::select('category_id')
-                ->whereIn('publication_id', $this->publicationIds)
-                ->toBase()
+            $query->whereIn(
+                'c.category_id',
+                PublicationCategory::select('category_id')
+                    ->whereIn('publication_id', $this->publicationIds)
+                    ->toBase()
             );
         });
 

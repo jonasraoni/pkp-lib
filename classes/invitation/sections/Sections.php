@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/invitation/sections/Sections.php
  *
@@ -10,6 +11,7 @@
  *
  * @brief A class to define sections in an invitation.
  */
+
 namespace PKP\invitation\sections;
 
 class Sections
@@ -42,7 +44,7 @@ class Sections
      */
     public function addSection($section, $props): void
     {
-        if(is_null($section)) {
+        if (is_null($section)) {
             $this->sections[] = $section;
         } else {
             $this->sections[$section->id] = $section;
@@ -57,7 +59,7 @@ class Sections
     {
         $state = [];
         foreach ($this->sections as $section) {
-            if(is_null($section)) {
+            if (is_null($section)) {
                 $props = [
                     ...$this->props
                 ];

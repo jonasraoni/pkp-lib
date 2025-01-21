@@ -20,22 +20,24 @@ use APP\core\Application;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\CallbackEvent;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\ProcessUtils;
 use Illuminate\Console\Scheduling\ScheduleListCommand;
 use Illuminate\Console\Scheduling\ScheduleRunCommand;
-use PKP\config\Config;
+use Illuminate\Support\ProcessUtils;
+
+use function Laravel\Prompts\select;
+
+use PKP\cliTool\CommandLineTool;
 use PKP\cliTool\traits\HasCommandInterface;
 use PKP\cliTool\traits\HasParameterList;
-use PKP\core\PKPContainer;
-use PKP\cliTool\CommandLineTool;
+use PKP\config\Config;
 use PKP\core\ConsoleCommandServiceProvider;
-use Symfony\Component\Console\Output\OutputInterface;
+use PKP\core\PKPContainer;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\Console\Exception\InvalidArgumentException as CommandInvalidArgumentException;
-use Symfony\Component\Process\Process;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
 use Throwable;
-use function Laravel\Prompts\select;
 
 define('APP_ROOT', dirname(__FILE__, 4));
 require_once APP_ROOT . '/tools/bootstrap.php';
@@ -44,13 +46,13 @@ class CommandScheduler extends CommandLineTool
 {
     use HasParameterList;
     use HasCommandInterface;
-    
+
     protected const AVAILABLE_OPTIONS = [
-        'run'       => 'admin.cli.tool.scheduler.options.run.description',
-        'list'      => 'admin.cli.tool.scheduler.options.list.description',
-        'work'      => 'admin.cli.tool.scheduler.options.work.description',
-        'test'      => 'admin.cli.tool.scheduler.options.test.description',
-        'usage'     => 'admin.cli.tool.scheduler.options.usage.description',
+        'run' => 'admin.cli.tool.scheduler.options.run.description',
+        'list' => 'admin.cli.tool.scheduler.options.list.description',
+        'work' => 'admin.cli.tool.scheduler.options.work.description',
+        'test' => 'admin.cli.tool.scheduler.options.test.description',
+        'usage' => 'admin.cli.tool.scheduler.options.usage.description',
     ];
 
     /**
@@ -134,7 +136,7 @@ class CommandScheduler extends CommandLineTool
     {
         [$input, $output] = ConsoleCommandServiceProvider::getConsoleIOInstances();
 
-        $scheduleListCommand = new ScheduleListCommand;
+        $scheduleListCommand = new ScheduleListCommand();
         $scheduleListCommand->setLaravel(PKPContainer::getInstance());
         $scheduleListCommand->setInput($input);
         $scheduleListCommand->setOutput(ConsoleCommandServiceProvider::getConsoleOutputStyle());
@@ -144,7 +146,7 @@ class CommandScheduler extends CommandLineTool
 
     /**
      * Run the task scheduling process as worker daemon
-     * 
+     *
      * This is useful in local dev environment where developers have no need to set up
      * any crontab to run the schedule task periodically.
      */
@@ -199,7 +201,7 @@ class CommandScheduler extends CommandLineTool
 
     /**
      * Run a specific scheduled task
-     * 
+     *
      * Useful to test scheduled tasks under development.
      */
     protected function test(): void
@@ -209,7 +211,7 @@ class CommandScheduler extends CommandLineTool
         /** @var \Illuminate\Console\View\Components\Factory $components */
         $components = app()->get(\Illuminate\Console\View\Components\Factory::class);
 
-        $phpBinary = ProcessUtils::escapeArgument((new PhpExecutableFinder)->find(false));
+        $phpBinary = ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false));
         $schedule = app()->get(Schedule::class); /** @var \Illuminate\Console\Scheduling\Schedule $schedule */
         $commands = $schedule->events();
 
@@ -270,16 +272,16 @@ class CommandScheduler extends CommandLineTool
      *
      * @param array $commandNames   The name of schedule task to retrieve
      * @param bool  $noScroll       Present the tasks list with no scrolling
-     * 
-     * @return int
+     *
      */
     protected function getSelectedCommandByIndex(array $commandNames, bool $noScroll = false): int
     {
         if (count($commandNames) !== count(array_unique($commandNames))) {
             // Some commands (likely closures) have the same name, append unique indexes to each one...
             $uniqueCommandNames = array_map(
-                fn ($index, $value) =>"$value [$index]",
-                array_keys($commandNames), $commandNames
+                fn ($index, $value) => "{$value} [{$index}]",
+                array_keys($commandNames),
+                $commandNames
             );
 
             $selectedCommand = select(
@@ -331,7 +333,7 @@ try {
     $tool = new CommandScheduler($argv ?? []);
     $tool->execute();
 } catch (Throwable $e) {
-    $output = new \PKP\cliTool\CommandInterface;
+    $output = new \PKP\cliTool\CommandInterface();
 
     if ($e instanceof CommandInvalidArgumentException) {
         $output->errorBlock([$e->getMessage()]);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/FieldOptions.php
  *

@@ -18,11 +18,11 @@
 
 namespace PKP\tests\classes\filter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
 use PKP\filter\FilterGroupDAO;
 use PKP\tests\DatabaseTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(FilterGroupDAO::class)]
 class FilterGroupDAOTest extends DatabaseTestCase

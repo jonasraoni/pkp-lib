@@ -265,8 +265,7 @@ abstract class PKPStatsEditorialQueryBuilder
      *
      * @param array $decisions One or more Decision::*
      *
-     * @return float Average days between submission and the first decision
-     * 		in the list of requested submissions
+     * @return float Average days between submission and the first decision in the list of requested submissions
      */
     public function getAverageDaysToDecisions($decisions)
     {

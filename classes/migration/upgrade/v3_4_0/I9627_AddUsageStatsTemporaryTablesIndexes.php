@@ -50,7 +50,7 @@ class I9627_AddUsageStatsTemporaryTablesIndexes extends Migration
                 $table->index(['load_id', 'context_id', 'ip'], 'usii_load_id_context_id_ip');
             }
         });
-        
+
         Schema::table('usage_stats_unique_item_requests_temporary_records', function (Blueprint $table) {
             if (!Schema::hasIndex('usage_stats_unique_item_requests_temporary_records', 'usir_load_id_context_id_ip')) {
                 $table->index(['load_id', 'context_id', 'ip'], 'usir_load_id_context_id_ip');

@@ -58,9 +58,9 @@ class QueuedPaymentDAO extends \PKP\db\DAO
         $this->update(
             sprintf(
                 'INSERT INTO queued_payments
-				(date_created, date_modified, expiry_date, payment_data)
-				VALUES
-				(%s, %s, %s, ?)',
+                (date_created, date_modified, expiry_date, payment_data)
+                VALUES
+                (%s, %s, %s, ?)',
                 $this->datetimeToDB(Core::getCurrentDate()),
                 $this->datetimeToDB(Core::getCurrentDate()),
                 $this->datetimeToDB($expiryDate)
@@ -84,10 +84,10 @@ class QueuedPaymentDAO extends \PKP\db\DAO
         return $this->update(
             sprintf(
                 'UPDATE queued_payments
-				SET
-					date_modified = %s,
-					payment_data = ?
-				WHERE queued_payment_id = ?',
+                SET
+                    date_modified = %s,
+                    payment_data = ?
+                WHERE queued_payment_id = ?',
                 $this->datetimeToDB(Core::getCurrentDate())
             ),
             [

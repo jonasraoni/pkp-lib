@@ -40,7 +40,7 @@ class SettingsBuilder extends Builder
     public function getModels($columns = ['*'])
     {
         $rows = $this->getModelWithSettings($columns);
-        
+
         $returner = $this->model->hydrate(
             $rows->all()
         )->all();
@@ -80,13 +80,13 @@ class SettingsBuilder extends Builder
             // Casts are always defined in snake key based column name to cast type
             // Need to convert the snake key based column names to camel case
             $casts = collect($this->model->getCasts())->mapWithKeys(
-                fn(string $cast, string $columnName): array => [
+                fn (string $cast, string $columnName): array => [
                     Str::camel($columnName) => $cast
                 ]
             )->toArray();
 
             foreach ($this->model->getSettings() as $settingName) {
-                
+
                 // If this settings column is not intened to update,
                 // no need to set any type for it
                 if (!$settingValues->has($settingName)) {

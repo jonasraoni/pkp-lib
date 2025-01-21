@@ -13,12 +13,12 @@
 namespace PKP\tests\jobs\bulk;
 
 use Mockery;
-use PKP\tests\PKPTestCase;
-use PKP\jobs\bulk\BulkEmailSender;
-use PKP\user\Collector as UserCollector;
-use PKP\user\Repository as UserRepository;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\jobs\bulk\BulkEmailSender;
+use PKP\tests\PKPTestCase;
+use PKP\user\Collector as UserCollector;
+use PKP\user\Repository as UserRepository;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(BulkEmailSender::class)]
@@ -48,7 +48,7 @@ class BulkEmailSenderTest extends PKPTestCase
     public function testRunSerializedJob(): void
     {
         $this->mockMail();
-        
+
         /** @var BulkEmailSender $bulkEmailSenderJob*/
         $bulkEmailSenderJob = unserialize($this->serializedJobData);
 
@@ -56,9 +56,9 @@ class BulkEmailSenderTest extends PKPTestCase
             ->makePartial()
             ->shouldReceive('getMany')
             ->withAnyArgs()
-            ->andReturn(\Illuminate\Support\LazyCollection::make([new \PKP\user\User]))
+            ->andReturn(\Illuminate\Support\LazyCollection::make([new \PKP\user\User()]))
             ->getMock();
-        
+
         app()->instance(UserCollector::class, $userCollectorMock);
 
         $userRepoMock = Mockery::mock(app(UserRepository::class))
@@ -67,7 +67,7 @@ class BulkEmailSenderTest extends PKPTestCase
             ->withAnyArgs()
             ->andReturn($userCollectorMock)
             ->getMock();
-        
+
         app()->instance(UserRepository::class, $userRepoMock);
 
         $bulkEmailSenderJob->handle();

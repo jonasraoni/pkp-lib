@@ -86,8 +86,8 @@ abstract class PKPOAIDAO extends \PKP\db\DAO
 
         $this->update(
             'INSERT INTO oai_resumption_tokens (token, record_offset, params, expire)
-			VALUES
-			(?, ?, ?, ?)',
+            VALUES
+            (?, ?, ?, ?)',
             [$token->id, $token->offset, serialize($token->params), $token->expire]
         );
 

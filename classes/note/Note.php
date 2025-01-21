@@ -28,8 +28,8 @@ class Note extends Model
     public const NOTE_ORDER_DATE_CREATED = 1;
     public const NOTE_ORDER_ID = 2;
 
-    const CREATED_AT = 'date_created';
-    const UPDATED_AT = 'date_modified';
+    public const CREATED_AT = 'date_created';
+    public const UPDATED_AT = 'date_modified';
 
     protected $table = 'notes';
     protected $primaryKey = 'note_id';
@@ -57,8 +57,8 @@ class Note extends Model
     protected function id(): Attribute
     {
         return Attribute::make(
-            get: fn($value, $attributes) => $attributes[$this->primaryKey] ?? null,
-            set: fn($value) => [$this->primaryKey => $value],
+            get: fn ($value, $attributes) => $attributes[$this->primaryKey] ?? null,
+            set: fn ($value) => [$this->primaryKey => $value],
         );
     }
 
@@ -110,7 +110,7 @@ class Note extends Model
     public function scopeWithAssoc(Builder $query, int $assocType, int $assocId): Builder
     {
         return $query->where('assoc_type', $assocType)
-                     ->where('assoc_id', $assocId);
+            ->where('assoc_id', $assocId);
     }
 
     /**

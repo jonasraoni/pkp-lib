@@ -9,7 +9,6 @@
  *
  * @class RemoveExpiredInvitationsJob
  *
- *
  * @brief Job to remove all expired invitations
  */
 

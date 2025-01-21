@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/publication/PKPMetadataForm.php
  *
@@ -16,12 +17,12 @@
 namespace PKP\components\forms\publication;
 
 use APP\publication\Publication;
-use PKP\controlledVocab\ControlledVocab;
 use PKP\components\forms\FieldControlledVocab;
 use PKP\components\forms\FieldRichTextarea;
 use PKP\components\forms\FieldText;
 use PKP\components\forms\FormComponent;
 use PKP\context\Context;
+use PKP\controlledVocab\ControlledVocab;
 
 class PKPMetadataForm extends FormComponent
 {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/grid/files/query/QueryNoteFilesCategoryGridDataProvider.php
  *

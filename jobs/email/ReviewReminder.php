@@ -18,14 +18,14 @@ namespace PKP\jobs\email;
 
 use APP\facades\Repo;
 use Illuminate\Support\Facades\Mail;
-use PKP\log\event\PKPSubmissionEventLogEntry;
-use PKP\core\PKPApplication;
 use PKP\core\Core;
+use PKP\core\PKPApplication;
 use PKP\invitation\invitations\reviewerAccess\ReviewerAccessInvite;
-use PKP\log\SubmissionEmailLogEventType;
-use PKP\mail\mailables\ReviewResponseRemindAuto;
-use PKP\mail\mailables\ReviewRemindAuto;
 use PKP\jobs\BaseJob;
+use PKP\log\event\PKPSubmissionEventLogEntry;
+use PKP\log\SubmissionEmailLogEventType;
+use PKP\mail\mailables\ReviewRemindAuto;
+use PKP\mail\mailables\ReviewResponseRemindAuto;
 
 class ReviewReminder extends BaseJob
 {
@@ -33,8 +33,7 @@ class ReviewReminder extends BaseJob
         public int $contextId,
         public int $reviewAssignmentId,
         public string $mailableClass
-    )
-    {
+    ) {
         parent::__construct();
     }
 

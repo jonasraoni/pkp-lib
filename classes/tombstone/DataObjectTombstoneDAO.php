@@ -120,9 +120,9 @@ class DataObjectTombstoneDAO extends DAO
         $this->update(
             sprintf(
                 'INSERT INTO data_object_tombstones
-				(data_object_id, date_deleted, set_spec, set_name, oai_identifier)
-				VALUES
-				(?, %s, ?, ?, ?)',
+                (data_object_id, date_deleted, set_spec, set_name, oai_identifier)
+                VALUES
+                (?, %s, ?, ?, ?)',
                 $this->datetimeToDB(date('Y-m-d H:i:s'))
             ),
             [
@@ -149,12 +149,12 @@ class DataObjectTombstoneDAO extends DAO
         $affectedRows = $this->update(
             sprintf(
                 'UPDATE	data_object_tombstones SET
-					data_object_id = ?,
-					date_deleted = %s,
-					set_spec = ?,
-					set_name = ?,
-					oai_identifier = ?
-					WHERE	tombstone_id = ?',
+                    data_object_id = ?,
+                    date_deleted = %s,
+                    set_spec = ?,
+                    set_name = ?,
+                    oai_identifier = ?
+                    WHERE	tombstone_id = ?',
                 $this->datetimeToDB(date('Y-m-d H:i:s'))
             ),
             [
@@ -184,8 +184,8 @@ class DataObjectTombstoneDAO extends DAO
     {
         $result = $this->retrieve(
             'SELECT DISTINCT dot.set_spec AS set_spec, dot.set_name AS set_name FROM data_object_tombstones dot
-			LEFT JOIN data_object_tombstone_oai_set_objects oso ON (dot.tombstone_id = oso.tombstone_id)
-			WHERE oso.assoc_type = ? AND oso.assoc_id = ?',
+            LEFT JOIN data_object_tombstone_oai_set_objects oso ON (dot.tombstone_id = oso.tombstone_id)
+            WHERE oso.assoc_type = ? AND oso.assoc_id = ?',
             [$assocType, $assocId]
         );
 
@@ -237,9 +237,9 @@ class DataObjectTombstoneDAO extends DAO
         foreach ($dataObjectTombstone->getOAISetObjectsIds() as $assocType => $assocId) {
             $this->update(
                 'INSERT INTO data_object_tombstone_oai_set_objects
-					(tombstone_id, assoc_type, assoc_id)
-					VALUES
-					(?, ?, ?)',
+                    (tombstone_id, assoc_type, assoc_id)
+                    VALUES
+                    (?, ?, ?)',
                 [
                     (int) $dataObjectTombstone->getId(),
                     (int) $assocType,
@@ -257,9 +257,9 @@ class DataObjectTombstoneDAO extends DAO
         foreach ($dataObjectTombstone->getOAISetObjectsIds() as $assocType => $assocId) {
             $this->update(
                 'UPDATE data_object_tombstone_oai_set_objects SET
-					assoc_type = ?,
-					assoc_id = ?
-					WHERE	tombstone_id = ?',
+                    assoc_type = ?,
+                    assoc_id = ?
+                    WHERE	tombstone_id = ?',
                 [
                     $assocType,
                     $assocId,
@@ -281,8 +281,8 @@ class DataObjectTombstoneDAO extends DAO
     public function _getSelectTombstoneSql(?int $assocType, ?int $assocId): string
     {
         return 'FROM data_object_tombstones dot
-			LEFT JOIN data_object_tombstone_oai_set_objects oso ON (dot.tombstone_id = oso.tombstone_id)
-			WHERE dot.tombstone_id = ?' .
+            LEFT JOIN data_object_tombstone_oai_set_objects oso ON (dot.tombstone_id = oso.tombstone_id)
+            WHERE dot.tombstone_id = ?' .
             (isset($assocId) && isset($assocType) ? 'AND oso.assoc_type = ? AND oso.assoc_id = ?' : '');
     }
 }

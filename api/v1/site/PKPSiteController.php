@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file api/v1/site/PKPSiteController.php
  *

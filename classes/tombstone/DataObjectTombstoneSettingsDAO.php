@@ -80,8 +80,8 @@ class DataObjectTombstoneSettingsDAO extends \PKP\db\DAO
                 $type = null;
                 $this->update(
                     'INSERT INTO data_object_tombstone_settings
-				(tombstone_id, setting_name, setting_value, setting_type, locale)
-				VALUES (?, ?, ?, ?, ?)',
+                (tombstone_id, setting_name, setting_value, setting_type, locale)
+                VALUES (?, ?, ?, ?, ?)',
                     [(int) $tombstoneId, $name, $this->convertToDB($localeValue, $type), $type, $locale]
                 );
             }

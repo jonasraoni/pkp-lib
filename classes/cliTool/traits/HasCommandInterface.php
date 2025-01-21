@@ -29,7 +29,7 @@ trait HasCommandInterface
      */
     public function setCommandInterface(?CommandInterface $commandInterface = null): self
     {
-        $this->commandInterface = $commandInterface ?? new CommandInterface;
+        $this->commandInterface = $commandInterface ?? new CommandInterface();
 
         return $this;
     }
@@ -48,7 +48,7 @@ trait HasCommandInterface
     protected function printCommandList(array $options, bool $shouldTranslate = true): void
     {
         $width = (int)collect(array_keys($options))
-            ->map(fn($command) => Helper::width($command))
+            ->map(fn ($command) => Helper::width($command))
             ->sort()
             ->last() + 2;
 

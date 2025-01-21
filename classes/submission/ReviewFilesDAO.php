@@ -31,9 +31,9 @@ class ReviewFilesDAO extends \PKP\db\DAO
     {
         $this->update(
             'INSERT INTO review_files
-			(review_id, submission_file_id)
-			VALUES
-			(?, ?)',
+            (review_id, submission_file_id)
+            VALUES
+            (?, ?)',
             [(int) $reviewId, (int) $submissionFileId]
         );
     }

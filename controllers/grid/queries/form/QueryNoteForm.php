@@ -58,7 +58,7 @@ class QueryNoteForm extends Form
 
         if ($noteId === null) {
             // Create a new (placeholder) note.
-            $note = new Note;
+            $note = new Note();
             $note->assocType = Application::ASSOC_TYPE_QUERY;
             $note->assocId = $query->id;
             $note->userId = $user->getId();

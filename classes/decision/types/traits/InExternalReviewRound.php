@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/decision/types/traits/InExternalReviewRound.php
  *
@@ -80,7 +81,7 @@ trait InExternalReviewRound
             $reviewAssignments = Repo::reviewAssignment()->getCollector()
                 ->filterByReviewRoundIds([$reviewRound->getId()])
                 ->getMany()
-                ->keyBy(fn(ReviewAssignment $reviewAssignment, int $key) => $reviewAssignment->getId())
+                ->keyBy(fn (ReviewAssignment $reviewAssignment, int $key) => $reviewAssignment->getId())
                 ->sortKeys()
                 ->toArray();
 

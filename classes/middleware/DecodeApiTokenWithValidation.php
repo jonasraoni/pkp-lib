@@ -25,11 +25,10 @@ use Firebase\JWT\SignatureInvalidException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use PKP\middleware\HasUser;
-use PKP\middleware\traits\HasRequiredMiddleware;
 use PKP\config\Config;
 use PKP\core\PKPJwt as JWT;
 use PKP\core\PKPSessionGuard;
+use PKP\middleware\traits\HasRequiredMiddleware;
 use PKP\user\User;
 use stdClass;
 use Throwable;
@@ -48,7 +47,7 @@ class DecodeApiTokenWithValidation
             HasUser::class,
         ];
     }
-    
+
     /**
      * Decode and validate the API token with incoming api request.
      *
@@ -106,13 +105,13 @@ class DecodeApiTokenWithValidation
             }
         } catch (Throwable $exception) {
 
-            if($exception instanceof SignatureInvalidException) {
+            if ($exception instanceof SignatureInvalidException) {
                 return response()->json([
                     'error' => __('api.400.invalidApiToken'),
                 ], Response::HTTP_BAD_REQUEST);
             }
 
-            if($exception instanceof DomainException || $exception instanceof UnexpectedValueException) {
+            if ($exception instanceof DomainException || $exception instanceof UnexpectedValueException) {
                 return response()->json([
                     'error' => __('api.400.tokenCouldNotBeDecoded'),
                 ], Response::HTTP_BAD_REQUEST);

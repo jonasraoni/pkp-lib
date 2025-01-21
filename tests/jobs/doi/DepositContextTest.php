@@ -12,15 +12,15 @@
 
 namespace PKP\tests\jobs\doi;
 
-use Mockery;
-use PKP\db\DAORegistry;
-use PKP\context\Context;
 use APP\core\Application;
-use PKP\tests\PKPTestCase;
-use PKP\jobs\doi\DepositContext;
 use APP\doi\Repository as DoiRepository;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Mockery;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\context\Context;
+use PKP\db\DAORegistry;
+use PKP\jobs\doi\DepositContext;
+use PKP\tests\PKPTestCase;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(DepositContext::class)]
@@ -56,6 +56,7 @@ class DepositContextTest extends PKPTestCase
 
         /**
          * @disregard P1013 PHP Intelephense error suppression
+         *
          * @see https://github.com/bmewburn/vscode-intelephense/issues/568
          */
         $contextMock = Mockery::mock(get_class(Application::getContextDAO()->newDataObject()))

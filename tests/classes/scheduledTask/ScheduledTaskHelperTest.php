@@ -64,7 +64,7 @@ class ScheduledTaskHelperTest extends PKPTestCase
      * @param string $taskId
      * @param string $taskName
      * @param string $message
-     * 
+     *
      * @covers ScheduledTaskHelper::notifyExecutionResult
      */
     #[DataProvider('notifyExecutionResultTestsDataProvider')]

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file pages/dashboard/DashboardHandler.php
  *
@@ -19,6 +20,7 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
+use PKP\config\Config;
 use PKP\core\JSONMessage;
 use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;
@@ -27,7 +29,6 @@ use PKP\security\authorization\PKPSiteAccessPolicy;
 use PKP\security\Role;
 use PKP\submission\GenreDAO;
 use PKP\submission\PKPSubmission;
-use PKP\config\Config;
 use PKP\userGroup\UserGroup;
 
 define('SUBMISSIONS_LIST_ACTIVE', 'active');
@@ -78,7 +79,7 @@ class DashboardHandler extends Handler
         }
 
 
-        if(Config::getVar('features', 'enable_new_submission_listing')) {
+        if (Config::getVar('features', 'enable_new_submission_listing')) {
             $pkpPageRouter = $request->getRouter();  /** @var \PKP\core\PKPPageRouter $pkpPageRouter */
             $pkpPageRouter->redirectHome($request);
         }
@@ -118,7 +119,7 @@ class DashboardHandler extends Handler
         $items = $collector->limit(30)->getMany();
 
         $userGroups = UserGroup::withContextIds([$context->getId()])
-        ->lazy();
+            ->lazy();
 
         /** @var GenreDAO $genreDao */
         $genreDao = DAORegistry::getDAO('GenreDAO');

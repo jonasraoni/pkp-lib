@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup controllers_confirmationModal_linkAction Confirmation Modal Link Action
  */

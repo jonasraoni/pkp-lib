@@ -30,7 +30,6 @@ class NewLibraryFileForm extends LibraryFileForm
     /**
      * Constructor.
      *
-     * @param int $contextId
      */
     public function __construct(int $contextId)
     {

@@ -18,10 +18,10 @@
 
 namespace PKP\tests\classes\xslt;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\tests\PKPTestCase;
 use PKP\tests\PKPTestHelper;
 use PKP\xslt\XMLTypeDescription;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(XMLTypeDescription::class)]
 class XMLTypeDescriptionTest extends PKPTestCase
@@ -47,11 +47,11 @@ class XMLTypeDescriptionTest extends PKPTestCase
         $testXmlDom->load(dirname(__FILE__) . '/dtdsample-valid.xml');
         self::assertTrue($typeDescription->isCompatible($testXmlDom));
         $testXmlDom->load(dirname(__FILE__) . '/dtdsample-invalid.xml');
-        
+
         $exception = null; /** @var \Throwable $exception */
         try {
             $typeDescription->isCompatible($testXmlDom);
-        } catch(\Throwable $exception) {
+        } catch (\Throwable $exception) {
             self::assertMatchesRegularExpression('/element collection content does not follow the DTD/i', $exception?->getMessage());
         }
 

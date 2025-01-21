@@ -12,7 +12,6 @@
  * @brief Adds user role end email template
  */
 
-
 namespace PKP\migration\upgrade\v3_5_0;
 
 use APP\facades\Repo;
@@ -21,7 +20,6 @@ use PKP\migration\Migration;
 
 class COA75_AddUserRoleEndEmail extends Migration
 {
-
     /**
      * @inheritDoc
      */

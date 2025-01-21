@@ -54,7 +54,6 @@ class GenreDAO extends DAO
     /**
      * Retrieve all genres
      *
-     * @param int $contextId
      * @param ?\PKP\db\DBResultRange $rangeInfo optional
      *
      * @return DAOResultFactory<Genre> containing matching genres
@@ -63,8 +62,8 @@ class GenreDAO extends DAO
     {
         $result = $this->retrieveRange(
             'SELECT * FROM genres
-			WHERE	enabled = ? AND context_id = ?
-			ORDER BY seq',
+            WHERE	enabled = ? AND context_id = ?
+            ORDER BY seq',
             [1, $contextId],
             $rangeInfo
         );
@@ -84,8 +83,8 @@ class GenreDAO extends DAO
     {
         $result = $this->retrieveRange(
             'SELECT * FROM genres
-			WHERE enabled = ? AND context_id = ? AND dependent = ?
-			ORDER BY seq',
+            WHERE enabled = ? AND context_id = ? AND dependent = ?
+            ORDER BY seq',
             [1, $contextId, (int) $dependentFilesOnly],
             $rangeInfo
         );
@@ -105,8 +104,8 @@ class GenreDAO extends DAO
     {
         $result = $this->retrieveRange(
             'SELECT * FROM genres
-			WHERE enabled = ? AND context_id = ? AND supplementary = ?
-			ORDER BY seq',
+            WHERE enabled = ? AND context_id = ? AND supplementary = ?
+            ORDER BY seq',
             [1, $contextId, (int) $supplementaryFilesOnly],
             $rangeInfo
         );
@@ -125,8 +124,8 @@ class GenreDAO extends DAO
     {
         $result = $this->retrieveRange(
             'SELECT * FROM genres
-			WHERE enabled = ? AND context_id = ? AND dependent = ? AND supplementary = ?
-			ORDER BY seq',
+            WHERE enabled = ? AND context_id = ? AND dependent = ? AND supplementary = ?
+            ORDER BY seq',
             [1, $contextId, 0, 0],
             $rangeInfo
         );
@@ -264,9 +263,9 @@ class GenreDAO extends DAO
     {
         $this->update(
             'INSERT INTO genres
-				(entry_key, seq, context_id, category, dependent, supplementary, required)
-			VALUES
-				(?, ?, ?, ?, ?, ?, ?)',
+                (entry_key, seq, context_id, category, dependent, supplementary, required)
+            VALUES
+                (?, ?, ?, ?, ?, ?, ?)',
             [
                 $genre->getKey(),
                 (float) $genre->getSequence(),
@@ -292,14 +291,14 @@ class GenreDAO extends DAO
     {
         $this->update(
             'UPDATE genres
-			SET	entry_key = ?,
-				seq = ?,
-				dependent = ?,
-				supplementary = ?,
-				enabled = ?,
-				category = ?,
-				required = ?
-			WHERE	genre_id = ?',
+            SET	entry_key = ?,
+                seq = ?,
+                dependent = ?,
+                supplementary = ?,
+                enabled = ?,
+                category = ?,
+                required = ?
+            WHERE	genre_id = ?',
             [
                 $genre->getKey(),
                 (float) $genre->getSequence(),

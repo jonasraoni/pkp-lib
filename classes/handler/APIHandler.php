@@ -17,7 +17,6 @@ namespace PKP\handler;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Pipeline;
 use PKP\core\PKPBaseController;
-use PKP\core\PKPContainer;
 use PKP\core\PKPRoutingProvider;
 use PKP\plugins\Hook;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -35,17 +34,17 @@ class APIHandler extends PKPHandler
      */
     protected ?string $_handlerPath = null;
 
-    /** 
+    /**
      * Define if all the path building for admin api
      */
     protected bool $_apiForAdmin = false;
 
-    /** 
+    /**
      * The API routing controller class
      */
     protected PKPBaseController $apiController;
 
-    /** 
+    /**
      * List of route details that has been added via hook
      */
     protected array $routesFromHook = [];
@@ -83,12 +82,12 @@ class APIHandler extends PKPHandler
         return $this->apiController;
     }
 
-    /** 
+    /**
      * Run the API routes
      */
     public function runRoutes(): mixed
-    {   
-        if(app('router')->getRoutes()->count() === 0) {
+    {
+        if (app('router')->getRoutes()->count() === 0) {
             return response()->json([
                 'error' => __('api.400.routeNotDefined')
             ], Response::HTTP_BAD_REQUEST)->send();
@@ -103,17 +102,17 @@ class APIHandler extends PKPHandler
                     return app('router')->dispatch($request);
                 });
 
-            if($response instanceof Throwable) {
+            if ($response instanceof Throwable) {
                 throw $response;
             }
 
-            if($response === null) {
+            if ($response === null) {
                 return response()->json([
                     'error' => __('api.417.routeResponseIsNull')
                 ], Response::HTTP_EXPECTATION_FAILED)->send();
             }
 
-            if(is_object($response) && method_exists($response, 'send')) {
+            if (is_object($response) && method_exists($response, 'send')) {
                 return $response->send();
             }
 
@@ -164,7 +163,7 @@ class APIHandler extends PKPHandler
     /**
      * Add a new route details pushed from the `APIHandler::endpoints::ENTITY_NAME` hook
      * for the current running API Controller
-     * 
+     *
      * @param string    $method     The route HTTP request method e.g. `GET`,`POST`,...
      * @param string    $uri        The route uri segment
      * @param callable  $callback   The callback handling to execute actions when route got hit

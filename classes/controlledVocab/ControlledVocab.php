@@ -15,13 +15,12 @@
 namespace PKP\controlledVocab;
 
 use Eloquence\Behaviours\HasCamelCasing;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Builder;
-use PKP\controlledVocab\ControlledVocabEntry;
 use PKP\facades\Locale;
 
 class ControlledVocab extends Model
@@ -140,7 +139,7 @@ class ControlledVocab extends Model
                         ),
                         '=',
                         'submissions.submission_id'
-                    ), 
+                    ),
                 $contextId
             );
     }
@@ -151,7 +150,7 @@ class ControlledVocab extends Model
      * @return array $controlledVocabEntryId => name
      */
     public function enumerate(string $settingName = 'name'): array
-    {    
+    {
         return DB::table('controlled_vocab_entries AS e')
             ->leftJoin(
                 'controlled_vocab_entry_settings AS l',

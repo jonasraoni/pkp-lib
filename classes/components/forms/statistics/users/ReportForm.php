@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/statistics/users/ReportForm.php
  *
@@ -15,13 +16,10 @@
 
 namespace PKP\components\forms\statistics\users;
 
-use APP\facades\Repo;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FormComponent;
 use PKP\context\Context;
 use PKP\userGroup\UserGroup;
-use PKP\userGroup\Repository as UserGroupRepository;
-
 
 class ReportForm extends FormComponent
 {

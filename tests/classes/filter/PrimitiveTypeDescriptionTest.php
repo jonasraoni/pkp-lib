@@ -24,11 +24,11 @@
 
 namespace PKP\tests\classes\filter;
 
-use PHPUnit\Framework\Attributes\DataProvider;
-use PKP\filter\TypeDescription;
-use PKP\filter\PrimitiveTypeDescription;
-use PKP\tests\PKPTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PKP\filter\PrimitiveTypeDescription;
+use PKP\filter\TypeDescription;
+use PKP\tests\PKPTestCase;
 use stdClass;
 
 #[CoversClass(PrimitiveTypeDescription::class)]

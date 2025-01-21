@@ -16,13 +16,13 @@
 
 namespace PKP\plugins;
 
-use Illuminate\Support\Facades\Cache;
 use APP\core\Application;
 use APP\core\Request;
 use APP\facades\Repo;
 use APP\statistics\StatisticsHelper;
 use APP\template\TemplateManager;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use PKP\config\Config;
 use PKP\context\Context;
 use PKP\core\Core;

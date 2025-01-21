@@ -59,7 +59,6 @@ class LocaleBundle
      * @param string $key Locale key
      * @param array $params Named substitution parameters
      *
-     * @return ?string
      */
     public function translateSingular(string $key, array $params = []): ?string
     {
@@ -76,7 +75,6 @@ class LocaleBundle
      * @param int $count Count of items
      * @param array $params Named substitution parameters
      *
-     * @return string
      */
     public function translatePlural(string $key, int $count, array $params = []): ?string
     {
@@ -132,7 +130,7 @@ class LocaleBundle
      */
     public function getTranslator(): Translator
     {
-        if($this->translator) {
+        if ($this->translator) {
             return $this->translator;
         }
         // Caches only the supported locales (avoid spending time with one-offs)

@@ -44,9 +44,9 @@ class ReviewFormElementDAO extends \PKP\db\DAO
         }
         $result = $this->retrieve(
             'SELECT	*
-			FROM	review_form_elements
-			WHERE	review_form_element_id = ?
-			' . ($reviewFormId ? ' AND review_form_id = ?' : ''),
+            FROM	review_form_elements
+            WHERE	review_form_element_id = ?
+            ' . ($reviewFormId ? ' AND review_form_id = ?' : ''),
             $params
         );
         $row = $result->current();
@@ -120,9 +120,9 @@ class ReviewFormElementDAO extends \PKP\db\DAO
     {
         $this->update(
             'INSERT INTO review_form_elements
-				(review_form_id, seq, element_type, required, included)
-			VALUES
-				(?, ?, ?, ?, ?)',
+                (review_form_id, seq, element_type, required, included)
+            VALUES
+                (?, ?, ?, ?, ?)',
             [
                 (int) $reviewFormElement->getReviewFormId(),
                 $reviewFormElement->getSequence() == null ? 0 : (float) $reviewFormElement->getSequence(),
@@ -146,12 +146,12 @@ class ReviewFormElementDAO extends \PKP\db\DAO
     {
         $returner = $this->update(
             'UPDATE review_form_elements
-				SET	review_form_id = ?,
-					seq = ?,
-					element_type = ?,
-					required = ?,
-					included = ?
-				WHERE	review_form_element_id = ?',
+                SET	review_form_id = ?,
+                    seq = ?,
+                    element_type = ?,
+                    required = ?,
+                    included = ?
+                WHERE	review_form_element_id = ?',
             [
                 (int) $reviewFormElement->getReviewFormId(),
                 (float) $reviewFormElement->getSequence(),
@@ -218,8 +218,8 @@ class ReviewFormElementDAO extends \PKP\db\DAO
 
         $this->update(
             'DELETE FROM review_form_element_settings
-			WHERE review_form_element_id = ? AND setting_name = ?
-			' . ($locale ? ' AND locale = ?' : ''),
+            WHERE review_form_element_id = ? AND setting_name = ?
+            ' . ($locale ? ' AND locale = ?' : ''),
             $params
         );
     }
@@ -281,9 +281,9 @@ class ReviewFormElementDAO extends \PKP\db\DAO
 
         $result = $this->retrieve(
             'SELECT	COUNT(*) AS row_count
-			FROM	review_form_elements
-			WHERE	review_form_element_id = ?
-				' . ($reviewFormId ? ' AND review_form_id = ?' : ''),
+            FROM	review_form_elements
+            WHERE	review_form_element_id = ?
+                ' . ($reviewFormId ? ' AND review_form_id = ?' : ''),
             $params
         );
         $row = $result->current();

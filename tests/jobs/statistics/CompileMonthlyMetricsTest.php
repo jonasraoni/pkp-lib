@@ -13,10 +13,10 @@
 namespace PKP\tests\jobs\statistics;
 
 use Mockery;
-use PKP\tests\PKPTestCase;
-use PKP\jobs\statistics\CompileMonthlyMetrics;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\jobs\statistics\CompileMonthlyMetrics;
+use PKP\tests\PKPTestCase;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(CompileMonthlyMetrics::class)]
@@ -69,7 +69,7 @@ class CompileMonthlyMetricsTest extends PKPTestCase
             ])
             ->withAnyArgs()
             ->getMock();
-        
+
         app()->instance('sushiStats', $statsSushiService);
 
         $compileMonthlyMetricsJob->handle();

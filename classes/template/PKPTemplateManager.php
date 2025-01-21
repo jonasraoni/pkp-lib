@@ -1495,10 +1495,9 @@ class PKPTemplateManager extends Smarty
      * Display the sidebar
      *
      * @param array $args [
-     *
-     *		@option array Params passed to the hook
-     *		@option Smarty
-     *		@option string The output
+     *   @option array Params passed to the hook
+     *   @option Smarty
+     *   @option string The output
      * ]
      */
     public function displaySidebar(string $hookName, array $args): bool

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup controllers_api_file_linkAction Link action API controller
  */

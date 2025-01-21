@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/user/maps/Schema.php
  *
@@ -187,7 +188,7 @@ class Schema extends \PKP\core\maps\Schema
                     $output[$prop] = [];
                     if ($this->context) {
                         $interests = collect(Repo::userInterest()->getInterestsForUser($user))
-                            ->map(fn($value, $index) => ['id' => $index, 'interest' => $value])
+                            ->map(fn ($value, $index) => ['id' => $index, 'interest' => $value])
                             ->values()
                             ->toArray();
 

@@ -105,9 +105,9 @@ class Repository
         Note::create([
             'assocType' => Application::ASSOC_TYPE_QUERY,
             'assocId' => $query->id,
-            'title' =>  $title,
-            'contents' =>  $content,
-            'userId' =>  $fromUser->getId(),
+            'title' => $title,
+            'contents' => $content,
+            'userId' => $fromUser->getId(),
         ]);
 
         // Add task for assigned participants

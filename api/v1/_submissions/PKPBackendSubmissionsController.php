@@ -39,7 +39,6 @@ use PKP\submission\DashboardView;
 use PKP\submission\PKPSubmission;
 use PKP\userGroup\UserGroup;
 
-
 abstract class PKPBackendSubmissionsController extends PKPBaseController
 {
     use AnonymizeData;
@@ -579,7 +578,7 @@ abstract class PKPBackendSubmissionsController extends PKPBaseController
                     break;
                 case 'isUnassigned':
                     $collector->filterByisUnassigned(true);
-                    break;             
+                    break;
             }
         }
 

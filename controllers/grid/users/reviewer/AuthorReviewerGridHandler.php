@@ -162,7 +162,7 @@ class AuthorReviewerGridHandler extends PKPReviewerGridHandler
             ->filterByReviewRoundIds([$reviewRound->getId()])
             ->filterByReviewMethods([ReviewAssignment::SUBMISSION_REVIEW_METHOD_OPEN])
             ->getMany()
-            ->keyBy(fn(ReviewAssignment $reviewAssignment, int $key) => $reviewAssignment->getId())
+            ->keyBy(fn (ReviewAssignment $reviewAssignment, int $key) => $reviewAssignment->getId())
             ->sortKeys()
             ->toArray();
     }

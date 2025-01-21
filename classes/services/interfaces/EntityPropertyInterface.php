@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/services/interfaces/EntityPropertyInterface.php
  *
@@ -25,8 +26,8 @@ interface EntityPropertyInterface
      * @param object $entity The object to convert
      * @param array $props The properties to include in the result
      * @param array $args Additional variable which may be required
-     *		$args['request'] PKPRequest Required
-     *		$args['apiRequest'] \Illuminate\Http\Request
+     *  $args['request'] PKPRequest Required
+     *  $args['apiRequest'] \Illuminate\Http\Request
      *
      * @return array
      */
@@ -37,8 +38,8 @@ interface EntityPropertyInterface
      *
      * @param object $entity The object to convert
      * @param array $args Additional variables which may be required
-     *		$args['request'] PKPRequest Required
-     *		$args['apiRequest'] \Illuminate\Http\Request
+     *  $args['request'] PKPRequest Required
+     *  $args['apiRequest'] \Illuminate\Http\Request
      *
      * @return array
      */
@@ -49,8 +50,8 @@ interface EntityPropertyInterface
      *
      * @param object $entity The object to convert
      * @param array $args Additional variable which may be required
-     *		$args['request'] PKPRequest Required
-     *		$args['apiRequest'] \Illuminate\Http\Request
+     *  $args['request'] PKPRequest Required
+     *  $args['apiRequest'] \Illuminate\Http\Request
      *
      * @return array
      */

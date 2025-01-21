@@ -20,8 +20,7 @@ class ReviewerAccessInvitePayload extends InvitePayload
 {
     public function __construct(
         public ?int $reviewAssignmentId = null,
-    ) 
-    {
+    ) {
         parent::__construct(get_object_vars($this));
     }
 }

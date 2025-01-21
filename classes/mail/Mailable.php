@@ -92,7 +92,7 @@ class Mailable extends IlluminateMailable
     public const ATTACHMENT_SUBMISSION_FILE = 'submissionFileId';
     public const ATTACHMENT_LIBRARY_FILE = 'libraryFileId';
 
-    
+
 
     /** @var string|null Locale key for the name of this Mailable */
     protected static ?string $name = null;
@@ -358,7 +358,7 @@ class Mailable extends IlluminateMailable
     {
         $this->subject ??= ''; // Allow email with empty subject if not set
         $withoutTagViewData = collect($this->viewData)
-            ->map(fn(mixed $viewableData) => is_string($viewableData) ? strip_tags($viewableData) : $viewableData)
+            ->map(fn (mixed $viewableData) => is_string($viewableData) ? strip_tags($viewableData) : $viewableData)
             ->toArray();
 
         $subject = app('mailer')->compileParams($this->subject, $withoutTagViewData);

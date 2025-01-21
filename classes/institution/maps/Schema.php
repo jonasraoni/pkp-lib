@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/institution/maps/Schema.php
  *

@@ -12,14 +12,14 @@
 
 namespace PKP\tests\jobs\statistics;
 
-use ReflectionClass;
-use PKP\task\FileLoader;
-use PKP\file\FileManager;
-use PKP\tests\PKPTestCase;
 use APP\statistics\StatisticsHelper;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PKP\jobs\statistics\ArchiveUsageStatsLogFile;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\file\FileManager;
+use PKP\jobs\statistics\ArchiveUsageStatsLogFile;
+use PKP\task\FileLoader;
+use PKP\tests\PKPTestCase;
+use ReflectionClass;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(ArchiveUsageStatsLogFile::class)]
@@ -69,7 +69,7 @@ class ArchiveUsageStatsLogFileTest extends PKPTestCase
                     . '/'
                     . FileLoader::FILE_LOADER_PATH_ARCHIVE
                     . '/'
-                    .$dummyFileName
+                    . $dummyFileName
             );
         }
 
@@ -100,7 +100,7 @@ class ArchiveUsageStatsLogFileTest extends PKPTestCase
             }
 
             touch($filePath . $fileName);
-            
+
             file_put_contents($filePath . $fileName, $this->dummyFileContent);
             return $fileName;
         }
@@ -117,7 +117,7 @@ class ArchiveUsageStatsLogFileTest extends PKPTestCase
             . DIRECTORY_SEPARATOR
             . FileLoader::FILE_LOADER_PATH_ARCHIVE
             . DIRECTORY_SEPARATOR;
-        
+
         if (file_exists($filePath)) {
             return true;
         }

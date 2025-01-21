@@ -108,7 +108,7 @@ class PKPVocabController extends PKPBaseController
             isset($requestParams['submissionId'])
                 ? (Repo::submission()->get((int) $requestParams['submissionId'])?->getPublicationLanguages() ?? [])
                 : []
-            );
+        );
 
         if (!in_array($locale, $locales)) {
             return response()->json([

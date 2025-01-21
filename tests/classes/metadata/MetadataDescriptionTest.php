@@ -19,9 +19,9 @@
 namespace PKP\tests\classes\metadata;
 
 use APP\core\Application;
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PKP\metadata\MetadataDescription;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversMethod;
 
 #[CoversMethod(MetadataDescription::class, 'addStatement')]
 #[CoversMethod(MetadataDescription::class, 'setStatements')]

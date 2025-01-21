@@ -20,11 +20,11 @@ namespace PKP\tests\classes\core;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use PKP\core\EntityDAO;
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PKP\core\DataObject;
+use PKP\core\EntityDAO;
 use PKP\plugins\Hook;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversMethod;
 
 #[CoversMethod(EntityDAO::class, '_insert')]
 class EntityDAOTest extends PKPTestCase

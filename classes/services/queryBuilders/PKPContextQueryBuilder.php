@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/services/QueryBuilders/PKPContextQueryBuilder.php
  *

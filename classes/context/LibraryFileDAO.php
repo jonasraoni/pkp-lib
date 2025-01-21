@@ -63,8 +63,8 @@ class LibraryFileDAO extends \PKP\db\DAO
 
         $result = $this->retrieve(
             'SELECT	*
-			FROM	library_files
-			WHERE	context_id = ? AND submission_id IS NULL ' . (isset($type) ? ' AND type = ?' : ''),
+            FROM	library_files
+            WHERE	context_id = ? AND submission_id IS NULL ' . (isset($type) ? ' AND type = ?' : ''),
             $params
         );
         return new DAOResultFactory($result, $this, '_fromRow', ['id']);
@@ -89,8 +89,8 @@ class LibraryFileDAO extends \PKP\db\DAO
 
         $result = $this->retrieve(
             'SELECT	*
-			FROM	library_files
-			WHERE	submission_id = ? ' . (isset($contextId) ? ' AND context_id = ?' : '') . (isset($type) ? ' AND type = ?' : ''),
+            FROM	library_files
+            WHERE	submission_id = ? ' . (isset($contextId) ? ' AND context_id = ?' : '') . (isset($type) ? ' AND type = ?' : ''),
             $params
         );
         return new DAOResultFactory($result, $this, '_fromRow', ['id']);
@@ -187,9 +187,9 @@ class LibraryFileDAO extends \PKP\db\DAO
         $this->update(
             sprintf(
                 'INSERT INTO library_files
-				(context_id, file_name, original_file_name, file_type, file_size, type, submission_id, public_access, date_uploaded, date_modified' . ($libraryFile->getId() ? ', file_id' : '') . ')
-				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, %s, %s' . ($libraryFile->getId() ? ', ?' : '') . ')',
+                (context_id, file_name, original_file_name, file_type, file_size, type, submission_id, public_access, date_uploaded, date_modified' . ($libraryFile->getId() ? ', file_id' : '') . ')
+                VALUES
+                (?, ?, ?, ?, ?, ?, ?, ?, %s, %s' . ($libraryFile->getId() ? ', ?' : '') . ')',
                 $this->datetimeToDB($libraryFile->getDateUploaded()),
                 $this->datetimeToDB($libraryFile->getDateModified())
             ),
@@ -216,16 +216,16 @@ class LibraryFileDAO extends \PKP\db\DAO
         $this->update(
             sprintf(
                 'UPDATE	library_files
-				SET	context_id = ?,
-					file_name = ?,
-					original_file_name = ?,
-					file_type = ?,
-					file_size = ?,
-					type = ?,
-					submission_id = ?,
-					public_access = ?,
-					date_uploaded = %s
-				WHERE	file_id = ?',
+                SET	context_id = ?,
+                    file_name = ?,
+                    original_file_name = ?,
+                    file_type = ?,
+                    file_size = ?,
+                    type = ?,
+                    submission_id = ?,
+                    public_access = ?,
+                    date_uploaded = %s
+                WHERE	file_id = ?',
                 $this->datetimeToDB($libraryFile->getDateUploaded())
             ),
             [

@@ -46,8 +46,8 @@ class SubmissionCommentDAO extends \PKP\db\DAO
         return new DAOResultFactory(
             $this->retrieve(
                 'SELECT	a.*
-				FROM	submission_comments a
-				WHERE	submission_id = ?'
+                FROM	submission_comments a
+                WHERE	submission_id = ?'
                     . ($commentType ? ' AND comment_type = ?' : '')
                     . ($assocId ? ' AND assoc_id = ?' : '')
                     . ' ORDER BY date_posted',
@@ -168,9 +168,9 @@ class SubmissionCommentDAO extends \PKP\db\DAO
         $this->update(
             sprintf(
                 'INSERT INTO submission_comments
-				(comment_type, role_id, submission_id, assoc_id, author_id, date_posted, date_modified, comment_title, comments, viewable)
-				VALUES
-				(?, ?, ?, ?, ?, %s, %s, ?, ?, ?)',
+                (comment_type, role_id, submission_id, assoc_id, author_id, date_posted, date_modified, comment_title, comments, viewable)
+                VALUES
+                (?, ?, ?, ?, ?, %s, %s, ?, ?, ?)',
                 $this->datetimeToDB($submissionComment->getDatePosted()),
                 $this->datetimeToDB($submissionComment->getDateModified())
             ),
@@ -233,18 +233,18 @@ class SubmissionCommentDAO extends \PKP\db\DAO
         $this->update(
             sprintf(
                 'UPDATE submission_comments
-				SET
-					comment_type = ?,
-					role_id = ?,
-					submission_id = ?,
-					assoc_id = ?,
-					author_id = ?,
-					date_posted = %s,
-					date_modified = %s,
-					comment_title = ?,
-					comments = ?,
-					viewable = ?
-				WHERE comment_id = ?',
+                SET
+                    comment_type = ?,
+                    role_id = ?,
+                    submission_id = ?,
+                    assoc_id = ?,
+                    author_id = ?,
+                    date_posted = %s,
+                    date_modified = %s,
+                    comment_title = ?,
+                    comments = ?,
+                    viewable = ?
+                WHERE comment_id = ?',
                 $this->datetimeToDB($submissionComment->getDatePosted()),
                 $this->datetimeToDB($submissionComment->getDateModified())
             ),

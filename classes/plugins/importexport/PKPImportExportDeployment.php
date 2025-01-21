@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup classes_plugins_importexport import/export deployment
  */
@@ -209,7 +210,6 @@ class PKPImportExportDeployment
     /**
      * Get the import/export publication.
      *
-     * @return Publication
      */
     public function getPublication(): ?Publication
     {

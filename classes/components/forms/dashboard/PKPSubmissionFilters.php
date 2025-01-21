@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/dashboard/SubmissionFilters.php
  *
@@ -20,8 +21,8 @@ use APP\facades\Repo;
 use Illuminate\Support\LazyCollection;
 use PKP\components\forms\FieldAutosuggestPreset;
 use PKP\components\forms\FieldOptions;
-use PKP\components\forms\FieldSlider;
 use PKP\components\forms\FieldSelectUsers;
+use PKP\components\forms\FieldSlider;
 use PKP\components\forms\FormComponent;
 use PKP\context\Context;
 use PKP\security\Role;
@@ -159,6 +160,6 @@ class PKPSubmissionFilters extends FormComponent
         ];
 
         return $this->addField(new FieldSlider('daysInactive', $props));
-  
+
     }
 }

@@ -18,10 +18,10 @@
 
 namespace PKP\tests\classes\validation;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PKP\tests\PKPTestCase;
 use PKP\validation\ValidatorTypeDescription;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(ValidatorTypeDescription::class)]
 class ValidatorTypeDescriptionTest extends PKPTestCase

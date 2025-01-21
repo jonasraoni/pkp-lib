@@ -20,7 +20,6 @@ use APP\core\Application;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use PKP\middleware\HasUser;
 use PKP\middleware\traits\HasRequiredMiddleware;
 
 class ValidateCsrfToken
@@ -36,7 +35,7 @@ class ValidateCsrfToken
             HasUser::class,
         ];
     }
-    
+
     /**
      * Determine and validate CSRF token
      */
@@ -47,7 +46,7 @@ class ValidateCsrfToken
             return $next($request);
         }
 
-        if($this->isApiRequest($request)) {
+        if ($this->isApiRequest($request)) {
             return $next($request);
         }
 
@@ -97,7 +96,7 @@ class ValidateCsrfToken
     {
         $requestCsrfToken = $request->server('HTTP_X_CSRF_TOKEN', null);
 
-        if($requestCsrfToken === null) {
+        if ($requestCsrfToken === null) {
             return false;
         }
 

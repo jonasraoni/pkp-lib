@@ -140,9 +140,9 @@ class ReviewFormDAO extends \PKP\db\DAO
     {
         $this->update(
             'INSERT INTO review_forms
-				(assoc_type, assoc_id, seq, is_active)
-				VALUES
-				(?, ?, ?, ?)',
+                (assoc_type, assoc_id, seq, is_active)
+                VALUES
+                (?, ?, ?, ?)',
             [
                 (int) $reviewForm->getAssocType(),
                 (int) $reviewForm->getAssocId(),
@@ -166,12 +166,12 @@ class ReviewFormDAO extends \PKP\db\DAO
     {
         $returner = $this->update(
             'UPDATE review_forms
-				SET
-					assoc_type = ?,
-					assoc_id = ?,
-					seq = ?,
-					is_active = ?
-				WHERE review_form_id = ?',
+                SET
+                    assoc_type = ?,
+                    assoc_id = ?,
+                    seq = ?,
+                    is_active = ?
+                WHERE review_form_id = ?',
             [
                 (int) $reviewForm->getAssocType(),
                 (int) $reviewForm->getAssocId(),

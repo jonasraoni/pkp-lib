@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/highlight/DAO.php
  *
@@ -130,7 +131,7 @@ class DAO extends EntityDAO
     public function getLastSequence(?int $contextId = null): ?int
     {
         return DB::table($this->table)
-            ->where(DB::raw("COALESCE(context_id, 0)"), (int) $contextId)
+            ->where(DB::raw('COALESCE(context_id, 0)'), (int) $contextId)
             ->orderBy('sequence', 'desc')
             ->first('sequence')
             ?->sequence;

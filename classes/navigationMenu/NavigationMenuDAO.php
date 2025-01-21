@@ -137,10 +137,10 @@ class NavigationMenuDAO extends \PKP\db\DAO
         Cache::forget("navigationMenu-{$navigationMenu->getId()}");
         return (bool) $this->update(
             'UPDATE	navigation_menus
-			SET	title = ?,
-				area_name = ?,
-				context_id = ?
-			WHERE	navigation_menu_id = ?',
+            SET	title = ?,
+                area_name = ?,
+                context_id = ?
+            WHERE	navigation_menu_id = ?',
             [
                 $navigationMenu->getTitle(),
                 $navigationMenu->getAreaName(),

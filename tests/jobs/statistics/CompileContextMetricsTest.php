@@ -13,11 +13,11 @@
 namespace PKP\tests\jobs\statistics;
 
 use Mockery;
-use PKP\db\DAORegistry;
-use PKP\tests\PKPTestCase;
-use PKP\jobs\statistics\CompileContextMetrics;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PKP\db\DAORegistry;
+use PKP\jobs\statistics\CompileContextMetrics;
+use PKP\tests\PKPTestCase;
 
 #[RunTestsInSeparateProcesses]
 #[CoversClass(CompileContextMetrics::class)]

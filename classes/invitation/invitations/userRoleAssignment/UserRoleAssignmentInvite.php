@@ -116,7 +116,7 @@ class UserRoleAssignmentInvite extends Invitation implements IApiHandleable
         return $this->mailable;
     }
 
-    public function getMailableReceiver(?string $locale = null): Identity 
+    public function getMailableReceiver(?string $locale = null): Identity
     {
         $locale = $this->getUsedLocale($locale);
 
@@ -141,15 +141,15 @@ class UserRoleAssignmentInvite extends Invitation implements IApiHandleable
     /**
      * @inheritDoc
      */
-    public function getCreateInvitationController(Invitation $invitation): CreateInvitationController 
+    public function getCreateInvitationController(Invitation $invitation): CreateInvitationController
     {
         return new UserRoleAssignmentCreateController($invitation);
     }
-    
+
     /**
      * @inheritDoc
      */
-    public function getReceiveInvitationController(Invitation $invitation): ReceiveInvitationController 
+    public function getReceiveInvitationController(Invitation $invitation): ReceiveInvitationController
     {
         return new UserRoleAssignmentReceiveController($invitation);
     }
@@ -175,7 +175,7 @@ class UserRoleAssignmentInvite extends Invitation implements IApiHandleable
         }
 
         $validationRules = array_merge(
-            $invitationValidationRules, 
+            $invitationValidationRules,
             $this->getPayload()->getValidationRules($this, $validationContext)
         );
 
@@ -190,7 +190,7 @@ class UserRoleAssignmentInvite extends Invitation implements IApiHandleable
         $invitationValidationMessages = [];
 
         $invitationValidationMessages = array_merge(
-            $invitationValidationMessages, 
+            $invitationValidationMessages,
             $this->getPayload()->getValidationMessages($validationContext)
         );
 
@@ -221,7 +221,7 @@ class UserRoleAssignmentInvite extends Invitation implements IApiHandleable
             $this->invitationModel->userId = $invitationUserByEmail->getId();
             $this->invitationModel->email = null;
 
-            $result =  $this->invitationModel->save();
+            $result = $this->invitationModel->save();
 
             if ($result) {
                 $this->getPayload()->shouldUseInviteData = true;

@@ -24,7 +24,7 @@ class PluginTest extends PKPTestCase
 {
     public function testFailToInstantiate()
     {
-        $plugin = new class(false) extends Plugin {
+        $plugin = new class (false) extends Plugin {
             public static $triggered = false;
             public function __construct(bool $run = true)
             {
@@ -55,7 +55,7 @@ class PluginTest extends PKPTestCase
 
     public function testFailToRegister()
     {
-        $plugin = new class extends Plugin {
+        $plugin = new class () extends Plugin {
             public static $triggered = false;
 
             public function register($category, $path, $mainContextId = null)
@@ -84,7 +84,7 @@ class PluginTest extends PKPTestCase
 
     public function testFailToHandleHook()
     {
-        $plugin = new class(false) extends Plugin {
+        $plugin = new class (false) extends Plugin {
             public static $counter = 0;
 
             public function __construct(bool $run = true)

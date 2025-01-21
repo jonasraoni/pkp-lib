@@ -114,7 +114,7 @@ class PKPQueueProvider extends IlluminateQueueServiceProvider
         if (Config::getVar('queues', 'job_runner', true)) {
             $currentWorkingDir = getcwd();
             register_shutdown_function(function () use ($currentWorkingDir) {
-                
+
                 // restore the current working directory
                 // see: https://www.php.net/manual/en/function.register-shutdown-function.php#refsect1-function.register-shutdown-function-notes
                 chdir($currentWorkingDir);

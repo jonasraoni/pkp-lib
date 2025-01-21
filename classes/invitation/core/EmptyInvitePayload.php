@@ -14,7 +14,7 @@
 
 namespace PKP\invitation\core;
 
-class EmptyInvitePayload extends InvitePayload 
+class EmptyInvitePayload extends InvitePayload
 {
     // No properties or methods
 }

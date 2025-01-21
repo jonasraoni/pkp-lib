@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/context/PKPReviewSetupForm.php
  *
@@ -17,11 +18,11 @@
 namespace PKP\components\forms\context;
 
 use PKP\components\forms\FieldHTML;
-use PKP\context\Context;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FieldSlider;
 use PKP\components\forms\FieldText;
 use PKP\components\forms\FormComponent;
+use PKP\context\Context;
 use PKP\submission\reviewAssignment\ReviewAssignment;
 
 class PKPReviewSetupForm extends FormComponent
@@ -171,7 +172,7 @@ class PKPReviewSetupForm extends FormComponent
                 'valueLabelMin' => __('manager.setup.reviewOptions.reminders.disbale.label'),
                 'groupId' => self::REVIEW_REMINDER_GROUP,
             ]));
-        
+
         return $this;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/security/authorization/PolicySet.php
  *

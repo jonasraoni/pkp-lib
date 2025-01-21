@@ -14,8 +14,8 @@
 
 namespace PKP\migration\upgrade\v3_5_0;
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use PKP\migration\Migration;
 
 class I9566_SessionUpgrade extends Migration
@@ -48,7 +48,7 @@ class I9566_SessionUpgrade extends Migration
     public function down(): void
     {
         Schema::drop('sessions');
-        
+
         Schema::create('sessions', function (Blueprint $table) {
             $table->comment('Session data for logged-in users.');
             $table->string('session_id', 128);

@@ -168,6 +168,7 @@ class Hook
                     /**
                      * This is an attempt to improve the application's resilience against errors inside plugins
                      * If an exception happens at a hook handler which was implemented inside a plugin (callbacks implemented inside a plugin-derived class or located inside the folders "lib/pkp/plugins" or "plugins"), the exception will be logged and the hook flow will continue
+                     *
                      * @see https://github.com/pkp/pkp-lib/discussions/9083
                     */
                     $pluginDirectories = [realpath(BASE_SYS_DIR . '/' . PKP_LIB_PATH . '/plugins'), realpath(BASE_SYS_DIR . '/plugins')];

@@ -18,12 +18,12 @@
 
 namespace PKP\tests\classes\form\validation;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PKP\form\Form;
 use PKP\form\validation\FormValidator;
 use PKP\form\validation\FormValidatorArrayCustom;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversMethod;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(FormValidator::class)]
 #[CoversClass(FormValidatorArrayCustom::class)]

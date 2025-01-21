@@ -14,8 +14,8 @@
 
 namespace PKP\migration;
 
-use PKP\install\Installer;
 use Illuminate\Support\Facades\Schema;
+use PKP\install\Installer;
 
 abstract class Migration extends \Illuminate\Database\Migrations\Migration
 {

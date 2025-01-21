@@ -18,9 +18,9 @@
 
 namespace PKP\tests\classes\validation;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\tests\PKPTestCase;
 use PKP\validation\ValidatorEmail;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(ValidatorEmail::class)]
 class ValidatorEmailTest extends PKPTestCase

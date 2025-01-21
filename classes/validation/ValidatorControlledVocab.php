@@ -40,9 +40,10 @@ class ValidatorControlledVocab extends Validator
     //
     // Implement abstract methods from Validator
     //
-    
+
     /**
      * Value is valid if it is empty and optional or is in the set of accepted values.
+     *
      * @see Validator::isValid()
      */
     public function isValid($value): bool

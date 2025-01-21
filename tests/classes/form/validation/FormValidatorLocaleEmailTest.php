@@ -18,11 +18,11 @@
 
 namespace PKP\tests\classes\form\validation;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\form\Form;
 use PKP\form\validation\FormValidator;
 use PKP\form\validation\FormValidatorLocaleEmail;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(FormValidatorLocaleEmail::class)]
 class FormValidatorLocaleEmailTest extends PKPTestCase

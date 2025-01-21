@@ -141,7 +141,7 @@ class ChangeProfileEmailInvite extends Invitation implements IBackofficeHandleab
     /**
      * @inheritDoc
      */
-    public function getValidationRules(ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array 
+    public function getValidationRules(ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array
     {
         return [
             'newEmail' => 'required|email',
@@ -151,7 +151,7 @@ class ChangeProfileEmailInvite extends Invitation implements IBackofficeHandleab
     /**
      * @inheritDoc
      */
-    public function getValidationMessages(ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array 
+    public function getValidationMessages(ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array
     {
         return [];
     }

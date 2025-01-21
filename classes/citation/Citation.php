@@ -104,7 +104,7 @@ class Citation extends \PKP\core\DataObject
     /**
      * Take a citation string and clean/normalize it
      */
-    public function _cleanCitationString(string $citationString) : string
+    public function _cleanCitationString(string $citationString): string
     {
         // 1) Strip slashes and whitespace
         $citationString = trim(stripslashes($citationString));

@@ -33,24 +33,23 @@ class PKPEncryptCookies extends \Illuminate\Cookie\Middleware\EncryptCookies
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle($request, Closure $next)
     {
         $config = app()->get('config')->get('session');
-        
+
         if (!$config['cookie_encryption']) {
             return $next($request);
         }
 
         return $this->encrypt($next($this->decrypt($request)));
     }
-    
+
     /**
      * Encrypt the cookies on an outgoing response.
      *
-     * @param  \Symfony\Component\HttpFoundation\Response  $response
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function encrypt(Response $response)

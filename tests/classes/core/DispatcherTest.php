@@ -20,8 +20,8 @@ namespace PKP\tests\classes\core;
 
 use APP\core\Application;
 use APP\core\Request;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\MockObject\MockObject;
 use PKP\core\Dispatcher;
 use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;

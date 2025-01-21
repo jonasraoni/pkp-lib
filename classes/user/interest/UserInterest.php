@@ -14,13 +14,13 @@
 
 namespace PKP\user\interest;
 
+use APP\facades\Repo;
 use Eloquence\Behaviours\HasCamelCasing;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use PKP\controlledVocab\ControlledVocabEntry;
-use APP\facades\Repo;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Builder;
 
 class UserInterest extends Model
 {

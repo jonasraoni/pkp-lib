@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/grid/users/reviewer/form/ReviewerNotifyActionForm.php
  *

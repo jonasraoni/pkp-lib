@@ -18,10 +18,10 @@
 
 namespace PKP\tests\classes\form\validation;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\form\Form;
 use PKP\form\validation\FormValidatorBoolean;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(FormValidatorBoolean::class)]
 class FormValidatorBooleanTest extends PKPTestCase

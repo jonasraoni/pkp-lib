@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file controllers/api/file/linkAction/DeleteFileLinkAction.php
  *

@@ -38,7 +38,7 @@ class CitationDAO extends \PKP\db\DAO
             // Find the latest sequence number
             $result = $this->retrieve(
                 'SELECT MAX(seq) AS lastseq FROM citations
-				WHERE publication_id = ?',
+                WHERE publication_id = ?',
                 [(int)$citation->getData('publicationId')]
             );
             $row = $result->current();
@@ -47,9 +47,9 @@ class CitationDAO extends \PKP\db\DAO
 
         $this->update(
             sprintf('INSERT INTO citations
-				(publication_id, raw_citation, seq)
-				VALUES
-				(?, ?, ?)'),
+                (publication_id, raw_citation, seq)
+                VALUES
+                (?, ?, ?)'),
             [
                 (int) $citation->getData('publicationId'),
                 $citation->getRawCitation(),
@@ -133,9 +133,9 @@ class CitationDAO extends \PKP\db\DAO
     {
         $result = $this->retrieveRange(
             'SELECT *
-			FROM citations
-			WHERE publication_id = ?
-			ORDER BY seq, citation_id',
+            FROM citations
+            WHERE publication_id = ?
+            ORDER BY seq, citation_id',
             [(int)$publicationId],
             $rangeInfo
         );
@@ -151,10 +151,10 @@ class CitationDAO extends \PKP\db\DAO
     {
         $returner = $this->update(
             'UPDATE	citations
-			SET	publication_id = ?,
-				raw_citation = ?,
-				seq = ?
-			WHERE	citation_id = ?',
+            SET	publication_id = ?,
+                raw_citation = ?,
+                seq = ?
+            WHERE	citation_id = ?',
             [
                 (int) $citation->getData('publicationId'),
                 $citation->getRawCitation(),

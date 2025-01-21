@@ -15,11 +15,10 @@
 namespace PKP\core;
 
 use APP\core\Application;
-use PKP\core\PKPSessionGuard;
-use PKP\middleware\PKPStartSession;
-use Illuminate\Session\SessionManager;
-use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Contracts\Cache\Factory as CacheFactory;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Session\SessionManager;
+use PKP\middleware\PKPStartSession;
 
 class PKPSessionServiceProvider extends \Illuminate\Session\SessionServiceProvider
 {
@@ -50,7 +49,7 @@ class PKPSessionServiceProvider extends \Illuminate\Session\SessionServiceProvid
 
         $this->app->singleton(StartSession::class, function ($app) {
             return new PKPStartSession(
-                $app->make(SessionManager::class), 
+                $app->make(SessionManager::class),
                 function () use ($app) {
                     return $app->make(CacheFactory::class);
                 }

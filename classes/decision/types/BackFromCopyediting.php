@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/decision/types/BackFromCopyediting.php
  *
@@ -138,7 +139,7 @@ class BackFromCopyediting extends DecisionType
         parent::runAdditionalActions($decision, $submission, $editor, $context, $actions);
 
         $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
-        if($reviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId())) {
+        if ($reviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId())) {
             $reviewRoundDao->updateStatus($reviewRound, ReviewRound::REVIEW_ROUND_STATUS_RETURNED_TO_REVIEW);
         }
 

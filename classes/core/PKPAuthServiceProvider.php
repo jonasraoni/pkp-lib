@@ -14,12 +14,10 @@
 
 namespace PKP\core;
 
-use PKP\core\PKPAuthManager;
-use PKP\core\PKPUserProvider;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Database\ConnectionInterface;
+use Illuminate\Support\Facades\Auth;
 
 class PKPAuthServiceProvider extends \Illuminate\Auth\AuthServiceProvider
 {
@@ -40,8 +38,8 @@ class PKPAuthServiceProvider extends \Illuminate\Auth\AuthServiceProvider
     public function register()
     {
         parent::register();
-        
-        $this->app->singleton(AuthFactory::class, fn($app) => $app->get('auth'));
+
+        $this->app->singleton(AuthFactory::class, fn ($app) => $app->get('auth'));
 
         $this->app->singleton(
             PKPUserProvider::class,

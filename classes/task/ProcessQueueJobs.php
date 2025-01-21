@@ -55,7 +55,7 @@ class ProcessQueueJobs extends ScheduledTask
         // will process a limited number of jobs at a single time
         if (PKPContainer::getInstance()->runningInConsole()) {
             $maxJobCountToProcess = abs(Config::getVar('queues', 'job_runner_max_jobs', 30));
-            
+
             while ($jobBuilder->count() && $maxJobCountToProcess) {
                 $jobQueue->runJobInQueue();
                 --$maxJobCountToProcess;

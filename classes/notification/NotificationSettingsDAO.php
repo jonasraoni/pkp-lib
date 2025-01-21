@@ -68,8 +68,8 @@ class NotificationSettingsDAO extends \PKP\db\DAO
                     $type = null;
                     $this->update(
                         'INSERT INTO notification_settings
-					(notification_id, setting_name, setting_value, setting_type, locale)
-					VALUES (?, ?, ?, ?, ?)',
+                    (notification_id, setting_name, setting_value, setting_type, locale)
+                    VALUES (?, ?, ?, ?, ?)',
                         [
                             (int) $notificationId,
                             $name, $this->convertToDB($localeValue, $type),

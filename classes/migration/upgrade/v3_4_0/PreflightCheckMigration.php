@@ -435,7 +435,7 @@ abstract class PreflightCheckMigration extends \PKP\migration\Migration
         if (DB::connection() instanceof PostgresConnection) {
             return;
         }
-        
+
         $defaultEngine = DB::scalar('SELECT ENGINE FROM INFORMATION_SCHEMA.ENGINES WHERE SUPPORT = "DEFAULT"');
         if (strtolower($defaultEngine) !== 'innodb') {
             throw new Exception(

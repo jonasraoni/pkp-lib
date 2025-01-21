@@ -20,13 +20,13 @@ namespace PKP\tests\classes\metadata;
 
 use APP\facades\Repo;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\controlledVocab\ControlledVocab;
 use PKP\controlledVocab\ControlledVocabEntry;
 use PKP\metadata\MetadataDescription;
 use PKP\metadata\MetadataProperty;
 use PKP\tests\PKPTestCase;
 use stdClass;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(MetadataProperty::class)]
 class MetadataPropertyTest extends PKPTestCase
@@ -148,7 +148,9 @@ class MetadataPropertyTest extends PKPTestCase
     {
         // Build a test vocabulary. (Assoc type and id are 0 to simulate a site-wide vocabulary).
         $vocab = Repo::controlledVocab()->build(
-            ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_KEYWORD, 0, 0
+            ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_KEYWORD,
+            0,
+            0
         );
 
         $controlledVocabEntry = ControlledVocabEntry::create([
@@ -160,7 +162,7 @@ class MetadataPropertyTest extends PKPTestCase
 
         $metadataProperty = new MetadataProperty(
             'testElement',
-            [], 
+            [],
             [MetadataProperty::METADATA_PROPERTY_TYPE_VOCABULARY => ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_KEYWORD]
         );
 
@@ -173,7 +175,7 @@ class MetadataPropertyTest extends PKPTestCase
 
         // Delete the test vocab along with entry
         $vocab->delete();
-        
+
     }
 
     public function testValidateDate()

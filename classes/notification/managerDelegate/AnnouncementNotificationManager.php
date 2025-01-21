@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/notification/managerDelegate/AnnouncementNotificationManager.php
  *
@@ -15,7 +16,6 @@
 
 namespace PKP\notification\managerDelegate;
 
-use APP\core\Application;
 use PKP\announcement\Announcement;
 use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;

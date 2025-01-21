@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/observers/listeners/UpdateAuthorStageAssignments.php
  *
@@ -17,7 +18,6 @@
 
 namespace PKP\observers\listeners;
 
-use APP\facades\Repo;
 use Illuminate\Events\Dispatcher;
 use PKP\observers\events\SubmissionSubmitted;
 use PKP\security\Role;
@@ -42,7 +42,7 @@ class UpdateAuthorStageAssignments
             ->withStageIds([$event->submission->getData('stageId')])
             ->get();
 
-            $userGroups = UserGroup::withContextIds([$event->context->getId()])
+        $userGroups = UserGroup::withContextIds([$event->context->getId()])
             ->withRoleIds([Role::ROLE_ID_AUTHOR])
             ->get();
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/forms/site/PKPSiteStatisticsForm.php
  *

@@ -18,9 +18,9 @@
 
 namespace PKP\tests\classes\core;
 
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PKP\core\DataObject;
 use PKP\tests\PKPTestCase;
-use PHPUnit\Framework\Attributes\CoversMethod;
 
 #[CoversMethod(DataObject::class, 'setData')]
 #[CoversMethod(DataObject::class, 'getData')]

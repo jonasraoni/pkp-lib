@@ -14,10 +14,8 @@
 
 namespace PKP\invitation\invitations\userRoleAssignment\helpers;
 
-use APP\facades\Repo;
 use PKP\userGroup\relationships\UserUserGroup;
 use PKP\userGroup\UserGroup;
-
 
 class UserGroupHelper
 {
@@ -27,7 +25,8 @@ class UserGroupHelper
         public int $userGroupId,
         public ?bool $masthead,
         public ?string $dateStart,
-        public ?string $dateEnd = null) {
+        public ?string $dateEnd = null
+    ) {
     }
 
     public function getUserGroup()

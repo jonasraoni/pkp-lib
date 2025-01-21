@@ -25,9 +25,9 @@ class PKPStartSession extends \Illuminate\Session\Middleware\StartSession
     {
         return tap($session, function ($session) use ($request) {
             $session->setRequestOnHandler($request);
-            
+
             $session->start();
-            
+
             app()->get('auth.driver')->setSession($session);
         });
     }

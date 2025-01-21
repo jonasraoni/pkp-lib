@@ -18,9 +18,9 @@
 
 namespace PKP\tests\classes\validation;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\tests\PKPTestCase;
 use PKP\validation\ValidatorORCID;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(ValidatorORCID::class)]
 class ValidatorORCIDTest extends PKPTestCase

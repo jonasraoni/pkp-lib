@@ -35,7 +35,7 @@ trait ShouldValidate
 
     abstract public function getValidationMessages(ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array;
 
-    protected function globalTraitValidationData(array $data, ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array 
+    protected function globalTraitValidationData(array $data, ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): array
     {
         $data = array_merge($data, $this->globalTraitValidation);
 
@@ -53,7 +53,7 @@ trait ShouldValidate
 
     /**
      * Checks the validity of the data provided against the provided rules.
-     * Returns true if everything is valid. 
+     * Returns true if everything is valid.
      */
     public function validate(array $data = [], ValidationContext $validationContext = ValidationContext::VALIDATION_CONTEXT_DEFAULT): bool
     {

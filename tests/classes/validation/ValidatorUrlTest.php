@@ -18,9 +18,9 @@
 
 namespace PKP\tests\classes\validation;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\tests\PKPTestCase;
 use PKP\validation\ValidatorUrl;
-use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(ValidatorUrl::class)]
 class ValidatorUrlTest extends PKPTestCase

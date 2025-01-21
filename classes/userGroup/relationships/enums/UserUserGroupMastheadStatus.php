@@ -16,10 +16,10 @@ namespace PKP\userGroup\relationships\enums;
 
 enum UserUserGroupMastheadStatus: string
 {
-    case STATUS_NULL = 'null';	// Undefined, e.g. for groups that are not considered for masthead
-    case STATUS_ON = 'on';		// Will be displayed on masthead
-    case STATUS_OFF = 'off';	// Will not be displayed on masthead
-    case STATUS_ALL = 'all';	// Help and default status to considering all, no matter what masthead value is in the DB
+    case STATUS_NULL = 'null'; // Undefined, e.g. for groups that are not considered for masthead
+    case STATUS_ON = 'on'; // Will be displayed on masthead
+    case STATUS_OFF = 'off'; // Will not be displayed on masthead
+    case STATUS_ALL = 'all'; // Help and default status to considering all, no matter what masthead value is in the DB
     /**
      * When a new role is selected to appear on masthead, all active users having this role will first have STATUS_NULL.
      * Also direct after the first upgrade to 3.5 or next release, all active users will first have STATUS_NULL.

@@ -294,6 +294,7 @@ abstract class PKPRouter
      * 3) initialization
      * 4) execution
      * 5) client response
+     *
      * @param array{0:PKPHandler,1:string} $serviceEndpoint
      * @param bool $validate whether or not to execute the validation step.
      */

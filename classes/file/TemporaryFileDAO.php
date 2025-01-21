@@ -104,9 +104,9 @@ class TemporaryFileDAO extends \PKP\db\DAO
         $this->update(
             sprintf(
                 'INSERT INTO temporary_files
-				(user_id, file_name, file_type, file_size, original_file_name, date_uploaded)
-				VALUES
-				(?, ?, ?, ?, ?, %s)',
+                (user_id, file_name, file_type, file_size, original_file_name, date_uploaded)
+                VALUES
+                (?, ?, ?, ?, ?, %s)',
                 $this->datetimeToDB($temporaryFile->getDateUploaded())
             ),
             [
@@ -130,14 +130,14 @@ class TemporaryFileDAO extends \PKP\db\DAO
         $this->update(
             sprintf(
                 'UPDATE temporary_files
-				SET
-					file_name = ?,
-					file_type = ?,
-					file_size = ?,
-					user_id = ?,
-					original_file_name = ?,
-					date_uploaded = %s
-				WHERE file_id = ?',
+                SET
+                    file_name = ?,
+                    file_type = ?,
+                    file_size = ?,
+                    user_id = ?,
+                    original_file_name = ?,
+                    date_uploaded = %s
+                WHERE file_id = ?',
                 $this->datetimeToDB($temporaryFile->getDateUploaded())
             ),
             [
